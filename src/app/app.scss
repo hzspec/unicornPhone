@@ -15,6 +15,15 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+*{font-family:"微软雅黑 黑体 幼圆";color:#333;}
+.header-md::after{display:none;}
+
 .icons{background:url(/assets/imgs/icons.png) no-repeat 0 0;display:inline-block;}
 .ico-username{width:21px;height:23px;background-position:0 0;}
 .ico-password{width:18px;height:23px;background-position:-36px 0;}
+.ico-fl1{width:33px;height:33px;background-position:0px -34px;vertical-align:middle;}
+.ico-fl2{width:20px;height:32px;background-position:-41px -35px;vertical-align:middle;}
+.ico-fl3{width:28px;height:28px;background-position:-73px -37px;vertical-align:middle;}
+.ico-fl4{width:27px;height:33px;background-position:-111px -36px;vertical-align:middle;}
+.ico-main-ch1{width:64px;height:62px;background-position:-2px -80px;vertical-align:middle;}
+.ico-main-ch2{width:64px;height:62px;background-position:-2px -152px;vertical-align:middle;}

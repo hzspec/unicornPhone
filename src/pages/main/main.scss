@@ -1,0 +1,16 @@
+page-main {
+    .sliders-container{height:150px;padding:10px;}
+    .slide-zoom{height:100%;}
+    .equip-con{
+        border-radius:8px;width:100%;height:100%;
+        background: linear-gradient(90deg, #01AEFB, #0074FF);
+        .lfimg{float:left;height:85px;margin:25px 0 0 15px;}
+        .infor{margin-left:165px;padding-top:10px;text-align:left;
+            p{font-size:18px;color:#fff;margin:0 0 6px 0;position:relative;left:-15px;
+                span{font-size:30px;color:#FDFF00;font-weight:bold;}
+            }
+            .stl-container{line-height:16px;}
+            .stl{color:#fff;font-size:12px;display:inline-block;width:80px;}
+        }
+    }
+}

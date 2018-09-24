@@ -1,0 +1,10 @@
+uni-alertchart {
+    .alertchart{padding:10px;
+        .chartcontainer{
+            border-radius:17px;position:relative;border:solid 1px #e2e2e2;min-height:100px;
+            .ico-main-ch1{position:absolute;left:0;top:0;}
+            .title{float:right;width:78%;border-bottom:solid 1px #e2e2e2;line-height:46px;font-weight:bold;font-size:15px;}
+            .contents{clear:both;padding:10px 5px 10px 5px;}
+        }
+    }
+}
