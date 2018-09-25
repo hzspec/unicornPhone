@@ -1,0 +1,83 @@
+<!--
+  Generated template for the EquipPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <uni-header [title]="'设备'"></uni-header>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="head-banner">
+    <span class="title">Paul ABCD<br/><small>FC:F5:28:D4:81:AA</small></span>
+
+    <div class="hinfors">
+      <div class="hfmod">
+        <span class="icons ico-equip-l1"></span><br/>
+        <span class="txt">设备数：<b>17</b></span>
+      </div>
+      <div class="hfmod">
+        <span class="icons ico-equip-l2"></span><br/>
+        <span class="txt">IP：<b style="color:#02A75D">191.168.1.123</b></span>
+      </div>
+      <div class="hfmod">
+        <span class="icons ico-equip-l3"></span><br/>
+        <span class="txt">报警数：<b style="color:#F6576C">18</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="navs">
+    <ion-segment [(ngModel)]="equipTp">
+      <ion-segment-button value="all">
+        所有设备
+      </ion-segment-button>
+      <ion-segment-button value="ok">
+        已授权
+      </ion-segment-button>
+      <ion-segment-button value="no">
+        未授权
+      </ion-segment-button>
+      <ion-segment-button value="black">
+        黑名单
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="lists">
+    <div class="litem">
+      <span class="icons icon-equip-phone licon"></span>
+      <div class="title">
+        ABCD1234<small>1年前</small>
+      </div>
+      <div class="content">
+        <p>Mac地址<span>24:F0:94:0E:BB:87</span></p>
+        <p>IP地址<span>192.168.0.119</span></p>
+        <p>供应商<span>Apple</span></p>
+      </div>
+      <div class="opera">
+        <span class="icons icon-equip-connect"></span>
+        <div class="buttons">
+          <a class="but-select">
+            <span class="icons-con"><span class="icons icon-equip-o1"></span></span>
+            <span class="sel-txt">白名单</span>
+          </a>
+          <a class="but-select">
+            <span class="icons-con"><span class="icons icon-equip-o2"></span></span>
+          </a>
+          <a class="but-select">
+            <span class="icons-con"><span class="icons icon-equip-o3"></span></span>
+          </a>
+          <a class="but-select">
+            <span class="icons-con"><span class="icons icon-equip-o4"></span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the TabPage page.
+ * Generated class for the EquipPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,20 +10,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-tab',
-  templateUrl: 'tab.html',
+  selector: 'page-equip',
+  templateUrl: 'equip.html',
 })
-export class TabPage {
+export class EquipPage {
 
-  tab1Root:any = 'MainPage';
-  tab2Root:any = 'EquipPage';
-  tab3Root:any = 'SafePage';
-  tab4Root:any = 'MinePage';
+  equipTp:string = 'all';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
+    
   }
 
 }

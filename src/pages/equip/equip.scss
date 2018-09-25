@@ -1,0 +1,59 @@
+page-equip {
+    .head-banner{
+        background:url(/assets/imgs/equip/bgbanner.png) no-repeat 0 0;
+        background-size:100% 125px;height:125px;
+        border-bottom:solid 1px #e2e2e2;padding-top:5px;text-align:center;
+        .title{
+            font-size:22px;color:#31A4FC;line-height:18px;margin-top:10px;display:inline-block;
+            small{color:#999;font-size:12px;}
+        }
+        .hinfors{
+            clear:both;margin-top:15px;
+            .hfmod{
+                float:left;width:33.33%;text-align:center;
+                .txt{
+                    font-size:12px;
+                    b{font-size:14px;color:#31A3FC;font-weight:normal;}
+                }
+            }
+        }
+    }
+
+    .segment-ios .segment-button{border:none;color:#333;font-size:14px;border-radius:0;}
+    .segment-ios .segment-button.segment-activated{background:none;border-bottom:solid 2px #333;font-weight:bold;color:#333;}
+
+    .navs{padding:10px 10px 0 10px;border-bottom:solid 1px #e2e2e2;}
+    .lists{
+        padding:10px 10px;
+        .litem{
+            border-radius:12px;border:solid 1px #e2e2e2;min-height:130px;position:relative;
+            .licon{
+                position:absolute;left:0;top:0;
+            }
+            .title{
+                float:right;color:#000;font-size:15px;padding-left:10px;
+                width:86%;border-bottom:solid 1px #e2e2e2;height:30px;line-height:30px;
+                small{float:right;margin:0px 15px 0 0;color:#999;font-size:12px;}
+            }
+            .content{
+                clear:both;padding:5px 15px 0 60px;
+                p{
+                    margin:5px 0;color:#666;font-size:14px;clear:both;
+                    span{float:right;color:#333;}
+                }
+            }
+            .opera{
+                clear:both;padding:5px 0 5px 10px;
+                .icon-equip-connect{float:left;}
+                .buttons{
+                    margin:0 0 0 80px;text-align:right;position:relative;
+                    .but-select{
+                        position:relative;
+                        .icons-con{width:35px;height:35px;background-color:#161616;border-radius:35px;text-align:center;line-height:35px;display:inline-block;position: relative;z-index:3;}
+                        .sel-txt{padding:3px 10px;color:#fff;background:#161616;white-space:nowrap;left:0;top:5px;border-radius:10px;padding-left:40px;margin:-5px 0 0 -40px;position: relative;z-index:2;top:0px;}
+                    }
+                }
+            }
+        }
+    }
+}
