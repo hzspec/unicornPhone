@@ -6,13 +6,89 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>safe</ion-title>
-  </ion-navbar>
+  <uni-header [title]="'安全'"></uni-header>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <div class="navs">
+    <ion-segment [(ngModel)]="safeType">
+      <ion-segment-button value="alert">
+        报警管理
+      </ion-segment-button>
+      <ion-segment-button value="green">
+        绿色上网
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="contents" [ngSwitch]="safeType">
+    <ul class="alertlists" *ngSwitchCase="'alert'">
+      <li class="al">
+        <div class="avatar">
+          <span class="icon-con">
+            <span class="icons icon-safe-alert"></span>
+          </span>
+        </div>
+        <div class="infor">
+          <h5>SSH test<small><span class="icons icon-safe-date"></span>&nbsp;1年前</small></h5>
+          <p>
+            <b>Mac地址：</b>24:F0:94:0E:BB:87<br/>
+            <b>源IP：</b>192.168.1.123&nbsp;&nbsp;&nbsp;&nbsp;<b>目的IP：</b>192.168.1.321
+          </p>
+        </div>
+      </li>
+      <li class="al">
+        <div class="avatar">
+          <span class="icon-con l2">
+            <span class="icons icon-safe-alert"></span>
+          </span>
+        </div>
+        <div class="infor">
+          <h5>SSH test<small><span class="icons icon-safe-date"></span>&nbsp;1年前</small></h5>
+          <p>
+            <b>Mac地址：</b>24:F0:94:0E:BB:87<br/>
+            <b>源IP：</b>192.168.1.123&nbsp;&nbsp;&nbsp;&nbsp;<b>目的IP：</b>192.168.1.321
+          </p>
+        </div>
+      </li>
+      <li class="al">
+        <div class="avatar">
+          <span class="icon-con l3">
+            <span class="icons icon-safe-alert"></span>
+          </span>
+        </div>
+        <div class="infor">
+          <h5>SSH test<small><span class="icons icon-safe-date"></span>&nbsp;1年前</small></h5>
+          <p>
+            <b>Mac地址：</b>24:F0:94:0E:BB:87<br/>
+            <b>源IP：</b>192.168.1.123&nbsp;&nbsp;&nbsp;&nbsp;<b>目的IP：</b>192.168.1.321
+          </p>
+        </div>
+      </li>
+
+    </ul>
+
+    <div class="greenlists" *ngSwitchCase="'green'">
+      <ion-item>
+        <ion-label><b>网址阻止</b><br><small>手动设置特定网址存在病毒/木马风险</small></ion-label>
+        <ion-toggle checked="false"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label><b>上网防劫持</b><br><small>防止路由器的域名解析劫持到钓鱼网站、木马网站</small></ion-label>
+        <ion-toggle checked="true"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label><b>恶意网址防火墙</b><br><small>自动检测各终端的网站是否存在病毒/木马风险</small></ion-label>
+        <ion-toggle checked="true"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label><b>信息泄露防火墙</b><br><small>自动拦截恶意进程联网，防止隐私、财产信息外泄</small></ion-label>
+        <ion-toggle checked="true"></ion-toggle>
+      </ion-item>
+    </div>
+  </div>
 
 </ion-content>

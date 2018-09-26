@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { LoadingController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import { EquipProvider } from '../../providers/equip/equip';
+
+import * as _ from 'lodash';
+import * as moment from 'moment';
+
 /**
  * Generated class for the EquipPage page.
  *
@@ -12,16 +19,47 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-equip',
   templateUrl: 'equip.html',
+  providers: [EquipProvider]
 })
 export class EquipPage {
 
   equipTp:string = 'all';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  routerData:any = null;
+
+  pagenum:number = 1;
+  pagesize:number = 50;
+  totalpage:number = 0;
+
+  equiplist:any = {
+    all: [],
+    ok: [],
+    no: [],
+    black: []
+  };
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public serv:EquipProvider,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController
+  ) {
   }
 
   ionViewDidLoad() {
-    
+    this.serv.routerInfor((val:any)=>{
+      this.routerData = val;
+    });
+
+    this.serv.getEquips(this.pagenum, this.pagesize, (val:any)=>{
+      this.totalpage = val.totalPageCount;
+      for(let d of val.result){
+        d.createTime = moment(d.createTime).format('YYYY-MM-DD HH:mm:ss');
+      }
+      this.equiplist.all = val.result;
+      this.equiplist.ok = _.filter(val.result, d=>{return d.status != '10';});
+      this.equiplist.no = _.filter(val.result, d=>{return d.status == '10';});
+      this.equiplist.black = _.filter(val.result, d=>{return d.status == '30';});
+    });
   }
 
 }

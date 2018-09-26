@@ -13,14 +13,14 @@
   <form class="lform">
     <div class="lcontrol">
       <span class="icons ico-username"></span>
-      <input type="text" placeholder="用户名">
+      <input [(ngModel)]="username" name="uname" type="text" placeholder="用户名">
     </div>
     <div class="lcontrol">
       <span class="icons ico-password"></span>
-      <input type="password" placeholder="密码">
+      <input [(ngModel)]="password" name="upass" type="password" placeholder="密码">
     </div>
 
-    <button (click)="loginForm()" ion-button class="btn-confirm">登  录</button><br/>
+    <button (click)="checkLogin()" [disabled]="username=='' || password==''" ion-button class="btn-confirm">登  录</button><br/>
     <a class="link_regist">立即注册</a>
 
   </form>

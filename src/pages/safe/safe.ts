@@ -15,11 +15,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SafePage {
 
+  safeType:string = 'alert';
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SafePage');
   }
 
 }

@@ -3,5 +3,27 @@
   "integrations": {
     "cordova": {}
   },
+  "proxies": [
+    {
+      "path": "/squirrel/",
+      "proxyUrl": "http://60.205.212.99/squirrel/"
+    },
+    {
+      "path": "/usercenter/",
+      "proxyUrl": "http://60.205.212.99/usercenter/"
+    },
+    {
+      "path": "/ext/",
+      "proxyUrl": "http://60.205.212.99/ext/"
+    },
+    {
+      "path": "/alert/",
+      "proxyUrl": "http://60.205.212.99/alert/"
+    },
+    {
+      "path": "/dolphin/",
+      "proxyUrl": "http://60.205.212.99/dolphin/"
+    }
+  ],
   "type": "ionic-angular"
 }

@@ -19,13 +19,16 @@ page-equip {
         }
     }
 
+    .segment-md .segment-button,
     .segment-ios .segment-button{border:none;color:#333;font-size:14px;border-radius:0;}
+    .segment-md .segment-button.segment-activated,
     .segment-ios .segment-button.segment-activated{background:none;border-bottom:solid 2px #333;font-weight:bold;color:#333;}
 
     .navs{padding:10px 10px 0 10px;border-bottom:solid 1px #e2e2e2;}
     .lists{
         padding:10px 10px;
         .litem{
+            margin-bottom:10px;
             border-radius:12px;border:solid 1px #e2e2e2;min-height:130px;position:relative;
             .licon{
                 position:absolute;left:0;top:0;
@@ -44,13 +47,16 @@ page-equip {
             }
             .opera{
                 clear:both;padding:5px 0 5px 10px;
-                .icon-equip-connect{float:left;}
+                .icon-equip-connect{float:left;margin-top:10px;}
                 .buttons{
-                    margin:0 0 0 80px;text-align:right;position:relative;
+                    margin:0 0 0 80px;text-align:right;position:relative;padding-right:15px;
                     .but-select{
-                        position:relative;
-                        .icons-con{width:35px;height:35px;background-color:#161616;border-radius:35px;text-align:center;line-height:35px;display:inline-block;position: relative;z-index:3;}
-                        .sel-txt{padding:3px 10px;color:#fff;background:#161616;white-space:nowrap;left:0;top:5px;border-radius:10px;padding-left:40px;margin:-5px 0 0 -40px;position: relative;z-index:2;top:0px;}
+                        position:relative;margin-left:5px;
+                        .icons-con{background-color:#e8e8e8;width:30px;height:30px;border-radius:30px;text-align:center;line-height:30px;display:inline-block;position: relative;z-index:3;}
+                        .sel-txt{padding:3px 10px;color:#fff;background:#161616;white-space:nowrap;left:0;border-radius:10px;padding-left:22px;margin:-5px 0 0 -25px;position: relative;z-index:2;top:1px;}
+                        &.sel{
+                            .icons-con{background-color:#161616;}
+                        }
                     }
                 }
             }

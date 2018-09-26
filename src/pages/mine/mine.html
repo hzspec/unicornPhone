@@ -6,13 +6,55 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>mine</ion-title>
-  </ion-navbar>
+  <uni-header [title]="'我的'"></uni-header>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content style="background:#fafafa;">
+  <div class="avatar">
+    <img src="/assets/imgs/avatar.png" class="img" alt=""/>
+    <div class="infor">
+      <b>Paul</b><br/>
+      邮箱：Paul@email.com
+    </div>
+  </div>
+
+  <div class="item">
+    <span class="icons icon-mine-l1"></span>账号/邮箱
+    <span class="val">paul@email.com</span>
+  </div>
+  <div class="item">
+    <span class="icons icon-mine-l2"></span>姓名
+    <span class="val">paul</span>
+  </div>
+  <div class="item">
+    <span class="icons icon-mine-l3"></span>生日
+    <span class="val">1990-12-25</span>
+  </div>
+  <div class="item">
+    <span class="icons icon-mine-l4"></span>手机号码
+    <span class="val">13261387786</span>
+  </div>
+  <div class="item">
+    <span class="icons icon-mine-l5"></span>身份证号码
+    <span class="val">1102293239213912381</span>
+  </div>
+  <div class="item">
+    <span class="icons icon-mine-l6"></span>微信号
+    <span class="val">1239123123</span>
+  </div>
+  <div class="item" style="margin-top:30px;">
+    <span class="icons icon-mine-l7"></span>宽带账号
+    <span class="val">12391823</span>
+  </div>
+  <div class="item">
+    <span class="icons icon-mine-l8"></span>宽带缴费
+    <span class="val icons icon-mine-l9"></span>
+  </div>
+
+  <div class="item" style="margin-top:30px;color:#f00;">
+    <span class="icons icon-mine-l10"></span>退出此账号
+  </div>
 
 </ion-content>
