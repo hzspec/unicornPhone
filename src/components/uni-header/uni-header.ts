@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input, Outut } from '@angular/core';
 
 /**
  * Generated class for the UniHeaderComponent component.
