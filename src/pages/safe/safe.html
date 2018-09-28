@@ -26,48 +26,23 @@
 
   <div class="contents" [ngSwitch]="safeType">
     <ul class="alertlists" *ngSwitchCase="'alert'">
-      <li class="al">
+      <li *ngFor="let md of alertLists" class="al">
         <div class="avatar">
-          <span class="icon-con">
+          <span class="icon-con" [class.l2]="md.priority==2" [class.l3]="md.priority==3">
             <span class="icons icon-safe-alert"></span>
           </span>
         </div>
         <div class="infor">
-          <h5>SSH test<small><span class="icons icon-safe-date"></span>&nbsp;1年前</small></h5>
+          <h5>{{md.sigName}}<small><span class="icons icon-safe-date"></span>&nbsp;{{md.timestamp|stimeago}}</small></h5>
           <p>
-            <b>Mac地址：</b>24:F0:94:0E:BB:87<br/>
-            <b>源IP：</b>192.168.1.123&nbsp;&nbsp;&nbsp;&nbsp;<b>目的IP：</b>192.168.1.321
+            <b>Mac地址：</b>{{md.deviceMacAddr}}<br/>
+            <b>源IP：</b>{{md.ipSrc}}&nbsp;&nbsp;&nbsp;&nbsp;<b>目的IP：</b>{{md.ipDst}}
           </p>
         </div>
       </li>
-      <li class="al">
-        <div class="avatar">
-          <span class="icon-con l2">
-            <span class="icons icon-safe-alert"></span>
-          </span>
-        </div>
-        <div class="infor">
-          <h5>SSH test<small><span class="icons icon-safe-date"></span>&nbsp;1年前</small></h5>
-          <p>
-            <b>Mac地址：</b>24:F0:94:0E:BB:87<br/>
-            <b>源IP：</b>192.168.1.123&nbsp;&nbsp;&nbsp;&nbsp;<b>目的IP：</b>192.168.1.321
-          </p>
-        </div>
-      </li>
-      <li class="al">
-        <div class="avatar">
-          <span class="icon-con l3">
-            <span class="icons icon-safe-alert"></span>
-          </span>
-        </div>
-        <div class="infor">
-          <h5>SSH test<small><span class="icons icon-safe-date"></span>&nbsp;1年前</small></h5>
-          <p>
-            <b>Mac地址：</b>24:F0:94:0E:BB:87<br/>
-            <b>源IP：</b>192.168.1.123&nbsp;&nbsp;&nbsp;&nbsp;<b>目的IP：</b>192.168.1.321
-          </p>
-        </div>
-      </li>
+
+      <button (click)="getMore()" *ngIf="totalpage>pagenum" class="morebut" ion-button full color="light">点击加载更多</button>
+      <button *ngIf="totalpage<=pagenum" class="morebut" ion-button full color="light">没有更多了</button>
 
     </ul>
 

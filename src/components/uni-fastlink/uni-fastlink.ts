@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
 /**
  * Generated class for the UniFastlinkComponent component.
@@ -12,11 +13,11 @@ import { Component } from '@angular/core';
 })
 export class UniFastlinkComponent {
 
-  text: string;
+  constructor(private ctrl:NavController) {
+  }
 
-  constructor() {
-    console.log('Hello UniFastlinkComponent Component');
-    this.text = 'Hello World';
+  goSpeed(){
+    this.ctrl.push('SpeedPage');
   }
 
 }

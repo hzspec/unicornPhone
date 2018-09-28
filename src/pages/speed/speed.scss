@@ -1,0 +1,25 @@
+page-speed {
+    .titles{
+        margin:20px 0 10px 0;overflow:hidden;
+        .tl{
+            width:33.33%;float:left;text-align:center;
+            b{font-size:20px;font-weight:normal;color:#333;}
+            span{font-size:16px;color:#666;}
+            .fs{font-size:12px;}
+        }
+    }
+    .charts{
+        width:90%;margin-left:5%;
+        height:300px;position:relative;z-index:8;
+    }
+    .bottoms{
+        background:#EDF2F8 url(/assets/imgs/spbg.png) no-repeat 0 0;
+        background-size:100% 109px;position:relative;z-index:9;
+        height:100px;margin-top:-33px;text-align:center;
+        .startbut{
+            width:130px;background:#fff;border-radius:40px;height:40px;line-height:40px;
+            border:solid 1px #30A6F8;margin-top:108px;
+            *{font-size:14px;color:#30A6F8;}
+        }
+    }
+}

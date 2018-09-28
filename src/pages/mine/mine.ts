@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { UserStore } from '../user.storage';
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the MinePage page.
  *
@@ -15,11 +18,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MinePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userinfo:UserStore = null;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private storage: Storage
+  ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MinePage');
+    this.storage.get('user').then((us:UserStore)=>{
+      this.userinfo = us;
+    });
+  }
+
+  logout(){
+    this.storage.remove('user');
+    this.navCtrl.setRoot('LoginPage');
   }
 
 }

@@ -9,8 +9,17 @@ page-main {
             p{font-size:18px;color:#fff;margin:0 0 6px 0;position:relative;left:-15px;
                 span{font-size:30px;color:#FDFF00;font-weight:bold;}
             }
-            .stl-container{line-height:16px;}
+            .stl-container{line-height:21px;}
             .stl{color:#fff;font-size:12px;display:inline-block;width:80px;}
         }
+
+        &.l2{
+            background: linear-gradient(90deg, #FE4E69, #E00123);
+        }
+
+        &.l3{
+            background: linear-gradient(90deg, #7428F2, #4B0BB7);
+        }
     }
+    .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{bottom:2px;}
 }

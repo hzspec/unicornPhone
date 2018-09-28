@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import * as echarts from 'echarts/dist/echarts.min';
 
@@ -14,10 +14,21 @@ import * as echarts from 'echarts/dist/echarts.min';
 })
 export class UniRankchartComponent {
 
-  text: string;
+  _d = [];
+
+  @Input()
+  set datas(v){
+    this._d = v;
+    if(v.length == 2){
+        setTimeout(()=>{this.initChart();}, 1000);
+    }
+  }
+  get datas(){
+      return this._d;
+  }
 
   constructor() {
-    setTimeout(()=>{this.initChart();}, 1000);
+    
   }
 
   initChart(){
@@ -34,7 +45,7 @@ export class UniRankchartComponent {
         yAxis : [
             {
                 type : 'category',
-                data : ['192.168.1.108', '192.168.1.107', '192.168.1.106', '192.168.1.105', '192.168.1.104', '192.168.1.103', '192.168.1.102'],
+                data : this._d[0],//['192.168.1.108', '192.168.1.107', '192.168.1.106', '192.168.1.105', '192.168.1.104', '192.168.1.103', '192.168.1.102'],
                 axisTick: {
                     alignWithLabel: true
                 }
@@ -53,7 +64,7 @@ export class UniRankchartComponent {
             {
                 name:'直接访问',
                 type:'bar',
-                data:[700,600,500,400,300,200,100],
+                data:this._d[1],//[700,600,500,400,300,200,100],
                 itemStyle: {
                   normal: {
                       color: new echarts.graphic.LinearGradient(

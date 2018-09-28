@@ -57,7 +57,7 @@ export class EquipProvider {
   setEquipAuth(id, auth, success){
     this.checkStorage((us:UserStore)=>{
       let purl = `${BASEURL}squirrel/v1/devices/add_device_authority`;
-      let pro = this.http.post(purl, {id: id, status: auth}).toPromise();
+      let pro = this.http.post(purl, {id: id, status: auth}, {headers: {Authorization: us.token}}).toPromise();
       pro.then((res:any)=>{
         success(res);
       }).catch(()=>{

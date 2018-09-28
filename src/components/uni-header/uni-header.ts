@@ -14,6 +14,10 @@ export class UniHeaderComponent {
 
   @Input()
   title: string = '首页';
+  @Input()
+  showmes: boolean = false;
+  @Input()
+  mestitle:string = '';
 
   constructor() {
   }

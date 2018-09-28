@@ -62,4 +62,14 @@ export class EquipPage {
     });
   }
 
+  changeAuth(mod, auth){
+    let loader = this.loadingCtrl.create({
+      content: "处理中...",
+    });
+    this.serv.setEquipAuth(mod.id, auth, ()=>{
+      loader.dismiss();
+      mod.status = auth;
+    });
+  }
+
 }

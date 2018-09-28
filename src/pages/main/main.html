@@ -18,28 +18,49 @@
         <div class="equip-con">
           <img class="lfimg" src="/assets/imgs/main/s1.png" alt="" />
           <div class="infor">
-            <p class="tl">设备总量：<span>17</span></p>
+            <p class="tl">设备总量：<span>{{staticData.equip.total}}</span></p>
             <div class="stl-container">
-              <span class="stl">移动终端 5</span>
-              <span class="stl">电脑 5</span>
-              <span class="stl">摄像头 5</span>
-              <span class="stl">智能设备 5</span>
-              <span class="stl">其他 5</span>
+              <span class="stl">移动终端 {{staticData.equip.sj}}</span>
+              <span class="stl">电脑 {{staticData.equip.dn}}</span>
+              <span class="stl">摄像头 {{staticData.equip.sxt}}</span>
+              <span class="stl">其他 {{staticData.equip.qt}}</span>
             </div>
           </div>
         </div>
       </ion-slide>
     
-      <ion-slide style="background-color: blue">
-        <h2>Slide 2</h2>
+      <ion-slide>
+        <div class="equip-con l2">
+          <img class="lfimg" style="position:relative;left:20px;" src="/assets/imgs/main/s2.png" alt="" />
+          <div class="infor">
+            <p class="tl">报警统计：<span>{{staticData.alert.pre + staticData.alert.cur}}</span></p>
+            <div class="stl-container">
+              <span class="stl">本周 {{staticData.alert.cur}}</span><br/>
+              <span class="stl">上周 {{staticData.alert.pre}}</span>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+    
+      <ion-slide>
+        <div class="equip-con l3">
+          <img class="lfimg" style="position:relative;left:20px;" src="/assets/imgs/main/s3.png" alt="" />
+          <div class="infor">
+            <p class="tl">流量统计：<span>{{staticData.llsj.total[0]}}</span></p>
+            <div class="stl-container">
+              <span class="stl">本周 {{staticData.llsj.cur[0]}} {{staticData.llsj.cur[1]}}</span><br/>
+              <span class="stl">上周 {{staticData.llsj.pre[0]}} {{staticData.llsj.pre[1]}}</span>
+            </div>
+          </div>
+        </div>
       </ion-slide>
     
     </ion-slides>
 
     <uni-fastlink></uni-fastlink>
 
-    <uni-alertchart></uni-alertchart>
+    <uni-alertchart #realchart></uni-alertchart>
 
-    <uni-rankchart></uni-rankchart>
+    <uni-rankchart [datas]="rankData"></uni-rankchart>
 
 </ion-content>
