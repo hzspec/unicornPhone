@@ -24,7 +24,7 @@ html,body{
 .titles .tl .fs{font-size:12px;}
 
 .bottoms{
-    background:#EDF2F8 url(/assets/imgs/spbg.png) no-repeat 0 0;
+    background:#EDF2F8 url(assets/imgs/spbg.png) no-repeat 0 0;
     background-size:100% 109px;position:relative;z-index:9;
     height:100px;margin-top:-18px;text-align:center;
    

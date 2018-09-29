@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import {DomSanitizer} from '@angular/platform-browser';
 
 /**
  * Generated class for the BlankPage page.
@@ -16,14 +17,15 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class BlankPage {
 
   title:string = '';
-  realurl:string = '';
+  realurl:any = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,private sanitizer: DomSanitizer) {
     let t = this.navParams.get('title');
-    let url = this.navParams.get('url');
+    let url = this.sanitizer.bypassSecurityTrustResourceUrl(navParams.get('url'));
     if(t){
       this.title = t;
       this.realurl = url;
+      console.log(this.realurl);
     }
   }
 

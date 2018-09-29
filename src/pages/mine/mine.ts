@@ -36,7 +36,8 @@ export class MinePage {
   logout(){
     this.storage.remove('user');
     this.navCtrl.popToRoot();
-    window.location.href = '/#login';
+    //window.location.href = '/#login';
+    this.navCtrl.setRoot('LoginPage');
   }
 
   editInfor(){
