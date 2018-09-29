@@ -23,6 +23,10 @@
     {
       "path": "/dolphin/",
       "proxyUrl": "http://60.205.212.99/dolphin/"
+    },
+    {
+      "path": "/speed/",
+      "proxyUrl": "http://localhost:9998/speed/"
     }
   ],
   "type": "ionic-angular"

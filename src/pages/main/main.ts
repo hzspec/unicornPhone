@@ -107,6 +107,10 @@ ionViewDidEnter(){
       this.staticData.llsj.total[0] = parseInt(this.staticData.llsj.total[0]);
     });
 
+    let loader = this.loadingCtrl.create({
+      content: "正在获取数据...",
+    });
+    loader.present();
     this.serv.getTop20((datas:any)=>{
       let d1 = [], d2 = [];
       let i = 1;
@@ -120,7 +124,9 @@ ionViewDidEnter(){
 				d2.push(tv)
       }
       this.rankData = [d1.reverse(), d2.reverse()];
-
+      loader.dismiss();
+    }, ()=>{
+      loader.dismiss();
     });
   }
 

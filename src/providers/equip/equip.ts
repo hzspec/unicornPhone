@@ -42,13 +42,14 @@ export class EquipProvider {
     });
   }
 
-  getEquips(pagenum, pagesize, success){
+  getEquips(pagenum, pagesize, success, fail){
     this.checkStorage((us:UserStore)=>{
       let purl = `${BASEURL}ext/v1/devices?apMacAddress=${us.apmac}&pageNum=${pagenum}&pageSize=${pagesize}`;
       let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
       pro.then((res:any)=>{
         success(res);
       }).catch(()=>{
+        fail();
         this.goLogin();
       });
     });

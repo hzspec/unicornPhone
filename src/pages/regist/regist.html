@@ -1,0 +1,68 @@
+<!--
+  Generated template for the RegistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <uni-header (clkBack)="closeModal()" [showmodal]="true" [title]="'注册'"></uni-header>
+
+</ion-header>
+
+
+<ion-content style="text-align:center;padding:10px;">
+
+  <img style="margin-top:20px;" width="30%" src="assets/imgs/logo.png" alt=""/><br/>
+
+  <div class="forms">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="text-left">
+      <ion-list>
+        <ion-item>
+          <input [formControl]="name" type="text" placeholder="用户名">
+        </ion-item>
+        <ion-item>
+          <input [formControl]="nickname" type="text" placeholder="别名">
+        </ion-item>
+        <ion-item>
+          <input [formControl]="phone" type="number" placeholder="手机号">
+        </ion-item>
+        <ion-item>
+          <input [formControl]="email" type="text" placeholder="邮箱">
+        </ion-item>
+        <ion-item>
+          <input [formControl]="password" type="text" placeholder="密码">
+        </ion-item>
+        <ion-item>
+          <input [formControl]="confirmPassword" type="text" placeholder="确认密码">
+        </ion-item>
+      </ion-list>
+      <div class="errors">
+          <span class="help-block" *ngIf="form.get('name').touched">
+              <span class="text-danger" *ngIf="form.get('name').hasError('required')">请输入用户名<br/></span>
+          </span>
+          <span class="help-block" *ngIf="form.get('nickname').touched">
+              <span class="text-danger" *ngIf="form.get('nickname').hasError('required')">请输入别名<br/></span>
+          </span>
+          <span class="help-block" *ngIf="form.get('phone').touched">
+              <span class="text-danger" *ngIf="form.get('phone').hasError('required')">请输入手机号<br/></span>
+              <span class="text-danger" *ngIf="form.get('phone').hasError('invalidPhone')">请输入正确的手机号<br/></span>
+          </span>
+          <span class="help-block" *ngIf="form.get('email').touched">
+              <span class="text-danger" *ngIf="form.get('email').hasError('required')">请输入邮箱<br/></span>
+              <span class="text-danger" *ngIf="form.get('email').hasError('invalidEmail')">请输入正确的邮箱<br/></span>
+          </span>
+          <span class="help-block" *ngIf="form.get('password').touched">
+              <span class="text-danger" *ngIf="form.get('password').hasError('required')">请输入密码<br/></span>
+              <span class="text-danger" *ngIf="form.get('password').hasError('minlength')">密码最少6位<br/></span>
+          </span>
+          <span class="help-block" *ngIf="form.get('confirmPassword').touched">
+              <span class="text-danger" *ngIf="form.get('confirmPassword').hasError('required')">请输入确认密码</span><br/>
+              <span class="text-danger" *ngIf="form.get('confirmPassword').hasError('mismatchedPasswords')">两次输入密码不一致</span>
+          </span> 
+      </div>
+      <button [disabled]="!form.valid" (click)="checkLogin()" ion-button class="btn-confirm">注  册</button>
+    </form>
+  </div>
+
+</ion-content>

@@ -46,11 +46,18 @@ export class EquipPage {
   }
 
   ionViewDidLoad() {
+    let loader = this.loadingCtrl.create({
+      content: "正在获取数据...",
+    });
+    loader.present();
+
     this.serv.routerInfor((val:any)=>{
       this.routerData = val;
     });
 
     this.serv.getEquips(this.pagenum, this.pagesize, (val:any)=>{
+      loader.dismiss();
+
       this.totalpage = val.totalPageCount;
       for(let d of val.result){
         d.createTime = moment(d.createTime).format('YYYY-MM-DD HH:mm:ss');
@@ -59,6 +66,8 @@ export class EquipPage {
       this.equiplist.ok = _.filter(val.result, d=>{return d.status != '10';});
       this.equiplist.no = _.filter(val.result, d=>{return d.status == '10';});
       this.equiplist.black = _.filter(val.result, d=>{return d.status == '30';});
+    }, ()=>{
+      loader.dismiss();
     });
   }
 

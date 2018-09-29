@@ -9,16 +9,16 @@ page-speed {
         }
     }
     .charts{
-        width:90%;margin-left:5%;
+        width:100%;
         height:300px;position:relative;z-index:8;
     }
     .bottoms{
         background:#EDF2F8 url(/assets/imgs/spbg.png) no-repeat 0 0;
         background-size:100% 109px;position:relative;z-index:9;
-        height:100px;margin-top:-33px;text-align:center;
+        height:100px;margin-top:50px;text-align:center;
         .startbut{
             width:130px;background:#fff;border-radius:40px;height:40px;line-height:40px;
-            border:solid 1px #30A6F8;margin-top:108px;
+            border:solid 1px #30A6F8;margin-top:127 px;
             *{font-size:14px;color:#30A6F8;}
         }
     }

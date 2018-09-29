@@ -1,0 +1,13 @@
+page-regist {
+    .btn-confirm{margin-bottom:8px;width:80%;height:50px;line-height:50px;background:linear-gradient(90deg, #027CFF, #2AD8FF);margin-top:27px;cursor:pointer;color:#fff;font-size:18px;
+        .button-inner{color:#fff;}
+    }
+    .forms{
+        input{width:100%;border:none;line-height:30px;}
+    }
+
+    .errors{
+        text-align:left;padding-left:10px;
+        .text-danger{font-size:12px;color:#f00;}
+    }
+}

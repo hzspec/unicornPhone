@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { LoadingController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { AlertController, ViewController } from 'ionic-angular';
 import { SafeProvider } from '../../providers/safe/safe';
 
 import * as _ from 'lodash';
@@ -33,10 +33,24 @@ export class SafePage {
 
   alertLists:any = [];
 
+  showback:boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    private viewCtrl:ViewController,
     public serv:SafeProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController) {
+      let ptp = this.navParams.get('type');
+      if(ptp && ptp == 'green'){
+        this.safeType = 'green';
+        this.showback = true;
+      }else{
+        this.safeType = 'alert';
+      }
+  }
+
+  closeModal(){
+    this.viewCtrl.dismiss();
   }
 
   ionViewDidLoad() {

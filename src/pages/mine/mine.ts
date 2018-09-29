@@ -20,6 +20,8 @@ export class MinePage {
 
   userinfo:UserStore = null;
 
+  editMod:boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private storage: Storage
   ) {
@@ -33,7 +35,17 @@ export class MinePage {
 
   logout(){
     this.storage.remove('user');
-    this.navCtrl.setRoot('LoginPage');
+    this.navCtrl.popToRoot();
+    window.location.href = '/#login';
+  }
+
+  editInfor(){
+    this.editMod = true;
+  }
+
+  saveInfo(){
+    this.storage.set('user', this.userinfo);
+    this.editMod = false;
   }
 
 }

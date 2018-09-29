@@ -21,7 +21,7 @@
     </div>
 
     <button (click)="checkLogin()" [disabled]="username=='' || password==''" ion-button class="btn-confirm">登  录</button><br/>
-    <a class="link_regist">立即注册</a>
+    <a class="link_regist" (click)="goRegist()">立即注册</a>
 
   </form>
   

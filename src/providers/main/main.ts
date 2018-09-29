@@ -52,7 +52,7 @@ export class MainProvider {
     });
   }
 
-  getTop20(success){
+  getTop20(success, fail){
     this.store.get('user').then((us:UserStore)=>{
       let purl = `${BASEURL}dolphin/v1/packet_summarys/admin/ip/top?excludeRegexpList=192.168.*`;
       let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
@@ -63,6 +63,8 @@ export class MainProvider {
         this.goLogin();
       });
 
+    }).catch(()=>{
+      fail();
     });
   }
 

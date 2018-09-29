@@ -50,6 +50,9 @@
 
   <div [ngSwitch]="equipTp">
     <div class="lists" *ngSwitchCase="'all'">
+      <div class="nodata" *ngIf="equiplist.all.length == 0">
+        <span></span>&nbsp;&nbsp;没有数据&nbsp;&nbsp;<span></span>
+      </div>
       <div class="litem" *ngFor="let d of equiplist.all">
         <span *ngIf="d.deviceType==1" class="icons icon-equip-computer licon"></span>
         <span *ngIf="d.deviceType==2" class="icons icon-equip-phone licon"></span>
@@ -89,6 +92,9 @@
     </div>
 
     <div class="lists" *ngSwitchCase="'ok'">
+      <div class="nodata" *ngIf="equiplist.ok.length == 0">
+        <span></span>&nbsp;&nbsp;没有数据&nbsp;&nbsp;<span></span>
+      </div>
       <div class="litem" *ngFor="let d of equiplist.ok">
         <span *ngIf="d.deviceType==1" class="icons icon-equip-computer licon"></span>
         <span *ngIf="d.deviceType==2" class="icons icon-equip-phone licon"></span>
@@ -127,6 +133,9 @@
     </div>
 
     <div class="lists" *ngSwitchCase="'no'">
+      <div class="nodata" *ngIf="equiplist.no.length == 0">
+        <span></span>&nbsp;&nbsp;没有数据&nbsp;&nbsp;<span></span>
+      </div>
       <div class="litem" *ngFor="let d of equiplist.no">
         <span *ngIf="d.deviceType==1" class="icons icon-equip-computer licon"></span>
         <span *ngIf="d.deviceType==2" class="icons icon-equip-phone licon"></span>
@@ -165,6 +174,9 @@
     </div>
 
     <div class="lists" *ngSwitchCase="'black'">
+      <div class="nodata" *ngIf="equiplist.black.length == 0">
+        <span></span>&nbsp;&nbsp;没有数据&nbsp;&nbsp;<span></span>
+      </div>
       <div class="litem" *ngFor="let d of equiplist.black">
         <span *ngIf="d.deviceType==1" class="icons icon-equip-computer licon"></span>
         <span *ngIf="d.deviceType==2" class="icons icon-equip-phone licon"></span>

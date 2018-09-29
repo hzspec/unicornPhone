@@ -1,10 +1,10 @@
 <!-- Generated template for the UniHeaderComponent component -->
 <ion-navbar>
   <ion-title class="text-title">{{title}}
-    <button *ngIf="showmes" class="message-button" ion-button clear>
+    <button (click)="clickRg()" *ngIf="showmes" class="message-button" ion-button clear>
       {{mestitle}}
     </button>
-    <button style="display:none;" class="backreturn-button" ion-button clear>
+    <button *ngIf="showmodal" (click)="closeModal()" class="backreturn-button" ion-button clear>
       <ion-icon name="md-arrow-back"></ion-icon>
     </button>
   </ion-title>

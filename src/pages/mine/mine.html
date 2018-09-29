@@ -6,12 +6,14 @@
 -->
 <ion-header>
 
-  <uni-header [title]="'我的'" [showmes]="true" [mestitle]="'修改'"></uni-header>
+  <uni-header *ngIf="!editMod" [title]="'我的'" [showmes]="true" [mestitle]="'修改'" (clkRight)="editInfor()"></uni-header>
+  <uni-header *ngIf="editMod" [title]="'我的'" [showmes]="true" [mestitle]="'保存'" (clkRight)="saveInfo()"></uni-header>
 
 </ion-header>
 
 
-<ion-content *ngIf="userinfo" style="background:#fafafa;">
+<ion-content style="background:#fafafa;">
+<div *ngIf="userinfo">
   <div class="avatar">
     <img src="/assets/imgs/avatar.png" class="img" alt=""/>
     <div class="infor">
@@ -22,39 +24,46 @@
 
   <div class="item">
     <span class="icons icon-mine-l1"></span>账号/邮箱
-    <span class="val">{{userinfo.email}}</span>
+    <span *ngIf="!editMod" class="val">{{userinfo.email}}</span>
+    <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.email" />
   </div>
   <div class="item">
     <span class="icons icon-mine-l2"></span>姓名
-    <span class="val">{{userinfo.username}}</span>
+    <span *ngIf="!editMod" class="val">{{userinfo.username}}</span>
+    <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.username" />
   </div>
   <div class="item">
     <span class="icons icon-mine-l3"></span>生日
-    <span class="val">{{userinfo.birth}}</span>
+    <span *ngIf="!editMod" class="val">{{userinfo.birth}}</span>
+    <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.birth" />
   </div>
   <div class="item">
     <span class="icons icon-mine-l4"></span>手机号码
-    <span class="val">{{userinfo.phoneNumber}}</span>
+    <span *ngIf="!editMod" class="val">{{userinfo.phoneNumber}}</span>
+    <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.phoneNumber" />
   </div>
   <div class="item">
     <span class="icons icon-mine-l5"></span>身份证号码
-    <span class="val">{{userinfo.verifynum}}</span>
+    <span *ngIf="!editMod" class="val">{{userinfo.verifynum}}</span>
+    <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.verifynum" />
   </div>
   <div class="item">
     <span class="icons icon-mine-l6"></span>微信号
-    <span class="val">{{userinfo.wxcode}}</span>
+    <span *ngIf="!editMod" class="val">{{userinfo.wxcode}}</span>
+    <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.wxcode" />
   </div>
   <div class="item" style="margin-top:30px;">
     <span class="icons icon-mine-l7"></span>宽带账号
-    <span class="val">{{userinfo.kdcode}}</span>
+    <span *ngIf="!editMod" class="val">{{userinfo.kdcode}}</span>
+    <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.kdcode" />
   </div>
   <div class="item">
     <span class="icons icon-mine-l8"></span>宽带缴费
     <span class="val icons icon-mine-l9"></span>
   </div>
 
-  <div class="item" style="margin-top:30px;color:#f00;">
-    <span class="icons icon-mine-l10" (click)="logout()"></span>退出此账号
+  <div class="item" style="margin-top:30px;color:#f00;" (click)="logout()">
+    <span class="icons icon-mine-l10"></span>退出此账号
   </div>
-
+</div>
 </ion-content>

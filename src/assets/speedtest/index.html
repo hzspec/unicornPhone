@@ -1,0 +1,112 @@
+<!--
+  ~ /**
+  ~ * Copyright 2014 Comcast Cable Communications Management, LLC
+  ~ *
+  ~ * Licensed under the Apache License, Version 2.0 (the "License");
+  ~ * you may not use this file except in compliance with the License.
+  ~ * You may obtain a copy of the License at
+  ~ *
+  ~ * http://www.apache.org/licenses/LICENSE-2.0
+  ~ *
+  ~ * Unless required by applicable law or agreed to in writing, software
+  ~ * distributed under the License is distributed on an "AS IS" BASIS,
+  ~ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ * See the License for the specific language governing permissions and
+  ~ * limitations under the License.
+  ~ */
+  -->
+
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <base href="/assets/speedtest/"/>
+    <title> Speed Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="speed-testJS.css">
+</head>
+
+<body>
+<div class="container speed-test">
+
+    <div class="titles">
+        <div class="tl">
+            <span>Ping</span><br/>
+            <span class="latency-result test-result"><b>--</b>ms</span>
+        </div>
+        <div class="tl">
+            <span>下载</span>&nbsp;&nbsp;<span class="icons icon-speed-down"></span><br/>
+            <span class="fs download-IPv4-result test-result IPv4"><b>--</b>Mbps</span>
+        </div>
+        <div class="tl">
+            <span>上传</span>&nbsp;&nbsp;<span class="icons icon-speed-up"></span><br/>
+            <span class="fs upload-IPv4-result test-result IPv4"><b>--</b>Mbps</span>
+        </div>
+    </div>
+
+    <div class="row top">
+        <div class="speed-gauge">
+        </div>
+    </div>
+
+    <div class="bottoms">
+        <button ion-button class="startbut action-start" style="color:#30A6F8;margin-left:auto">开始测速</button>
+    </div>
+
+    <div style="display:none;" class="secondary-results flex">
+        <div class="flex">
+            <button class="action-start">Start Test</button>
+        </div>
+        <div class="latency-results">
+            <p>ping: <span class="latency-result test-result"></span></p>
+        </div>
+    </div>
+    <div style="display:none;" class="bottom">
+        <div class="results flex">
+            <div class="download flex">
+                <p>download</p>
+                <div class="wrapper">
+                    <i class="ip-icon">IPv4</i>
+                    <div class="download-IPv4-result test-result IPv4">
+                    </div>
+                </div>
+                <div class="wrapper IPv6 hide">
+                    <i class="ip-icon">IPv6</i>
+                    <div class="download-IPv6-result test-result IPv6">
+                    </div>
+                </div>
+            </div>
+            <div class="upload">
+                <p>upload</p>
+                <div class="wrapper">
+                    <i class="ip-icon">IPv4</i>
+                    <div class="upload-IPv4-result test-result IPv4">
+                    </div>
+                </div>
+                <div class="wrapper IPv6 hide">
+                    <i class="ip-icon">IPv6</i>
+                    <div class="upload-IPv6-result test-result IPv6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="lib/latencyBasedRouting.js"></script>
+<script src="lib/calculateStats.js"></script>
+<script src="lib/xmlhttprequest.js"></script>
+<script src="lib/webSocket.js"></script>
+<script src="lib/latencyHttpTest.js"></script>
+<script src="lib/latencyWebSocketTest.js"></script>
+<script src="lib/downloadHttpConcurrentProgress.js"></script>
+<script src="lib/downloadProbeTest.js"></script>
+<script src="lib/uploadHttpConcurrent.js"></script>
+<script src="lib/uploadProbeTest.js"></script>
+<script src="lib/uploadHttpConcurrentProgress.js"></script>
+<script src="lib/statisticalCalculator.js"></script>
+<script src="uilib/echarts.min.js"></script>
+<script src="speed-testJS.js"></script>
+</body>
+
+</html>

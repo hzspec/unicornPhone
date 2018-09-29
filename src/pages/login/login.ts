@@ -5,6 +5,7 @@ import { LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
+import { ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the LoginPage page.
@@ -28,11 +29,17 @@ export class LoginPage {
     public serv:UserProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private storage: Storage
+    private storage: Storage,
+    private modalCtrl: ModalController
   ) {
   }
 
   ionViewDidLoad() {
+  }
+
+  goRegist(){
+    let reg = this.modalCtrl.create('RegistPage');
+    reg.present();
   }
 
   checkLogin(){

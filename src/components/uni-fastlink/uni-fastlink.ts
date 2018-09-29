@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the UniFastlinkComponent component.
@@ -13,11 +13,22 @@ import { NavController } from 'ionic-angular';
 })
 export class UniFastlinkComponent {
 
-  constructor(private ctrl:NavController) {
+  constructor(private modalCtrl:ModalController) {
   }
 
   goSpeed(){
-    this.ctrl.push('SpeedPage');
+    const modal = this.modalCtrl.create('SpeedPage', {type: 'green'});
+    modal.present();
+  }
+
+  goGreen(){
+    const modal = this.modalCtrl.create('SafePage', {type: 'green'});
+    modal.present();
+  }
+
+  goWeb(title){
+    const modal = this.modalCtrl.create('BlankPage', {title: title, url: 'http://www.baidu.com/'});
+    modal.present();
   }
 
 }

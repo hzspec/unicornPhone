@@ -6,34 +6,21 @@
 -->
 <ion-header>
 
-  <uni-header [title]="'宽带测速'"></uni-header>
+  <uni-header (clkBack)="closeModal()" [showmodal]="true" [title]="'宽带测速'"></uni-header>
 
 </ion-header>
 
 
 <ion-content style="background:#F2F6FA;">
 
-  <div class="titles">
-    <div class="tl">
-      <span>Ping</span><br/>
-      <span><b>18</b>ms</span>
-    </div>
-    <div class="tl">
-      <span>下载</span>&nbsp;&nbsp;<span class="icons icon-speed-down"></span><br/>
-      <span class="fs"><b>18</b>Mbps</span>
-    </div>
-    <div class="tl">
-      <span>上传</span>&nbsp;&nbsp;<span class="icons icon-speed-up"></span><br/>
-      <span class="fs"><b>0</b>Mbps</span>
-    </div>
+  
+
+  <div class="charts">
+    <iframe frameborder="0" width="100%" height="580px" marginheight="0" marginwidth="0" src="/assets/speedtest/">
+
+    </iframe>
   </div>
 
-  <div id="speedchart" class="charts">
-
-  </div>
-
-  <div class="bottoms">
-    <button ion-button class="startbut">开始测速</button>
-  </div>
-
+  
+  
 </ion-content>

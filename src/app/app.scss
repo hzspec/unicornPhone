@@ -60,3 +60,10 @@
 
 .icon-speed-down{width:17px;height:12px;background-position:-289px -10px;vertical-align:middle;}
 .icon-speed-up{width:17px;height:12px;background-position:-321px -8px;vertical-align:middle;}
+
+.back-button-text{display:none;}
+
+.nodata{
+    text-align:center;line-height:40px;height:40px;font-size:14px;color:#999;
+    span{display:inline-block;width:50px;height:1px;background:#999;vertical-align:middle;}
+}

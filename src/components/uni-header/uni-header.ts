@@ -1,4 +1,5 @@
-import { Component,Input, Outut } from '@angular/core';
+import { Component,Input, Output, EventEmitter } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the UniHeaderComponent component.
@@ -18,8 +19,23 @@ export class UniHeaderComponent {
   showmes: boolean = false;
   @Input()
   mestitle:string = '';
+  @Input()
+  showmodal:boolean = false;
 
-  constructor() {
+  @Output()
+  clkRight:EventEmitter<any> = new EventEmitter<any>();
+  @Output()
+  clkBack:EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private modalCtrl:ModalController) {
+  }
+
+  clickRg(){
+    this.clkRight.emit('');
+  }
+
+  closeModal(){
+    this.clkBack.emit('');
   }
 
 }

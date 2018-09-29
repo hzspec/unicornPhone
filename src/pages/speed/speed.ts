@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 import * as echarts from 'echarts/dist/echarts.min';
+
 /**
  * Generated class for the SpeedPage page.
  *
@@ -16,11 +17,15 @@ import * as echarts from 'echarts/dist/echarts.min';
 })
 export class SpeedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController) {
   }
 
   ionViewDidLoad() {
-    setTimeout(()=>{this.initSpeed();}, 1000)
+    //setTimeout(()=>{this.initSpeed();}, 1000)
+  }
+
+  closeModal(){
+    this.viewCtrl.dismiss();
   }
 
   initSpeed(){
@@ -91,7 +96,7 @@ export class SpeedPage {
                   }
               },
               data: [{
-                  value: 5.65,
+                  value: 0.00,
                   name: 'Mbps'
               }]
           }
