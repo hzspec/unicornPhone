@@ -12,5 +12,5 @@
 
 
 <ion-content style="padding:10px;">
-  <iframe [src]="realurl"></iframe>
+  <iframe frameborder="0" height="100%" width="100%" *ngIf="realurl != ''" [src]="realurl"></iframe>
 </ion-content>
