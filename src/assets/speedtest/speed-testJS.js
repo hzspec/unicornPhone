@@ -25,7 +25,7 @@
     initTest();
   };
 
-  var BASEURL = 'http://60.205.212.99/';
+  var BASEURL = '';
 
   var testRunner = [];
   var currentInterval;
