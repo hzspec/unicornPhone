@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
@@ -23,7 +23,7 @@ export class MinePage {
   editMod:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private storage: Storage
+    private storage: Storage, private app: App
   ) {
   }
 
@@ -37,7 +37,8 @@ export class MinePage {
     this.storage.remove('user');
     this.navCtrl.popToRoot();
     //window.location.href = '/#login';
-    this.navCtrl.setRoot('LoginPage');
+    //this.navCtrl.setRoot('LoginPage');
+    this.app.getRootNav().setRoot("LoginPage");
   }
 
   editInfor(){
