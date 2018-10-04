@@ -68,4 +68,39 @@ export class MainProvider {
     });
   }
 
+  getLinkJson(){
+    let purl = `${BASEURL}hz/link.json`;
+    let pro = this.http.get(purl).toPromise();
+    return pro;
+  }
+
+  updateUser(updateUser:UserStore){
+    this.store.get('user').then((us:UserStore)=>{
+      let purl = `${BASEURL}squirrel/v1/users/update`;
+      let param = {
+        "alias": updateUser.username,
+        "birthday": updateUser.birth,
+        "emailAddr": updateUser.email,
+        "id": updateUser.id,
+        "identity": updateUser.verifynum,
+        "name": updateUser.username,
+        "phoneNumber": updateUser.phoneNumber,
+        "userId": updateUser.userId,
+        "wx": updateUser.wxcode
+      };
+      this.http.post(purl, param, {headers: {Authorization: us.token}}).toPromise();
+    }).catch(()=>{
+      this.goLogin();
+    });
+  }
+
+  signUp(){
+    this.store.get('user').then((us:UserStore)=>{
+      let purl = `${BASEURL}squirrel/v1/users/sign`;
+      this.http.get(purl, {headers: {Authorization: us.token}});
+    }).catch(()=>{
+      this.goLogin();
+    });
+  }
+
 }

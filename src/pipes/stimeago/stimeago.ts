@@ -50,7 +50,6 @@ export class StimeagoPipe implements PipeTransform {
     
     // 获取今天的时间戳,并得到秒数
     const currentTimeStamp: number = new Date().getTime();
-    console.log(value);
     
     if (value) {
       let paramTimestamp: number = 0; //传入的时间戳

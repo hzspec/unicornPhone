@@ -44,11 +44,18 @@ export class MainPage {
   @ViewChild('realchart')
   greetDiv: any;
 
+  zhsh:string = "";
+  qd:string = "";
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public serv:MainProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController
   ) {
+    this.serv.getLinkJson().then((res:any)=>{
+      this.zhsh = res.zhsh;
+      this.qd = res.qd;
+    });
   }
 
   getllNumber(num){

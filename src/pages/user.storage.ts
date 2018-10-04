@@ -1,4 +1,5 @@
 export class UserStore{
+    id:string = '';
     token:string = '';
     email:string = '';
     username:string = '';

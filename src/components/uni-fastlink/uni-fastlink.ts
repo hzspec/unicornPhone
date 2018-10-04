@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 
 /**
@@ -12,6 +12,11 @@ import { ModalController } from 'ionic-angular';
   templateUrl: 'uni-fastlink.html'
 })
 export class UniFastlinkComponent {
+
+  @Input()
+  zhsh:string = "";
+  @Input()
+  qd:string = "";
 
   constructor(private modalCtrl:ModalController) {
   }
@@ -27,7 +32,13 @@ export class UniFastlinkComponent {
   }
 
   goWeb(title){
-    const modal = this.modalCtrl.create('BlankPage', {title: title, url: 'http://www.baidu.com/'});
+    let url = "";
+    if(title == '智慧生活'){
+      url = this.zhsh;
+    }else{
+      url = this.qd;
+    }
+    const modal = this.modalCtrl.create('BlankPage', {title: title, url: url});
     modal.present();
   }
 

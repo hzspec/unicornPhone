@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-content class="login-container">
-  <img style="margin-top:60px;" width="30%" src="assets/imgs/logo.png" alt=""/><br/>
+  <img style="margin-top:70px;" width="30%" src="assets/imgs/logo.png" alt=""/><br/>
   <p class="lpa">
     <b class="lname">智家宝</b><br/>
     <span class="ltext">设备的保护伞</span>
@@ -21,7 +21,10 @@
     </div>
 
     <button (click)="checkLogin()" [disabled]="username=='' || password==''" ion-button class="btn-confirm">登  录</button><br/>
-    <a class="link_regist" (click)="goRegist()">立即注册</a>
+    
+    <!--<button (click)="goLoginForPhone()" ion-button class="btn-confirm phone">手机号码登录</button><br/>
+
+    <a class="link_regist" (click)="goRegist()">立即注册</a>-->
 
   </form>
   

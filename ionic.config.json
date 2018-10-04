@@ -27,6 +27,10 @@
     {
       "path": "/speed/",
       "proxyUrl": "http://localhost:9998/speed/"
+    },
+    {
+      "path": "/hz/",
+      "proxyUrl": "http://60.205.212.99/hz/"
     }
   ],
   "type": "ionic-angular"

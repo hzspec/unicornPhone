@@ -37,6 +37,10 @@ export class LoginPage {
   ionViewDidLoad() {
   }
 
+  goLoginForPhone(){
+    
+  }
+
   goRegist(){
     let reg = this.modalCtrl.create('RegistPage');
     reg.present();
@@ -50,7 +54,6 @@ export class LoginPage {
     login.then((val:any)=>{
       
       this.saveInfor(val.token, loader);
-      this.navCtrl.setRoot('TabPage');
 
     }).catch((err)=>{
 
@@ -78,6 +81,7 @@ export class LoginPage {
       us.token = token;
       us.userId = val.userId;
       us.username = val.userId.split('@')[0];
+      us.id = val.id;
       us.birth = '';
       us.verifynum = '';
       us.wxcode = '';
@@ -86,6 +90,8 @@ export class LoginPage {
       loader.dismiss();
 
       this.storage.set('user', us);
+      
+      this.navCtrl.setRoot('TabPage');
 
     });
   }

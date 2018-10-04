@@ -13,6 +13,10 @@ page-login {
         }
         .btn-confirm{margin-bottom:8px;width:80%;height:50px;line-height:50px;background:linear-gradient(90deg, #027CFF, #2AD8FF);margin-top:60px;cursor:pointer;color:#fff;font-size:18px;
             .button-inner{color:#fff;}
+            &.phone{
+                background:linear-gradient(90deg, #ccc, #999);
+                margin-top:5px;
+            }
         }
         .link_regist{font-size:14px;color:#088CFF;text-decoration:underline;}
     }

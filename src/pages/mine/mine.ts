@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, ModalController } from 'ionic-angular';
 
 import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
+import { MainProvider } from '../../providers/main/main';
 
 /**
  * Generated class for the MinePage page.
@@ -15,6 +16,7 @@ import { Storage } from '@ionic/storage';
 @Component({
   selector: 'page-mine',
   templateUrl: 'mine.html',
+  providers: [MainProvider]
 })
 export class MinePage {
 
@@ -22,9 +24,16 @@ export class MinePage {
 
   editMod:boolean = false;
 
+  kdjf:string = "";
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private storage: Storage, private app: App
+    private storage: Storage, private app: App,
+    private modalCtrl:ModalController,
+    private serv:MainProvider
   ) {
+    this.serv.getLinkJson().then((res:any)=>{
+      this.kdjf = res.kdjf;
+    });
   }
 
   ionViewDidLoad() {
@@ -48,6 +57,12 @@ export class MinePage {
   saveInfo(){
     this.storage.set('user', this.userinfo);
     this.editMod = false;
+    this.serv.updateUser(this.userinfo);
+  }
+
+  goWeb(title){
+    const modal = this.modalCtrl.create('BlankPage', {title: title, url: this.kdjf});
+    modal.present();
   }
 
 }
