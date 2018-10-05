@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ModalController } from 'ionic-angular';
+import { MainProvider } from '../../providers/main/main';
 
 /**
  * Generated class for the UniFastlinkComponent component.
@@ -9,7 +10,8 @@ import { ModalController } from 'ionic-angular';
  */
 @Component({
   selector: 'uni-fastlink',
-  templateUrl: 'uni-fastlink.html'
+  templateUrl: 'uni-fastlink.html',
+  providers: [MainProvider]
 })
 export class UniFastlinkComponent {
 
@@ -18,7 +20,7 @@ export class UniFastlinkComponent {
   @Input()
   qd:string = "";
 
-  constructor(private modalCtrl:ModalController) {
+  constructor(private modalCtrl:ModalController, private serv:MainProvider) {
   }
 
   goSpeed(){
@@ -37,6 +39,7 @@ export class UniFastlinkComponent {
       url = this.zhsh;
     }else{
       url = this.qd;
+      this.serv.signUp();
     }
     const modal = this.modalCtrl.create('BlankPage', {title: title, url: url});
     modal.present();

@@ -4,16 +4,19 @@ import { UniHeaderComponent } from './uni-header/uni-header';
 import { UniFastlinkComponent } from './uni-fastlink/uni-fastlink';
 import { UniAlertchartComponent } from './uni-alertchart/uni-alertchart';
 import { UniRankchartComponent } from './uni-rankchart/uni-rankchart';
+import { TipBindComponent } from './tip-bind/tip-bind';
 
 @NgModule({
 	declarations: [UniHeaderComponent,
     UniFastlinkComponent,
     UniAlertchartComponent,
-    UniRankchartComponent],
+    UniRankchartComponent,
+    TipBindComponent],
 	imports: [IonicPageModule],
 	exports: [UniHeaderComponent,
     UniFastlinkComponent,
     UniAlertchartComponent,
-    UniRankchartComponent]
+    UniRankchartComponent,
+    TipBindComponent]
 })
 export class ComponentsModule {}

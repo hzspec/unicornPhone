@@ -11,6 +11,27 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="login-container">
+    <img style="margin-top:70px;" width="30%" src="assets/imgs/logo.png" alt=""/><br/>
+    <p class="lpa">
+      <b class="lname">智家宝</b><br/>
+      <span class="ltext">设备的保护伞</span>
+    </p>
+    <form class="lform">
+      <div class="lcontrol">
+        <input [(ngModel)]="username" name="uname" type="text" style="width:210px;float:left;" placeholder="手机号码">
+        <button ion-button class="send">获取验证码</button>
+      </div>
+      <div class="lcontrol">
+        <input [(ngModel)]="password" name="upass" type="password" placeholder="验证码">
+      </div>
+  
+      <button (click)="checkLogin()" [disabled]="username=='' || password==''" ion-button class="btn-confirm">登  录</button><br/>
+  
+      <a class="link_regist" (click)="goRegist()">立即注册</a>
+  
+    </form>
+    
+    <label class="copyright">&copy;2018 HZSPEC</label>
 
 </ion-content>

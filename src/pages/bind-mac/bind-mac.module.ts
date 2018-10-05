@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { LoginphonePage } from './loginphone';
+import { BindMacPage } from './bind-mac';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    LoginphonePage,
+    BindMacPage,
   ],
   imports: [
     ComponentsModule,
-    IonicPageModule.forChild(LoginphonePage),
+    IonicPageModule.forChild(BindMacPage),
   ],
 })
-export class LoginphonePageModule {}
+export class BindMacPageModule {}

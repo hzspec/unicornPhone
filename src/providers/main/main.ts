@@ -97,7 +97,8 @@ export class MainProvider {
   signUp(){
     this.store.get('user').then((us:UserStore)=>{
       let purl = `${BASEURL}squirrel/v1/users/sign`;
-      this.http.get(purl, {headers: {Authorization: us.token}});
+      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+      pro.catch(()=>{});
     }).catch(()=>{
       this.goLogin();
     });
