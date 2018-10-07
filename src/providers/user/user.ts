@@ -30,13 +30,23 @@ export class UserProvider{
 
   login(email, pass){
     let param = {userId: email, password: pass};
-    let purl = `${this.url}users/login?userId=${param.userId}&password=${param.password}`;
+    let purl = `${BASEURL}ext/v1/users/login?userId=${param.userId}&password=${param.password}`;
     return this.http.post(purl, null).toPromise();
   }
 
   getUserinfo(email, token){
     let purl = `${BASEURL}squirrel/v1/users/fetch_user_by_id?userId=${email}`;
     return this.http.get(purl, {headers: {Authorization: token}}).toPromise();
+  }
+
+  sendVerifynum(phonenum){
+    let purl = `${BASEURL}ext/v1/users/getVerificationCode?mobile=${phonenum}`;
+    return this.http.get(purl).toPromise();
+  }
+
+  registPhone(phonenum, code){
+    let purl = `${BASEURL}ext/v1/users/reg_mobile?mobile=${phonenum}&verificationCode=${code}`;
+    return this.http.post(purl, null).toPromise();
   }
 
 }

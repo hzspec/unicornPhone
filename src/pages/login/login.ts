@@ -39,7 +39,7 @@ export class LoginPage {
 
   goLoginForPhone(){
     //let reg = this.modalCtrl.create('LoginphonePage');
-    let reg = this.modalCtrl.create('BindMacPage');
+    let reg = this.modalCtrl.create('LoginphonePage');
     reg.present();
   }
 

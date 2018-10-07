@@ -104,4 +104,19 @@ export class MainProvider {
     });
   }
 
+
+  bindAP(mac, success, fail){
+    this.store.get('user').then((us:UserStore)=>{
+      let purl = `${BASEURL}ext/v1/users/bind_ap?apMacAddress=${mac}`;
+      let pro = this.http.post(purl, null, {headers: {Authorization: us.token}}).toPromise();
+      pro.then(()=>{
+        success();
+      }).catch(()=>{
+        fail();
+      });
+    }).catch(()=>{
+      this.goLogin();
+    });
+  }
+
 }

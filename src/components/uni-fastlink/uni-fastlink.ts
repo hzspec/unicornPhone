@@ -19,8 +19,15 @@ export class UniFastlinkComponent {
   zhsh:string = "";
   @Input()
   qd:string = "";
+  @Input()
+  registed:boolean = false;
 
   constructor(private modalCtrl:ModalController, private serv:MainProvider) {
+  }
+
+  goBind(){
+    const modal = this.modalCtrl.create('BindMacPage');
+    modal.present();
   }
 
   goSpeed(){
@@ -29,8 +36,12 @@ export class UniFastlinkComponent {
   }
 
   goGreen(){
-    const modal = this.modalCtrl.create('SafePage', {type: 'green'});
-    modal.present();
+    if(this.registed){
+      const modal = this.modalCtrl.create('SafePage', {type: 'green'});
+      modal.present();
+    }else{
+      this.goBind();
+    }
   }
 
   goWeb(title){

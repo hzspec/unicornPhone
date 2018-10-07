@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, ModalController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { EquipProvider } from '../../providers/equip/equip';
 
@@ -41,7 +41,8 @@ export class EquipPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public serv:EquipProvider,
     public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public modalCtrl: ModalController
   ) {
   }
 
@@ -79,6 +80,11 @@ export class EquipPage {
       loader.dismiss();
       mod.status = auth;
     });
+  }
+
+  seeRouterLL(){
+    const modal = this.modalCtrl.create('RealchartPage');
+    modal.present();
   }
 
 }

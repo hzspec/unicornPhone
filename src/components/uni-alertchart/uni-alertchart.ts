@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 
 import * as echarts from 'echarts/dist/echarts.min';
 
@@ -21,6 +22,9 @@ import * as moment from 'moment';
 })
 export class UniAlertchartComponent  {
 
+  @Input()
+  registed:boolean = false;
+
   cstime:string = moment().format('YYYY-MM-DD HH:mm:ss');
   cetime:string = moment().format('YYYY-MM-DD HH:mm:ss');
   stompClient:any = null;
@@ -28,8 +32,13 @@ export class UniAlertchartComponent  {
   socketOutArr:any = [];
   chartMod:any = null;
 
-  constructor(public store:Storage) {
+  constructor(public store:Storage, private modalCtrl:ModalController) {
     
+  }
+
+  goBind(){
+    const modal = this.modalCtrl.create('BindMacPage');
+    modal.present();
   }
 
   disConnect(){
@@ -46,9 +55,11 @@ export class UniAlertchartComponent  {
 
   connect(){
     setTimeout(()=>{
-        this.store.get('user').then((us:UserStore)=>{
-            this.initSocket(us.apmac);
-        });
+        if(this.registed){
+            this.store.get('user').then((us:UserStore)=>{
+                this.initSocket(us.apmac);
+            });
+        }
     }, 1000);
   }
 
@@ -99,7 +110,7 @@ export class UniAlertchartComponent  {
         let json = JSON.parse(response.body);
         if(json){
           json.data.forEach(ele1=>{
-            this.socketInArr.push([ele1.time, ele1.value]);
+            this.socketInArr.push([ele1.time, ele1.value / 1000]);
           });
           
           if(!this.chartMod){
@@ -123,7 +134,7 @@ export class UniAlertchartComponent  {
         let json = JSON.parse(response.body);
         if(json){
           json.data.forEach(ele1=>{
-            this.socketOutArr.push([ele1.time, ele1.value]);
+            this.socketOutArr.push([ele1.time, ele1.value / 1000]);
           });
           
           if(!this.chartMod){
@@ -158,7 +169,7 @@ export class UniAlertchartComponent  {
                 }
             }
         },
-        color: ['#26A69A', '#F44336'],
+        color: ['#F9596F', '#3FCB98'],
         legend: {
             data:['进流量', '出流量'],
             itemGap: 5
@@ -186,13 +197,17 @@ export class UniAlertchartComponent  {
                 name: '进流量',
                 type: 'line',
                 data: d1,
-                areaStyle: {normal: {}}
+                areaStyle: {normal: {opacity: 0.3}},
+                lineStyle: {width:3},
+                smooth: true
             },
             {
                 name: '出流量',
                 type: 'line',
                 data: d2,
-                areaStyle: {normal: {}}
+                areaStyle: {normal: {opacity: 0.3}},
+                lineStyle: {width:3},
+                smooth: true
             }
         ]
     };

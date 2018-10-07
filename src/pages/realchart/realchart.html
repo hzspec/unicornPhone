@@ -1,0 +1,20 @@
+<!--
+  Generated template for the RealchartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <uni-header (clkBack)="closeModal()" [showmodal]="true" [title]="'实时流量'"></uni-header>
+
+</ion-header>
+
+
+<ion-content style="text-align:center;">
+  <br/>
+  <h4 style="color:#0074FF">路由实时流量走势分析</h4>
+  <h6 style="color:#999">请稍候</h6>
+  <uni-alertchart [registed]="true" #realchart></uni-alertchart>
+
+</ion-content>

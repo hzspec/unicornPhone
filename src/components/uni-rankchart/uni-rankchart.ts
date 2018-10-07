@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ModalController } from 'ionic-angular';
 
 import * as echarts from 'echarts/dist/echarts.min';
 
@@ -14,21 +15,33 @@ import * as echarts from 'echarts/dist/echarts.min';
 })
 export class UniRankchartComponent {
 
+  @Input()
+  registed:boolean = false;
+
   _d = [];
 
   @Input()
   set datas(v){
     this._d = v;
     if(v.length == 2){
-        setTimeout(()=>{this.initChart();}, 1000);
+        setTimeout(()=>{
+            if(this.registed){
+                this.initChart();
+            }
+        }, 1000);
     }
   }
   get datas(){
       return this._d;
   }
 
-  constructor() {
+  constructor(private modalCtrl:ModalController) {
     
+  }
+
+  goBind(){
+    const modal = this.modalCtrl.create('BindMacPage');
+    modal.present();
   }
 
   initChart(){
