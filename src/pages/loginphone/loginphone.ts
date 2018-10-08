@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { UserStore } from '../user.storage';
@@ -33,6 +33,7 @@ export class LoginphonePage {
     private serv:UserProvider,
     public alertCtrl: AlertController,
     private storage: Storage,
+    private app:App
   ) {
   }
 
@@ -144,7 +145,7 @@ export class LoginphonePage {
         this.storage.set('user', us);
         this.viewCtrl.dismiss();
         
-        this.navCtrl.setRoot('TabPage');
+        this.app.getRootNav().setRoot('TabPage');
 
       });
 

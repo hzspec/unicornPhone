@@ -57,8 +57,21 @@ export class BindMacPage {
 
         this.storage.set('user', us);
 
-        this.viewCtrl.dismiss();
-        this.app.getRootNav().setRoot('TabPage');;
+        const alert = this.alertCtrl.create({
+          title: '绑定成功!',
+          subTitle: '',
+          buttons: [{
+            text: '确定',
+            handler: ()=>{
+              this.viewCtrl.dismiss();
+              //this.app.getRootNav().setRoot('TabPage');
+              window.location.reload();
+            }
+          }]
+        });
+        alert.present();
+
+        
 
       });
 
