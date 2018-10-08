@@ -30,12 +30,24 @@ export class UserProvider{
 
   login(email, pass){
     let param = {userId: email, password: pass};
-    let purl = `${BASEURL}ext/v1/users/login?userId=${param.userId}&password=${param.password}`;
+    let purl = `${BASEURL}ext/v1/users/login?userId=${param.userId}&password=${param.password}&type=0`;
     return this.http.post(purl, null).toPromise();
   }
 
+  goLogin(){
+    this.ctrl.setRoot('LoginPage');
+  }
+
+  getAps(token, success){
+    let purl = `${BASEURL}ext/v1/users/query_bind_aps`;
+    let pro = this.http.post(purl, null, {headers: {Authorization: token}}).toPromise();
+    pro.then((res:any)=>{
+      success(res);
+    });
+  }
+
   getUserinfo(email, token){
-    let purl = `${BASEURL}squirrel/v1/users/fetch_user_by_id?userId=${email}`;
+    let purl = `${BASEURL}ext/v1/users/fetch_user_by_id?userId=${email}`;
     return this.http.get(purl, {headers: {Authorization: token}}).toPromise();
   }
 
@@ -46,6 +58,12 @@ export class UserProvider{
 
   registPhone(phonenum, code){
     let purl = `${BASEURL}ext/v1/users/reg_mobile?mobile=${phonenum}&verificationCode=${code}`;
+    return this.http.post(purl, null).toPromise();
+  }
+
+  loginPhone(phone, code){
+    let param = {mobile: phone, verificationCode: code};
+    let purl = `${BASEURL}ext/v1/users/login?mobile=${param.mobile}&verificationCode=${param.verificationCode}&type=1`;
     return this.http.post(purl, null).toPromise();
   }
 

@@ -17,6 +17,8 @@ import * as echarts from 'echarts/dist/echarts.min';
 })
 export class SpeedPage {
 
+    speedType:string = 'equip';
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController) {
   }
 

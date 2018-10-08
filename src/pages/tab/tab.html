@@ -6,7 +6,7 @@
 -->
 <ion-tabs>
   <ion-tab [root]="tab1Root" tabTitle="首页" tabIcon="md-home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="设备" tabIcon="md-cube"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="安全" tabIcon="md-cloud"></ion-tab>
+  <ion-tab [enabled]="isRegisted" [root]="tab2Root" tabTitle="设备" tabIcon="md-cube"></ion-tab>
+  <ion-tab [enabled]="isRegisted" [root]="tab3Root" tabTitle="安全" tabIcon="md-cloud"></ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="我的" tabIcon="md-person"></ion-tab>
 </ion-tabs>

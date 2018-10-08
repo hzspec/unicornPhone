@@ -28,6 +28,11 @@
     <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.email" />
   </div>
   <div class="item">
+    <span class="icons icon-mine-l5"></span>登录密码
+    <span *ngIf="!editMod" class="val">******************</span>
+    <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.password" />
+  </div>
+  <div class="item">
     <span class="icons icon-mine-l2"></span>姓名
     <span *ngIf="!editMod" class="val">{{userinfo.username}}</span>
     <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.username" />

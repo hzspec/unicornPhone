@@ -65,6 +65,7 @@ export class RegistPage {
           text: '确定',
           handler: ()=>{
             this.viewCtrl.dismiss();
+            //LOGIN
           }
         }]
       });

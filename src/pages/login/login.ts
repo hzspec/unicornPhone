@@ -52,6 +52,7 @@ export class LoginPage {
     let loader = this.loadingCtrl.create({
       content: "登录中...",
     });
+    loader.present();
     let login = this.serv.login(this.username, this.password);
     login.then((val:any)=>{
       
@@ -76,24 +77,41 @@ export class LoginPage {
   saveInfor(token, loader){
     this.serv.getUserinfo(this.username, token).then((val:any)=>{
       let us = new UserStore();
-      us.apmac = val.apMacAddr;
       us.email = val.emailAddr;
-      us.ip = val.ip;
       us.phoneNumber = val.phoneNumber;
       us.token = token;
       us.userId = val.userId;
       us.username = val.userId.split('@')[0];
       us.id = val.id;
+      us.password = val.password;
       us.birth = '';
       us.verifynum = '';
       us.wxcode = '';
       us.kdcode = '';
 
-      loader.dismiss();
+      this.serv.getAps(token, (res:any)=>{
+        let caches = [];
+        for(let r of res){
+          caches.push({apmac: r.apMacAddr, ip: r.innerIpShow});
+        }
+        us.arrEquips = caches;
 
-      this.storage.set('user', us);
+        if(us.arrEquips.length > 0){
+          us.apmac = us.arrEquips[0].apmac;
+          us.ip = us.arrEquips[0].ip;
+          us.isBindRouter = true;
+        }else{
+          us.isBindRouter = false;
+        }
+        
+        loader.dismiss();
+
+        this.storage.set('user', us);
+        
+        this.navCtrl.setRoot('TabPage');
+      });
+
       
-      this.navCtrl.setRoot('TabPage');
 
     });
   }

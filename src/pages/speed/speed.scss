@@ -22,4 +22,17 @@ page-speed {
             *{font-size:14px;color:#30A6F8;}
         }
     }
+
+    .navs{padding:10px 10px 0 10px;
+        .segment{
+            background:#31A3FC;height:40px;border-radius:40px;padding:5px 8px;display:block;
+            .segment-button{
+                border:none;height:30px;border-radius:30px;color:#fff;font-size:15px;
+                display:inline-block;width:48%;margin-left:1%;line-height:30px;
+                &.segment-activated{
+                    background:#fff;color:#31A3FC;
+                }
+            }
+        }
+    }
 }

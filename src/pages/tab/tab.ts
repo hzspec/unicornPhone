@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { UserStore } from '../../pages/user.storage';
+import { ChangeDetectorRef } from '@angular/core';
 
 /**
  * Generated class for the TabPage page.
@@ -20,10 +23,20 @@ export class TabPage {
   tab3Root:any = 'SafePage';
   tab4Root:any = 'MinePage';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  isRegisted:boolean = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public store: Storage, public cd: ChangeDetectorRef) {
   }
 
   ionViewDidLoad() {
+    this.store.get('user').then((us:UserStore)=>{
+      
+      setTimeout(()=>{
+        this.isRegisted = us.isBindRouter;
+        this.cd.detectChanges();
+      }, 1000);
+    });
   }
 
 }

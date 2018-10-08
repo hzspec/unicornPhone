@@ -76,7 +76,7 @@ export class MainProvider {
 
   updateUser(updateUser:UserStore){
     this.store.get('user').then((us:UserStore)=>{
-      let purl = `${BASEURL}squirrel/v1/users/update`;
+      let purl = `${BASEURL}ext/v1/users/update`;
       let param = {
         "alias": updateUser.username,
         "birthday": updateUser.birth,
@@ -96,7 +96,7 @@ export class MainProvider {
 
   signUp(){
     this.store.get('user').then((us:UserStore)=>{
-      let purl = `${BASEURL}squirrel/v1/users/sign`;
+      let purl = `${BASEURL}ext/v1/users/sign`;
       let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
       pro.catch(()=>{});
     }).catch(()=>{

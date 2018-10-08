@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
 
 import { MainProvider } from '../../providers/main/main';
 import { AlertController } from 'ionic-angular';
+import { UserStore } from '../user.storage';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the BindMacPage page.
  *
@@ -24,6 +26,8 @@ export class BindMacPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController,
     private serv:MainProvider,
     public alertCtrl: AlertController,
+    private storage: Storage,
+    private app: App
   ) {
   }
 
@@ -43,11 +47,21 @@ export class BindMacPage {
     }
     apmac = apmac.substr(0, apmac.length - 1);
     this.serv.bindAP(apmac, ()=>{
-      const alert = this.alertCtrl.create({
-        title: '绑定成功!',
-        buttons: ['确定']
+      
+      this.storage.get('user').then((us:UserStore)=>{
+        us.arrEquips.push({apmac: apmac, ip: '--'});
+        us.isBindRouter = true;
+
+        us.apmac = apmac;
+        us.ip = '--';
+
+        this.storage.set('user', us);
+
+        this.viewCtrl.dismiss();
+        this.app.getRootNav().setRoot('TabPage');;
+
       });
-      alert.present();
+
     }, ()=>{
       const alert = this.alertCtrl.create({
         title: '绑定失败!',
