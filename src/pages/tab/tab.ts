@@ -34,7 +34,6 @@ export class TabPage {
       
       setTimeout(()=>{
         this.isRegisted = us.isBindRouter;
-        this.cd.detectChanges();
       }, 1000);
     });
   }

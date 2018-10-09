@@ -3,12 +3,12 @@ page-safe {
 
     .navs{padding:10px 10px 0 10px;
         .segment{
-            background:#31A3FC;height:40px;border-radius:40px;padding:5px 8px;display:block;
+            background:#D83A3A;height:40px;border-radius:40px;padding:5px 8px;display:block;
             .segment-button{
                 border:none;height:30px;border-radius:30px;color:#fff;font-size:15px;
                 display:inline-block;width:48%;margin-left:1%;line-height:30px;
                 &.segment-activated{
-                    background:#fff;color:#31A3FC;
+                    background:#fff;color:#D83A3A;
                 }
             }
         }

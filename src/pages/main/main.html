@@ -16,7 +16,7 @@
     <ion-slides *ngIf="registed" class="sliders-container" pager>
 
       <ion-slide>
-        <div class="equip-con">
+        <div class="equip-con l2">
           <img class="lfimg" src="assets/imgs/main/s1.png" alt="" />
           <div class="infor">
             <p class="tl">设备总量：<span>{{staticData.equip.total}}</span></p>
@@ -31,7 +31,7 @@
       </ion-slide>
     
       <ion-slide>
-        <div class="equip-con l2">
+        <div class="equip-con">
           <img class="lfimg" style="position:relative;left:20px;" src="assets/imgs/main/s2.png" alt="" />
           <div class="infor">
             <p class="tl">报警统计：<span>{{staticData.alert.pre + staticData.alert.cur}}</span></p>
@@ -61,7 +61,7 @@
     <ion-slides *ngIf="!registed" class="sliders-container" pager>
 
       <ion-slide>
-        <div class="equip-con">
+        <div class="equip-con l2">
           <img class="lfimg" src="assets/imgs/main/s1.png" alt="" />
           <div class="infor" style="padding-top:21px;">
             <p class="tl">设备总量查看</p>
@@ -75,7 +75,7 @@
       </ion-slide>
     
       <ion-slide>
-        <div class="equip-con l2">
+        <div class="equip-con">
           <img class="lfimg" style="position:relative;left:20px;" src="assets/imgs/main/s2.png" alt="" />
           <div class="infor" style="padding-top:21px;">
             <p class="tl">报警统计查看</p>

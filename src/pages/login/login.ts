@@ -99,7 +99,7 @@ export class LoginPage {
         if(us.arrEquips.length > 0){
           us.apmac = us.arrEquips[0].apmac;
           us.ip = us.arrEquips[0].ip;
-          us.isBindRouter = false;
+          us.isBindRouter = true;
         }else{
           us.isBindRouter = false;
         }

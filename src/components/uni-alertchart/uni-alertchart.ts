@@ -33,7 +33,23 @@ export class UniAlertchartComponent  {
   chartMod:any = null;
 
   constructor(public store:Storage, private modalCtrl:ModalController) {
-    
+    /*let m1 = moment().add(-60, 'minute').format('YYYY-MM-DD HH:mm:ss');
+    let m2 = moment().add(-70, 'minute').format('YYYY-MM-DD HH:mm:ss');
+    let m3 = moment().add(-80, 'minute').format('YYYY-MM-DD HH:mm:ss');
+    let m4 = moment().add(-90, 'minute').format('YYYY-MM-DD HH:mm:ss');
+    let m5 = moment().add(-100, 'minute').format('YYYY-MM-DD HH:mm:ss'); 
+    this.socketOutArr.push([m1, 10]);
+    this.socketOutArr.push([m2, Math.random() * 20 + 10]);
+    this.socketOutArr.push([m3, Math.random() * 10 + 10]);
+    this.socketOutArr.push([m4, Math.random() * 30 + 10]);
+    this.socketOutArr.push([m5, Math.random()]);
+
+    this.socketInArr.push([m1, 1]);
+    this.socketInArr.push([m2, Math.random() * 1 + 1]);
+    this.socketInArr.push([m3, Math.random() * 3 + 3]);
+    this.socketInArr.push([m4, Math.random() * 1 + 1]);
+    this.socketInArr.push([m5, Math.random()]);
+    */
   }
 
   goBind(){
@@ -59,6 +75,8 @@ export class UniAlertchartComponent  {
             this.store.get('user').then((us:UserStore)=>{
                 this.initSocket(us.apmac);
             });
+            
+            this.drawCharts(this.socketInArr, this.socketOutArr);
         }
     }, 1000);
   }
@@ -171,7 +189,7 @@ export class UniAlertchartComponent  {
         },
         color: ['#F9596F', '#3FCB98'],
         legend: {
-            data:['进流量', '出流量'],
+            data:['下载', '上载'],
             itemGap: 5
         },
         grid: {
@@ -194,17 +212,17 @@ export class UniAlertchartComponent  {
         ],
         series : [
             {
-                name: '进流量',
+                name: '上载',
                 type: 'line',
-                data: d1,
+                data: d2,
                 areaStyle: {normal: {opacity: 0.3}},
                 lineStyle: {width:3},
                 smooth: true
             },
             {
-                name: '出流量',
+                name: '下载',
                 type: 'line',
-                data: d2,
+                data: d1,
                 areaStyle: {normal: {opacity: 0.3}},
                 lineStyle: {width:3},
                 smooth: true

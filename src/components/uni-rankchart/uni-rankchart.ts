@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { ModalController } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
 
 import * as echarts from 'echarts/dist/echarts.min';
+import * as _ from 'lodash';
 
 /**
  * Generated class for the UniRankchartComponent component.
@@ -26,7 +28,7 @@ export class UniRankchartComponent {
     if(v.length == 2){
         setTimeout(()=>{
             if(this.registed){
-                this.initChart();
+                this.initMap();
             }
         }, 1000);
     }
@@ -35,8 +37,71 @@ export class UniRankchartComponent {
       return this._d;
   }
 
-  constructor(private modalCtrl:ModalController) {
-    
+  mapDatas:any = [];
+  mapMod:any = null;
+
+ 
+
+  constructor(private modalCtrl:ModalController, private http:HttpClient) {
+    this.mapDatas = [{"name":"齐齐哈尔","value":[123.97,47.33,null]},{"name":"盐城","value":[120.13,33.38,null]},{"name":"青岛","value":[120.33,36.07,null]},{"name":"金昌","value":[102.188043,38.520089,null]},{"name":"泉州","value":[118.58,24.93,null]},{"name":"拉萨","value":[91.11,29.97,null]},{"name":"上海浦东","value":[121.48,31.22,null]},{"name":"攀枝花","value":[101.718637,26.582347,null]},{"name":"威海","value":[122.1,37.5,null]},{"name":"承德","value":[117.93,40.97,null]},{"name":"汕尾","value":[115.375279,22.786211,null]},{"name":"克拉玛依","value":[84.77,45.59,null]},{"name":"重庆市","value":[108.384366,30.439702,null]}];
+    for(let m of this.mapDatas){
+        m.value[2] = Math.random() * 5 + 10;
+    }
+  }
+
+  initMap(){
+    this.http.get('./assets/data/world.json').toPromise().then((worldJson)=>{
+        echarts.registerMap('world', worldJson);
+        
+        var mapChart = echarts.init(document.getElementById('barrank'));
+        this.mapMod = mapChart;
+
+        var option = {
+            backgroundColor: '#fff',
+            tooltip : {
+                trigger: 'item',
+                formatter : function (params) {
+                    var value = (params.value);
+                    return params.name + ' : ' + params.data.ip;
+                }
+            },
+            geo: {
+                name: 'IP 地图',
+                type: 'map',
+                map: 'world',
+                center: [116.97, 39.71],
+                zoom: 5,
+                roam: true,
+                label: {
+                    emphasis: {
+                        show: false
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        areaColor: '#323c48',
+                        borderColor: '#ccc'
+                    },
+                    emphasis: {
+                        areaColor: '#2a333d'
+                    }
+                }
+            },
+            series : [
+                {
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    itemStyle: {
+                        color: '#D83A3A'
+                    },
+                    data: this.mapDatas
+                }
+            ]
+        };
+
+        mapChart.setOption(option);
+
+    });
   }
 
   goBind(){

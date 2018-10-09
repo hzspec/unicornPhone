@@ -53,7 +53,9 @@ export class UserProvider{
 
   sendVerifynum(phonenum){
     let purl = `${BASEURL}ext/v1/users/getVerificationCode?mobile=${phonenum}`;
-    return this.http.get(purl).toPromise();
+    let pro = this.http.get(purl).toPromise();
+    pro.catch(()=>{});
+    return pro;
   }
 
   registPhone(phonenum, code){
