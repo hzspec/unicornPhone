@@ -129,18 +129,14 @@ dealMain(){
     });
     loader.present();
     this.serv.getTop20((datas:any)=>{
-      let d1 = [], d2 = [];
-      let i = 1;
-      for(let k of datas){
-        i++;
-        if(i > 11)
-            break;
-        d1.push(k.key);
-        let tv:any = k.value / 1000 / 1000;
-        tv = tv.toFixed(2);
-        d2.push(tv)
+      let d1 = [];
+      for(let d of datas){
+        if(d.longitude && d.latitude){
+          d1.push({name: d.key, value: [d.longitude, d.latitude, d.value]});
+        }
       }
-      this.rankData = [d1.reverse(), d2.reverse()];
+      
+      this.rankData = d1;
       loader.dismiss();
     }, ()=>{
       loader.dismiss();

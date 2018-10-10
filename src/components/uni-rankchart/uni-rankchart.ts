@@ -25,9 +25,10 @@ export class UniRankchartComponent {
   @Input()
   set datas(v){
     this._d = v;
-    if(v.length == 2){
+    if(v.length > 0){
         setTimeout(()=>{
             if(this.registed){
+                this.mapDatas = v;
                 this.initMap();
             }
         }, 1000);
@@ -43,13 +44,15 @@ export class UniRankchartComponent {
  
 
   constructor(private modalCtrl:ModalController, private http:HttpClient) {
-    this.mapDatas = [{"name":"齐齐哈尔","value":[123.97,47.33,null]},{"name":"盐城","value":[120.13,33.38,null]},{"name":"青岛","value":[120.33,36.07,null]},{"name":"金昌","value":[102.188043,38.520089,null]},{"name":"泉州","value":[118.58,24.93,null]},{"name":"拉萨","value":[91.11,29.97,null]},{"name":"上海浦东","value":[121.48,31.22,null]},{"name":"攀枝花","value":[101.718637,26.582347,null]},{"name":"威海","value":[122.1,37.5,null]},{"name":"承德","value":[117.93,40.97,null]},{"name":"汕尾","value":[115.375279,22.786211,null]},{"name":"克拉玛依","value":[84.77,45.59,null]},{"name":"重庆市","value":[108.384366,30.439702,null]}];
-    for(let m of this.mapDatas){
-        m.value[2] = Math.random() * 5 + 10;
-    }
+    //this.mapDatas = [{"name":"齐齐哈尔","value":[123.97,47.33,null]},{"name":"盐城","value":[120.13,33.38,null]},{"name":"青岛","value":[120.33,36.07,null]},{"name":"金昌","value":[102.188043,38.520089,null]},{"name":"泉州","value":[118.58,24.93,null]},{"name":"拉萨","value":[91.11,29.97,null]},{"name":"上海浦东","value":[121.48,31.22,null]},{"name":"攀枝花","value":[101.718637,26.582347,null]},{"name":"威海","value":[122.1,37.5,null]},{"name":"承德","value":[117.93,40.97,null]},{"name":"汕尾","value":[115.375279,22.786211,null]},{"name":"克拉玛依","value":[84.77,45.59,null]},{"name":"重庆市","value":[108.384366,30.439702,null]}];
+    //for(let m of this.mapDatas){
+    //    m.value[2] = Math.random() * 5 + 10;
+    //}
   }
 
   initMap(){
+      console.log(this.mapDatas);
+
     this.http.get('./assets/data/world.json').toPromise().then((worldJson)=>{
         echarts.registerMap('world', worldJson);
         
@@ -62,7 +65,7 @@ export class UniRankchartComponent {
                 trigger: 'item',
                 formatter : function (params) {
                     var value = (params.value);
-                    return params.name + ' : ' + params.data.ip;
+                    return params.name;
                 }
             },
             geo: {
@@ -79,20 +82,27 @@ export class UniRankchartComponent {
                 },
                 itemStyle: {
                     normal: {
-                        areaColor: '#323c48',
-                        borderColor: '#ccc'
+                        areaColor: '#B5CBD8',
+                        borderColor: 'rgba(255,255,255,0.5)'
                     },
                     emphasis: {
-                        areaColor: '#2a333d'
+                        areaColor: '#2B91B7'
                     }
-                }
+                },
+                regions: [{
+                    name: 'China',
+                    itemStyle: {
+                        areaColor: '#D83A3A',
+                        color: '#D83A3A'
+                    }
+                }]
             },
             series : [
                 {
                     type: 'effectScatter',
                     coordinateSystem: 'geo',
                     itemStyle: {
-                        color: '#D83A3A'
+                        color: '#F2DE68'
                     },
                     data: this.mapDatas
                 }
