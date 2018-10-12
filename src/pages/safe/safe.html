@@ -26,6 +26,22 @@
 
   <div class="contents" [ngSwitch]="safeType">
     <ul class="alertlists" *ngSwitchCase="'alert'">
+
+      <uni-rankchart [datas]="mapDatas" [registed]="true"></uni-rankchart>
+
+      <h4 class="titles">一周内报警统计<ion-icon name="ios-funnel-outline"></ion-icon></h4>
+
+      <div class="alert-counts">
+        <div class="counts-title">
+          <span class="icon-con">
+            <span class="icons icon-safe-alert"></span>
+          </span>
+          普通报警
+          <ion-badge item-end>9</ion-badge>
+        </div>
+      </div>
+
+      <!--
       <li *ngFor="let md of alertLists" class="al">
         <div class="avatar">
           <span class="icon-con" [class.l2]="md.priority==2" [class.l3]="md.priority==3">
@@ -43,6 +59,7 @@
 
       <button (click)="getMore()" *ngIf="totalpage>pagenum" class="morebut" ion-button full color="light">点击加载更多</button>
       <button *ngIf="totalpage<=pagenum" class="morebut" ion-button full color="light">没有更多了</button>
+      -->
 
     </ul>
 

@@ -33,6 +33,8 @@ export class SafePage {
 
   alertLists:any = [];
 
+  mapDatas:any = [];
+
   showback:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -66,6 +68,10 @@ export class SafePage {
       this.alertLists = val.result;
       this.totalpage = val.totalPageCount;
     });
+  }
+
+  initMap(){
+    this.mapDatas = [{"name":"齐齐哈尔","value":[123.97,47.33,null]},{"name":"盐城","value":[120.13,33.38,null]},{"name":"青岛","value":[120.33,36.07,null]},{"name":"金昌","value":[102.188043,38.520089,null]},{"name":"泉州","value":[118.58,24.93,null]},{"name":"拉萨","value":[91.11,29.97,null]},{"name":"上海浦东","value":[121.48,31.22,null]},{"name":"攀枝花","value":[101.718637,26.582347,null]},{"name":"威海","value":[122.1,37.5,null]},{"name":"承德","value":[117.93,40.97,null]},{"name":"汕尾","value":[115.375279,22.786211,null]},{"name":"克拉玛依","value":[84.77,45.59,null]},{"name":"重庆市","value":[108.384366,30.439702,null]}]
   }
 
   getMore(){

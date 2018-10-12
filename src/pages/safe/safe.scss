@@ -42,6 +42,24 @@ page-safe {
                 }
                 
             }
+
+            .titles{
+                margin:10px 13px;padding:0;font-size:15px;color:#000;
+                ion-icon{float:right;}
+                
+            }
+
+            .counts-title{
+                box-shadow:0 0 10px #ccc;
+                margin:8px 13px;padding:10px 10px;
+                .icon-con{
+                    width:44px;height:44px;text-align:center;line-height:41px;background:#FF436F;display:inline-block;
+                    border-radius:44px;font-size:16px;font-weight:bold;
+                    &.l2{background:#F7DB77;}
+                    &.l3{background:#00ACFE;}
+                }
+            }
+
         }
         .greenlists{
 

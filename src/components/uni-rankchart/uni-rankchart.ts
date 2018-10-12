@@ -51,8 +51,6 @@ export class UniRankchartComponent {
   }
 
   initMap(){
-      console.log(this.mapDatas);
-
     this.http.get('./assets/data/world.json').toPromise().then((worldJson)=>{
         echarts.registerMap('world', worldJson);
         
