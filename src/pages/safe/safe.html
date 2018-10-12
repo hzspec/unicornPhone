@@ -27,17 +27,33 @@
   <div class="contents" [ngSwitch]="safeType">
     <ul class="alertlists" *ngSwitchCase="'alert'">
 
-      <uni-rankchart [datas]="mapDatas" [registed]="true"></uni-rankchart>
+      <uni-rankchartsafe style="margin:0 14px;" [datas]="mapDatas" [registed]="true"></uni-rankchartsafe>
 
       <h4 class="titles">一周内报警统计<ion-icon name="ios-funnel-outline"></ion-icon></h4>
 
       <div class="alert-counts">
         <div class="counts-title">
-          <span class="icon-con">
+          <span class="icon-con l3">
             <span class="icons icon-safe-alert"></span>
           </span>
           普通报警
-          <ion-badge item-end>9</ion-badge>
+          <ion-badge class="rg-number" item-end>9</ion-badge>
+        </div>
+
+        <div class="counts-title">
+          <span class="icon-con l2">
+            <span class="icons icon-safe-alert"></span>
+          </span>
+          中级报警
+          <ion-badge class="rg-number" item-end>0</ion-badge>
+        </div>
+
+        <div class="counts-title">
+          <span class="icon-con">
+            <span class="icons icon-safe-alert"></span>
+          </span>
+          高级报警
+          <ion-badge class="rg-number" item-end>0</ion-badge>
         </div>
       </div>
 

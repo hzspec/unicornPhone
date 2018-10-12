@@ -68,6 +68,8 @@ export class SafePage {
       this.alertLists = val.result;
       this.totalpage = val.totalPageCount;
     });
+
+    this.initMap();
   }
 
   initMap(){
