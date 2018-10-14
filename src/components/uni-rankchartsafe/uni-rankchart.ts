@@ -18,7 +18,7 @@ import * as _ from 'lodash';
 export class UniRankchartsafeComponent {
 
   @Input()
-  registed:boolean = false;
+  registed:boolean = true;
 
   _d = [];
 
@@ -54,7 +54,7 @@ export class UniRankchartsafeComponent {
     this.http.get('./assets/data/world.json').toPromise().then((worldJson)=>{
         echarts.registerMap('world', worldJson);
         
-        var mapChart = echarts.init(document.getElementById('barrank'));
+        var mapChart = echarts.init(document.getElementById('barrank2'));
         this.mapMod = mapChart;
 
         var option = {
@@ -100,7 +100,7 @@ export class UniRankchartsafeComponent {
                     type: 'effectScatter',
                     coordinateSystem: 'geo',
                     itemStyle: {
-                        color: '#F2DE68'
+                        color: '#488aff'
                     },
                     data: this.mapDatas
                 }
@@ -118,7 +118,7 @@ export class UniRankchartsafeComponent {
   }
 
   initChart(){
-    let mychart = echarts.init(document.getElementById('barrank'));
+    let mychart = echarts.init(document.getElementById('barrank2'));
     let option = {
         color: ['#3398DB'],
         grid: {

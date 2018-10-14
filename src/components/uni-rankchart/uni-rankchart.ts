@@ -18,7 +18,7 @@ import * as _ from 'lodash';
 export class UniRankchartComponent {
 
   @Input()
-  registed:boolean = false;
+  registed:boolean = true;
 
   _d = [];
 
