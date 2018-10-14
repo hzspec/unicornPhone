@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
 
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { UserProvider } from '../../providers/user/user';
-import { AlertController } from 'ionic-angular';
+import { AlertController, LoadingController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { UserStore } from '../user.storage';
 /**
  * Generated class for the RegistPage page.
  *
@@ -35,8 +37,11 @@ export class RegistPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     fb:FormBuilder,
+    public loadingCtrl: LoadingController,
     private serv:UserProvider,
-    private alertCtrl:AlertController
+    private alertCtrl:AlertController,
+    private app:App,
+    private storage: Storage
   ) {
     this.form = fb.group({
         name: ['', Validators.compose([Validators.required])],
@@ -57,15 +62,16 @@ export class RegistPage {
   }
 
   registPhone(){
-    this.serv.registPhone(this.phonenumber, this.phonepassword).then(()=>{
+    this.serv.registPhone(this.phonenumber, this.phonepassword).then((val)=>{
       const alert = this.alertCtrl.create({
         title: '注册成功!',
-        subTitle: '点击确定登录!',
+        subTitle: '',
         buttons: [{
           text: '确定',
           handler: ()=>{
             this.viewCtrl.dismiss();
             //LOGIN
+            this.saveInfor(val);
           }
         }]
       });
@@ -78,6 +84,55 @@ export class RegistPage {
       });
       alert.present();
     });
+  }
+
+  saveInfor(val){
+    let token = val.token
+    //this.serv.getUserinfo(this.username, token).then((val:any)=>{
+      let us = new UserStore();
+      us.apmac = val.apMacAddr;
+      us.email = val.emailAddr;
+      us.ip = val.ip;
+      us.phoneNumber = val.phoneNumber;
+      us.token = token;
+      us.userId = val.userId;
+      us.username = val.userId.split('@')[0];
+      us.id = val.id;
+      us.password = val.password;
+      us.birth = val.birthday;
+      us.verifynum = val.identity;
+      us.wxcode = val.wx;
+      us.kdcode = '';
+
+      let loader = this.loadingCtrl.create({
+        content: "登录中...",
+      });
+      loader.present();
+      this.serv.getAps(token, (res:any)=>{
+        let caches = [];
+        for(let r of res){
+          caches.push({apmac: r.apMacAddr, ip: r.innerIpShow, alias: r.alias});
+        }
+        us.arrEquips = caches;
+
+        if(us.arrEquips.length > 0){
+          us.apmac = us.arrEquips[0].apmac;
+          us.ip = us.arrEquips[0].ip;
+          us.isBindRouter = true;
+        }else{
+          us.isBindRouter = false;
+        }
+        
+        loader.dismiss();
+
+        this.storage.set('user', us);
+        this.viewCtrl.dismiss();
+        
+        this.app.getRootNav().setRoot('TabPage');
+
+      });
+
+    //});
   }
 
   checkisphone(val){

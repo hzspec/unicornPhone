@@ -28,7 +28,46 @@ export class UniRankchartsafeComponent {
     if(v.length > 0){
         setTimeout(()=>{
             if(this.registed){
-                this.mapDatas = v;
+                //this.mapDatas = v;
+                let series = [
+                    {
+                        type: 'effectScatter',
+                        name: 'l1',
+                        coordinateSystem: 'geo',
+                        itemStyle: {
+                            color: '#488aff'
+                        },
+                        data: []
+                    },
+                    {
+                        type: 'effectScatter',
+                        name: 'l2',
+                        coordinateSystem: 'geo',
+                        itemStyle: {
+                            color: '#F7DB77'
+                        },
+                        data: []
+                    },
+                    {
+                        type: 'effectScatter',
+                        name: 'l3',
+                        coordinateSystem: 'geo',
+                        itemStyle: {
+                            color: '#FF436F'
+                        },
+                        data: []
+                    }
+                ];
+                for(let vi of v){
+                    if(vi.type == 'l1'){
+                        series[0].data.push(vi);
+                    }else if(vi.type == 'l2'){
+                        series[1].data.push(vi);
+                    }else if(vi.type == 'l3'){
+                        series[2].data.push(vi);
+                    }
+                }
+                this.mapDatas = series;
                 this.initMap();
             }
         }, 1000);
@@ -41,7 +80,12 @@ export class UniRankchartsafeComponent {
   mapDatas:any = [];
   mapMod:any = null;
 
- 
+  toggleLengend(name){
+    this.mapMod.dispatchAction({
+        type: 'legendToggleSelect',
+        name: name
+    });
+  }
 
   constructor(private modalCtrl:ModalController, private http:HttpClient) {
     //this.mapDatas = [{"name":"齐齐哈尔","value":[123.97,47.33,null]},{"name":"盐城","value":[120.13,33.38,null]},{"name":"青岛","value":[120.33,36.07,null]},{"name":"金昌","value":[102.188043,38.520089,null]},{"name":"泉州","value":[118.58,24.93,null]},{"name":"拉萨","value":[91.11,29.97,null]},{"name":"上海浦东","value":[121.48,31.22,null]},{"name":"攀枝花","value":[101.718637,26.582347,null]},{"name":"威海","value":[122.1,37.5,null]},{"name":"承德","value":[117.93,40.97,null]},{"name":"汕尾","value":[115.375279,22.786211,null]},{"name":"克拉玛依","value":[84.77,45.59,null]},{"name":"重庆市","value":[108.384366,30.439702,null]}];
@@ -65,6 +109,16 @@ export class UniRankchartsafeComponent {
                     var value = (params.value);
                     return params.name;
                 }
+            },
+            legend: {
+                show: false,
+                data: [{
+                    name: 'l1'
+                },{
+                    name: 'l2'
+                },{
+                    name: 'l3'
+                }]
             },
             geo: {
                 name: 'IP 地图',
@@ -95,16 +149,7 @@ export class UniRankchartsafeComponent {
                     }
                 }]
             },
-            series : [
-                {
-                    type: 'effectScatter',
-                    coordinateSystem: 'geo',
-                    itemStyle: {
-                        color: '#488aff'
-                    },
-                    data: this.mapDatas
-                }
-            ]
+            series : this.mapDatas
         };
 
         mapChart.setOption(option);

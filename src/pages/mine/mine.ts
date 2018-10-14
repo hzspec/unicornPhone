@@ -65,4 +65,8 @@ export class MinePage {
     modal.present();
   }
 
+  showlists(){
+    this.navCtrl.push('RoutersPage');
+  }
+
 }

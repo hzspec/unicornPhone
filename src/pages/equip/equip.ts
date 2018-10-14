@@ -46,7 +46,7 @@ export class EquipPage {
   ) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter(){
     let loader = this.loadingCtrl.create({
       content: "正在获取数据...",
     });
@@ -70,6 +70,10 @@ export class EquipPage {
     }, ()=>{
       loader.dismiss();
     });
+  }
+
+  ionViewDidLoad() {
+    
   }
 
   changeAuth(mod, auth){

@@ -59,6 +59,11 @@ page-safe {
                     &.l3{background:#00ACFE;}
                 }
                 .rg-number{float:right;margin:14px 0 0 0;}
+
+                &.nosel{
+                    background:#eee;
+                    .icon-con{background:#ccc;}
+                }
             }
 
         }

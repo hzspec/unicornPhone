@@ -90,7 +90,7 @@ export class LoginphonePage {
     let login = this.serv.loginPhone(this.username, this.password);
     login.then((val:any)=>{
       
-      this.saveInfor(val.token, loader);
+      this.saveInfor(val, loader);
 
     }).catch((err)=>{
 
@@ -108,8 +108,9 @@ export class LoginphonePage {
     });
   }
 
-  saveInfor(token, loader){
-    this.serv.getUserinfo(this.username, token).then((val:any)=>{
+  saveInfor(val, loader){
+    let token = val.token
+    //this.serv.getUserinfo(this.username, token).then((val:any)=>{
       let us = new UserStore();
       us.apmac = val.apMacAddr;
       us.email = val.emailAddr;
@@ -120,15 +121,15 @@ export class LoginphonePage {
       us.username = val.userId.split('@')[0];
       us.id = val.id;
       us.password = val.password;
-      us.birth = '';
-      us.verifynum = '';
-      us.wxcode = '';
+      us.birth = val.birthday;
+      us.verifynum = val.identity;
+      us.wxcode = val.wx;
       us.kdcode = '';
 
       this.serv.getAps(token, (res:any)=>{
         let caches = [];
         for(let r of res){
-          caches.push({apmac: r.apMacAddr, ip: r.innerIpShow});
+          caches.push({apmac: r.apMacAddr, ip: r.innerIpShow, alias: r.alias});
         }
         us.arrEquips = caches;
 
@@ -149,7 +150,7 @@ export class LoginphonePage {
 
       });
 
-    });
+    //});
   }
 
 }
