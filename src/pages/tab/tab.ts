@@ -30,10 +30,11 @@ export class TabPage {
   }
 
   ionViewDidLoad() {
-    this.store.get('user').then((us:UserStore)=>{
-      console.log(us);
-      this.isRegisted = us.isBindRouter;
-    });
+    setTimeout(()=>{
+      this.store.get('user').then((us:UserStore)=>{
+        this.isRegisted = us.isBindRouter;
+      });
+    }, 500);
   }
 
 }

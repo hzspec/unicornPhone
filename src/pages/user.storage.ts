@@ -1,5 +1,5 @@
 export class UserStore{
-    isBindRouter:boolean = false;
+    isBindRouter:boolean = true;
     id:string = '';
     token:string = '';
     email:string = '--';
