@@ -37,7 +37,7 @@
             <span class="icons icon-safe-alert"></span>
           </span>
           普通报警
-          <ion-badge class="rg-number" item-end>9</ion-badge>
+          <ion-badge class="rg-number" item-end>{{l1count}}</ion-badge>
         </div>
 
         <div class="counts-title" [class.nosel]="nol2" (click)="safeChart.toggleLengend('l2');nol2=!nol2">
@@ -45,7 +45,7 @@
             <span class="icons icon-safe-alert"></span>
           </span>
           中级报警
-          <ion-badge class="rg-number" item-end>0</ion-badge>
+          <ion-badge class="rg-number" item-end>{{l2count}}</ion-badge>
         </div>
 
         <div class="counts-title" [class.nosel]="nol3" (click)="safeChart.toggleLengend('l3');nol3=!nol3">
@@ -53,7 +53,7 @@
             <span class="icons icon-safe-alert"></span>
           </span>
           高级报警
-          <ion-badge class="rg-number" item-end>0</ion-badge>
+          <ion-badge class="rg-number" item-end>{{l3count}}</ion-badge>
         </div>
       </div>
 

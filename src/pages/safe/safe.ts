@@ -34,6 +34,9 @@ export class SafePage {
   alertLists:any = [];
 
   mapDatas:any = [];
+  l1count:number = 0;
+  l2count:number = 0;
+  l3count:number = 0;
 
   showback:boolean = false;
 
@@ -59,7 +62,7 @@ export class SafePage {
     let d = new Date();
     let now:moment.Moment = moment(d);
     let yes:moment.Moment = moment(d);
-    yes.add(-1, 'month');
+    yes.add(-7, 'month');
 
     this.stime = yes.format('YYYY-MM-DDTHH:mm:ss') + '.0Z';
     this.etime = now.format('YYYY-MM-DDTHH:mm:ss') + '.0Z';
@@ -67,13 +70,30 @@ export class SafePage {
     this.serv.getList(this.pagenum, this.pagesize, this.stime, this.etime, (val:any)=>{
       this.alertLists = val.result;
       this.totalpage = val.totalPageCount;
+
+      let datas = [];
+      for(let r of val.result){
+        if(r.srcLongitude && r.srcLatitude){
+          if(r.priority == 1){
+            datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l1'});
+            this.l1count++;
+          }else if(r.priority == 2){
+            datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l2'});
+            this.l2count++;
+          }else{
+            datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l3'});
+            this.l3count++;
+          }
+        }
+      }
+      this.mapDatas = datas;
     });
 
     this.initMap();
   }
 
   initMap(){
-    this.mapDatas = [
+    /*this.mapDatas = [
       {"name":"齐齐哈尔","value":[123.97,47.33,null], type: 'l1'},
       {"name":"盐城","value":[120.13,33.38,null], type: 'l1'},
       {"name":"青岛","value":[120.33,36.07,null], type: 'l2'},
@@ -82,7 +102,7 @@ export class SafePage {
       {"name":"拉萨","value":[91.11,29.97,null], type: 'l3'},
       {"name":"上海浦东","value":[121.48,31.22,null], type: 'l3'},
       {"name":"攀枝花","value":[101.718637,26.582347,null], type: 'l3'}
-    ];
+    ];*/
   }
 
   getMore(){

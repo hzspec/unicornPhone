@@ -21,17 +21,21 @@ export class RoutersPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl:ModalController,
     private storage: Storage, private viewCtrl:ViewController, public loadingCtrl: LoadingController,) {
-      this.storage.get('user').then((us:UserStore)=>{
-        //console.log(us);
-        for(let it of us.arrEquips){
-          if(it.apmac == us.apmac){
-            it.checked = true;
-          }else{
-            it.checked = false;
-          }
-          this.routes.push(it);
+      this.initRouter();
+  }
+
+  initRouter(){
+    this.routes = [];
+    this.storage.get('user').then((us:UserStore)=>{
+      for(let it of us.arrEquips){
+        if(it.apmac == us.apmac){
+          it.checked = true;
+        }else{
+          it.checked = false;
         }
-      });
+        this.routes.push(it);
+      }
+    });
   }
 
   ionViewDidLoad() {
@@ -58,8 +62,11 @@ export class RoutersPage {
   }
 
   addRouter(){
-    const modal = this.modalCtrl.create('BindMacPage');
+    const modal = this.modalCtrl.create('BindMacPage', {fresh: 'no'});
     modal.present();
+    modal.onDidDismiss(()=>{
+      this.initRouter();
+    })
   }
 
   closeModal(){

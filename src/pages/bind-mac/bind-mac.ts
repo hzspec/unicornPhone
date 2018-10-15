@@ -5,6 +5,9 @@ import { MainProvider } from '../../providers/main/main';
 import { AlertController } from 'ionic-angular';
 import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
+
+import * as _ from 'lodash';
+
 /**
  * Generated class for the BindMacPage page.
  *
@@ -22,6 +25,7 @@ export class BindMacPage {
 
   macstring:any = ['', '', '', '', '', '', '', '', '', '', '', ''];
   curindex:number = -1;
+  isfresh:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController,
     private serv:MainProvider,
@@ -29,6 +33,10 @@ export class BindMacPage {
     private storage: Storage,
     private app: App
   ) {
+    let fre = this.navParams.get('fresh');
+    if(fre && fre == 'no'){
+      this.isfresh = false;
+    }
   }
 
   ionViewDidLoad() {
@@ -49,11 +57,14 @@ export class BindMacPage {
     this.serv.bindAP(apmac, ()=>{
       
       this.storage.get('user').then((us:UserStore)=>{
-        us.arrEquips.push({apmac: apmac, ip: '--'});
+        us.arrEquips.push({apmac: apmac, ip: '--', alias: apmac});
         us.isBindRouter = true;
 
         us.apmac = apmac;
         us.ip = '--';
+
+        let inx = _.findIndex(us.arrEquips, d=>{return d.apmac == apmac});
+        
 
         this.storage.set('user', us);
 
@@ -65,7 +76,10 @@ export class BindMacPage {
             handler: ()=>{
               this.viewCtrl.dismiss();
               //this.app.getRootNav().setRoot('TabPage');
-              window.location.reload();
+              if(this.isfresh){
+                window.location.reload();
+              }
+              
             }
           }]
         });

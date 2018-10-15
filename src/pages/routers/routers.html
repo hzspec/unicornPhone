@@ -15,7 +15,7 @@
   <ion-list radio-group (ionChange)="selected($event)">
   
     <ion-item *ngFor="let item of routes">
-      <ion-label>{{item.alias}}</ion-label>
+      <ion-label>{{item.alias != '' ? item.alias : item.apmac}}</ion-label>
       <ion-radio checked="{{item.checked}}" value="{{item.apmac}}"></ion-radio>
     </ion-item>
 

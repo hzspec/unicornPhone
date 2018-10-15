@@ -32,7 +32,7 @@ export class SafeProvider {
 
   getList(pagenum, pagesize, stime, etime, success){
     this.checkStorage((us:UserStore)=>{
-      let purl = `${BASEURL}alert/v1/alerts?apMacAddr=${us.apmac}&pageNum=${pagenum}&pageSize=${pagesize}&beginningDatetime=${stime}&endingDatetime=${etime}`;
+      let purl = `${BASEURL}alert/v1/alerts?apMacAddr=${us.apmac}`;
       let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
       pro.then((res:any)=>{
         success(res);

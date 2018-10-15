@@ -123,12 +123,15 @@ export class RegistPage {
           us.isBindRouter = false;
         }
         
-        loader.dismiss();
-
         this.storage.set('user', us);
-        this.viewCtrl.dismiss();
+
+        setTimeout(()=>{
+          loader.dismiss();
+          this.viewCtrl.dismiss();
+          
+          this.app.getRootNav().setRoot('TabPage');
+        }, 500);
         
-        this.app.getRootNav().setRoot('TabPage');
 
       });
 
