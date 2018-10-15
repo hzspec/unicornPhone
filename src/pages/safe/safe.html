@@ -29,7 +29,7 @@
 
       <uni-rankchartsafe #safeChart style="margin:-20px 14px 0 14px;" [datas]="mapDatas" [registed]="true"></uni-rankchartsafe>
 
-      <h4 class="titles">一周内报警统计<ion-icon name="ios-funnel-outline"></ion-icon></h4>
+      <h4 class="titles">最近一周内报警统计<ion-icon style="display:none;" name="ios-funnel-outline"></ion-icon></h4>
 
       <div class="alert-counts">
         <div class="counts-title" [class.nosel]="nol1" (click)="safeChart.toggleLengend('l1');nol1=!nol1">

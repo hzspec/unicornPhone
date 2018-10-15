@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { UserStore } from '../user.storage';
 
@@ -20,7 +20,7 @@ export class RoutersPage {
   routes:any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl:ModalController,
-    private storage: Storage, private viewCtrl:ViewController) {
+    private storage: Storage, private viewCtrl:ViewController, public loadingCtrl: LoadingController,) {
       this.storage.get('user').then((us:UserStore)=>{
         //console.log(us);
         for(let it of us.arrEquips){
@@ -64,7 +64,16 @@ export class RoutersPage {
 
   closeModal(){
     this.navCtrl.pop().then(()=>{
-      //window.location.reload();
+
+      let loader = this.loadingCtrl.create({
+        content: "切换路由中...",
+      });
+      loader.present();
+
+      setTimeout(()=>{
+        
+        window.location.reload();
+      }, 1000);
     });
     
   }
