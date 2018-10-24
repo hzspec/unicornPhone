@@ -15,7 +15,6 @@ import { UserStore } from '../../pages/user.storage';
 @Injectable()
 export class UserProvider{
 
-  private url = BASEURL + 'usercenter/v1/'
 
   constructor(public http: HttpClient, private store:Storage, private ctrl:NavController) {
   }

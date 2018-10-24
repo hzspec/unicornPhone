@@ -25,7 +25,6 @@ export class BlankPage {
     if(t){
       this.title = t;
       this.realurl = url;
-      console.log(this.realurl);
     }
   }
 
@@ -34,7 +33,12 @@ export class BlankPage {
   }
 
   ionViewDidLoad() {
-    
+    let ifa:any = document.getElementById('iframea');
+    console.log(ifa.contentWindow.alert('222'));
+    ifa.contentWindow.prototype.alert = function(){
+      console.log('haha');
+      
+    };
   }
 
 }

@@ -7,6 +7,10 @@ import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+
+//declare let cordova: any;
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -25,16 +29,32 @@ export class LoginPage {
   username:string = '';
   password:string = '';
 
+  ////
+
+  ////
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public serv:UserProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private storage: Storage,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+
+    private themeableBrowser: ThemeableBrowser
   ) {
   }
 
   ionViewDidLoad() {
+    /*cordova.plugins.sbyq.coolMethod('coolMethod', function (success) {
+      alert("本地导出成功-exportPath:" + success);
+      
+      
+
+    }, function (error) {
+      alert("本地导出失败-exportPath:" + error);
+    });
+    */
+
   }
 
   goLoginForPhone(){
@@ -59,7 +79,6 @@ export class LoginPage {
       this.saveInfor(val, loader);
 
     }).catch((err)=>{
-
       loader.dismiss();
       const alert = this.alertCtrl.create({
         title: '登录失败!',
