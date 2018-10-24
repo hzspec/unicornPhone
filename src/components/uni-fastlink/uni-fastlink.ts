@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 import { MainProvider } from '../../providers/main/main';
 
+declare var cordova:any;
 /**
  * Generated class for the UniFastlinkComponent component.
  *
@@ -48,12 +49,16 @@ export class UniFastlinkComponent {
     let url = "";
     if(title == '智慧生活'){
       url = this.zhsh;
+
+      cordova.InAppBrowser.open("http://112.124.0.4:8090/haweb/cucczj/index.html#/main", "_self", "hideurlbar=yes");
+
     }else{
       url = this.qd;
       this.serv.signUp();
+      //////
+      const modal = this.modalCtrl.create('BlankPage', {title: title, url: url});
+      modal.present();
     }
-    const modal = this.modalCtrl.create('BlankPage', {title: title, url: url});
-    modal.present();
   }
 
 }

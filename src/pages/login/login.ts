@@ -7,9 +7,6 @@ import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
-import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
-
-//declare let cordova: any;
 
 /**
  * Generated class for the LoginPage page.
@@ -39,26 +36,13 @@ export class LoginPage {
     public alertCtrl: AlertController,
     private storage: Storage,
     private modalCtrl: ModalController,
-
-    private themeableBrowser: ThemeableBrowser
   ) {
   }
 
   ionViewDidLoad() {
-    /*cordova.plugins.sbyq.coolMethod('coolMethod', function (success) {
-      alert("本地导出成功-exportPath:" + success);
-      
-      
-
-    }, function (error) {
-      alert("本地导出失败-exportPath:" + error);
-    });
-    */
-
   }
 
   goLoginForPhone(){
-    //let reg = this.modalCtrl.create('LoginphonePage');
     let reg = this.modalCtrl.create('LoginphonePage');
     reg.present();
   }
@@ -79,6 +63,7 @@ export class LoginPage {
       this.saveInfor(val, loader);
 
     }).catch((err)=>{
+
       loader.dismiss();
       const alert = this.alertCtrl.create({
         title: '登录失败!',
@@ -112,7 +97,9 @@ export class LoginPage {
       this.serv.getAps(token, (res:any)=>{
         let caches = [];
         for(let r of res){
-          caches.push({apmac: r.apMacAddr, ip: r.innerIpShow, alias: r.alias});
+          if(r.apMacAddr != ''){
+            caches.push({apmac: r.apMacAddr, ip: r.innerIpShow, alias: r.alias});
+          }
         }
         us.arrEquips = caches;
 

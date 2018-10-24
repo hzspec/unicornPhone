@@ -8,7 +8,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
-import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,6 @@ import { ThemeableBrowser } from '@ionic-native/themeable-browser';
   providers: [
     StatusBar,
     SplashScreen,
-    ThemeableBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

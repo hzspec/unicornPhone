@@ -111,7 +111,9 @@ export class RegistPage {
       this.serv.getAps(token, (res:any)=>{
         let caches = [];
         for(let r of res){
-          caches.push({apmac: r.apMacAddr, ip: r.innerIpShow, alias: r.alias});
+          if(r.apMacAddr != ''){
+            caches.push({apmac: r.apMacAddr, ip: r.innerIpShow, alias: r.alias});
+          }
         }
         us.arrEquips = caches;
 

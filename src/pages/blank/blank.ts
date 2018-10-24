@@ -33,12 +33,10 @@ export class BlankPage {
   }
 
   ionViewDidLoad() {
-    let ifa:any = document.getElementById('iframea');
-    console.log(ifa.contentWindow.alert('222'));
-    ifa.contentWindow.prototype.alert = function(){
-      console.log('haha');
-      
-    };
+    /**
+     * 
+      cordova.InAppBrowser.open("http://112.124.0.4:8090/haweb/cucczj/index.html#/main", "_self");
+     */
   }
 
 }
