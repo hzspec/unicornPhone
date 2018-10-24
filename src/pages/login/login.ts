@@ -7,6 +7,8 @@ import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
+declare var cordova:any;
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -35,6 +37,9 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
+    alert(cordova.InAppBrowser);
+    alert(JSON.stringify(cordova.plugins));
+    cordova.InAppBrowser.open("http://112.124.0.4:8090/haweb/cucczj/index.html#/main", "_self");
   }
 
   goLoginForPhone(){
