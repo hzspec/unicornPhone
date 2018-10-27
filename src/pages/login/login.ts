@@ -7,8 +7,6 @@ import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
-import '../../assets/b';
-
 /**
  * Generated class for the LoginPage page.
  *

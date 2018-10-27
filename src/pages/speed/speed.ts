@@ -27,7 +27,7 @@ export class SpeedPage {
   downloadDW:any = 'Mbps';
   uploadData:any = '--';
   uploadDW:any = 'Mbps';
-  servername:any = '--';
+  servername:any = '--';  
   countryname:any = '--';
   testing:boolean = false;
 
@@ -44,33 +44,43 @@ export class SpeedPage {
     this.initTestData();
   }
 
-  closeModal(){
+  closeModal(){ 
     this.viewCtrl.dismiss();
   }
-
+  
   initTestData(){
     const loader = this.loadingCtrl.create({
         content: "请稍候..."
-    });
-    loader.present();
+    });    
+    //loader.present();
 
-    let testMD = speedTest({maxTime: 5});
+    let testMD = speedTest({maxTime: 50, id: '18642'});
     testMD.on('servers', servers => {
-        this.serverList = servers;
+        //this.serverList = servers; 
+        servers = null;
     });
     testMD.on('bestservers', serves=>{
+        this.serverList = serves; 
         let ss = serves[0];
         this.countryname = ss.sponsor;
-        this.pingData = ss.bestPing;
-    });
+        this.pingData = ss.bestPing.toFixed(1);
+    });  
     testMD.on('config', config=>{
+        console.log(config);
         this.servername = config.client.isp;
     });
     testMD.on('done', data=>{
+        console.log('done', data);
         this.isIniting = true;
         loader.dismiss();
     });
-  }
+    testMD.on('downloadspeedprogress', speed => {
+        console.log('download',speed);
+    }); 
+    testMD.on('uploadspeedprogress', speed => {
+        console.log('upload',speed);
+    }); 
+   }
 
   initSpeed(){
     this.mchart = echarts.init(document.getElementById('speedchart'));
@@ -81,7 +91,7 @@ export class SpeedPage {
             name: 'Download',
             type: 'gauge',
             min: 0,
-            max: 1000,
+            max: 100,
             splitNumber: 10,
             radius: '78%',
             precision: 2,
@@ -169,39 +179,44 @@ export class SpeedPage {
     this.testing = true;
 
     //start
-    let option:any = {maxTime: 5000};
+    let option:any = {maxTime: 10000};
     if(this.selserver){
         option.serverId = this.selserver.id;
         option.serversUrl = this.selserver.url;
     }
     let testMD = speedTest(option);
     testMD.on('servers', servers => {
-        this.serverList = servers;
+        //this.serverList = servers;
+        servers = null;
     });
     testMD.on('bestservers', serves=>{
         let ss = serves[0];
         this.countryname = ss.sponsor;
-        this.pingData = ss.bestPing;
+        this.pingData = ss.bestPing.toFixed(1);
+        serves = null;
     });
     testMD.on('config', config=>{
         this.servername = config.client.isp;
+        config = null;
     });
     testMD.on('done', data=>{
         this.completeTest();
     });
     testMD.on('downloadspeedprogress', speed => {
         this.option.series[0].data[0].name = '下载测试';
-        this.option.series[0].data[0].value = speed * 125;
+        this.option.series[0].data[0].value = speed * .125;
         this.mchart.setOption(this.option, true);
+        speed = null;
     });
     testMD.on('uploadspeedprogress', speed => {
         this.option.series[0].data[0].name = '上传测试';
-        this.option.series[0].data[0].value = speed * 125;
+        this.option.series[0].data[0].value = speed * .125;
         this.mchart.setOption(this.option, true);
+        speed = null;
     });
     testMD.on('data', data=>{
-        let download = data.speeds.download * 125;
-        let upload = data.speeds.upload * 125;
+        let download = data.speeds.download * .125;
+        let upload = data.speeds.upload * .125;
         if(download > 1000){
             this.downloadData = (download / 1000).toFixed(2);
             this.downloadDW = 'Gbps';
@@ -216,6 +231,7 @@ export class SpeedPage {
             this.uploadData = (upload).toFixed(2);
             this.uploadDW = 'Mbps';
         }
+        data = null;
     });
   }
 
