@@ -178,6 +178,10 @@ export class SpeedPage {
   startTest(){
     this.testing = true;
 
+    this.option.series[0].data[0].name = '正在连接...';
+    this.option.series[0].data[0].value = 0;
+    this.mchart.setOption(this.option, true);
+
     //start
     let option:any = {maxTime: 10000};
     if(this.selserver){
@@ -203,13 +207,13 @@ export class SpeedPage {
         this.completeTest();
     });
     testMD.on('downloadspeedprogress', speed => {
-        this.option.series[0].data[0].name = '下载测试';
+        this.option.series[0].data[0].name = '下载测试...';
         this.option.series[0].data[0].value = speed * .125;
         this.mchart.setOption(this.option, true);
         speed = null;
     });
     testMD.on('uploadspeedprogress', speed => {
-        this.option.series[0].data[0].name = '上传测试';
+        this.option.series[0].data[0].name = '上传测试...';
         this.option.series[0].data[0].value = speed * .125;
         this.mchart.setOption(this.option, true);
         speed = null;
