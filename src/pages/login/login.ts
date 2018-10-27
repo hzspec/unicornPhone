@@ -7,8 +7,6 @@ import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
-import * as speedTest from 'speedtest-net';
-
 /**
  * Generated class for the LoginPage page.
  *
@@ -41,13 +39,13 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    alert(speedTest);
+    /*alert(speedTest);
     var test = speedTest({maxTime: 5000});
     
     test.on('servers', err => {
       alert('servers' + err);
       console.error(err);
-    });
+    });*/
   }
 
   goLoginForPhone(){

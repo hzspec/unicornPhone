@@ -12,13 +12,28 @@ page-speed {
         width:100%;
         height:300px;position:relative;z-index:8;
     }
+    .changebut{
+        float:right;
+        color:#30A6F8;
+        .button-inner{
+            color:#30A6F8;
+        }
+        .select-text{
+            color:#30A6F8;
+        }
+    }
+    .networks{
+        clear: both;
+        padding:0 20px;border:solid 1px #ebebeb;
+        text-align:left;line-height:50px;
+        .ico{font-size:24px;vertical-align:middle;}
+        .txt{font-size:14px;vertical-align:middle;}
+    }
     .bottoms{
-        background:#EDF2F8 url(assets/imgs/spbg.png) no-repeat 0 0;
-        background-size:100% 109px;position:relative;z-index:9;
-        height:100px;margin-top:50px;text-align:center;
+        text-align:center;padding-bottom:20px;
         .startbut{
             width:130px;background:#fff;border-radius:40px;height:40px;line-height:40px;
-            border:solid 1px #30A6F8;margin-top:127 px;
+            border:solid 1px #30A6F8;margin-top:20px;
             *{font-size:14px;color:#30A6F8;}
         }
     }
