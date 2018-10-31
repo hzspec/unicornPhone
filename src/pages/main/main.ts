@@ -124,6 +124,7 @@ dealMain(){
       this.staticData.llsj.total[0] = parseInt(this.staticData.llsj.total[0]);
     });
 
+    /*
     let loader = this.loadingCtrl.create({
       content: "正在获取数据...",
     });
@@ -140,7 +141,7 @@ dealMain(){
       loader.dismiss();
     }, ()=>{
       loader.dismiss();
-    });
+    });*/
   }
 }
 
@@ -157,6 +158,10 @@ dealMain(){
         this.cd.detectChanges();
       }, 1000);
     });
+  }
+
+  showlist(){
+    this.navCtrl.push('RoutersPage');
   }
 
 }

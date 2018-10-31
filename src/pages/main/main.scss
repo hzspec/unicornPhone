@@ -22,4 +22,63 @@ page-main {
         }
     }
     .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{bottom:2px;}
+
+    .panel-ldsm{
+        border-top:solid 1px #ccc;
+        padding:10px;
+        .inner{
+            padding:15px 20px;
+            .i-left{
+                float:left;width:50%;line-height:23px;
+                .title{
+                    font-size:14px;color:#333;
+                    span{color:#FF677C;}
+                }
+                .info{font-size:12px;color:#999;}
+                .icons{margin:-10px 0 0 20px;}
+                .but-ty{
+                    border-radius:30px;width:88px;height:26px;background:#ccc;
+                    font-size:12px;box-shadow:none;padding:0;margin-top:13px;
+                    .button-inner{font-size:12px;color:#0074FF;}
+                }
+            }
+        }
+    }
+
+    .panel-wgxx{
+        clear:both;
+        border-top:solid 1px #ccc;
+        padding:10px;
+        .title{
+            span{font-size:18px;}
+            .but-add{float:right;height:25px;margin-top:0px;
+                .button-inner{font-size:12px;color:#0074FF;}
+            }
+        }
+        .inner{
+            padding:15px 20px 25px 20px;
+            .i-left{
+                float:left;width:50%;
+                &.rg{
+                    padding-right:15px;
+                    text-align:right;
+
+                    line-height:23px;
+                    .tl{font-size:14px;color:#333;}
+                    .info{font-size:14px;color:#999;}
+
+                    .but-ty{
+                        border-radius:30px;width:88px;height:26px;background:#3FCB98;
+                        font-size:12px;box-shadow:none;padding:0;margin-top:13px;
+                        .button-inner{font-size:12px;color:#fff;}
+                    }
+
+                }
+            }
+        }
+    }
+    .bottom-m{
+        background:#ddd;text-align:center;color:#999;padding:10px 0 20px 0;
+        font-size:12px;clear:both;
+    }
 }

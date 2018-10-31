@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, LoadingController } from 'ionic-angular';
 
 import * as echarts from 'echarts/dist/echarts.min';
-import * as speedTest from 'speedtest-net';
+import * as speedTest from '@lovanya/speedtest';
 
 /**
  * Generated class for the SpeedPage page.
@@ -52,9 +52,9 @@ export class SpeedPage {
     const loader = this.loadingCtrl.create({
         content: "请稍候..."
     });    
-    //loader.present();
+    loader.present();
 
-    let testMD = speedTest({maxTime: 50});
+    let testMD = speedTest({maxTime: 50, id: '4713'});
     testMD.on('servers', servers => {
         //this.serverList = servers; 
         servers = null;
@@ -191,7 +191,7 @@ export class SpeedPage {
     let option:any = {maxTime: 10000};
     if(this.selserver){
         option.serverId = this.selserver;
-        //option.serversUrl = this.selserver;
+        //option.serversUrl = this.selserver.url;
     }
 
     let testMD = speedTest(option);

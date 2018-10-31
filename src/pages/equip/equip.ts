@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { LoadingController, ModalController } from 'ionic-angular';
+import { LoadingController, ModalController, ToastController  } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { EquipProvider } from '../../providers/equip/equip';
 
@@ -42,7 +42,8 @@ export class EquipPage {
     public serv:EquipProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public toastCtrl: ToastController
   ) {
   }
 
@@ -76,6 +77,12 @@ export class EquipPage {
     });
   }
 
+  segmentChanged(ev){
+    this.equiplist.ok = _.filter(this.equiplist.all, d=>{return d.status != '10';});
+    this.equiplist.no = _.filter(this.equiplist.all, d=>{return d.status == '10';});
+    this.equiplist.black = _.filter(this.equiplist.all, d=>{return d.status == '30';});
+  }
+
   changeAuth(mod, auth){
     let loader = this.loadingCtrl.create({
       content: "处理中...",
@@ -83,6 +90,23 @@ export class EquipPage {
     this.serv.setEquipAuth(mod.id, auth, ()=>{
       loader.dismiss();
       mod.status = auth;
+
+      let tipstr = '';
+      if(auth == '40'){
+        tipstr = '设备已设置为限时1小时使用';
+      }else if(auth == '9-17'){
+        tipstr = '设备已设置为早9点到晚5点使用';
+      }else if(auth == '30'){
+        tipstr = '设备已设置黑名单';
+      }else if(auth == '20'){
+        tipstr = '设备已设置白名单';
+      }
+
+      const toast = this.toastCtrl.create({
+        message: tipstr,
+        duration: 3000
+      });
+      toast.present();
     });
   }
 

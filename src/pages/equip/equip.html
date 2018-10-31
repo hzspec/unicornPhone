@@ -32,7 +32,7 @@
   </div>
 
   <div class="navs">
-    <ion-segment [(ngModel)]="equipTp">
+    <ion-segment [(ngModel)]="equipTp" (ionChange)="segmentChanged($event)">
       <ion-segment-button value="all">
         所有设备
       </ion-segment-button>

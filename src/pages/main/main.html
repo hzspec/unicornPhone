@@ -105,9 +105,43 @@
     </ion-slides>
 
     <uni-fastlink [registed]="registed" [zhsh]="zhsh" [qd]="qd"></uni-fastlink>
+
+    <div class="panel-ldsm">
+      <div class="inner">
+        <div class="i-left">
+          <span class="title"><span>安全扫描</span>&nbsp;设备防护</span><br/>
+          <span class="info">快人一步保护设备安全</span><br/>
+          <button ion-button class="but-ty">立即体验</button>
+        </div>
+        <div class="i-left">
+          <span class="icons img-ldsm"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-wgxx">
+      <div class="title">
+        <span>网关状态</span>
+        <button ion-button class="but-add" (click)="showlist()" clear>网关列表</button>
+      </div>
+      <div class="inner">
+        <div class="i-left">
+          <span class="icons img-lyq"></span>
+        </div>
+        <div class="i-left rg">
+          <span class="tl">未命名网关</span><br/>
+          <span class="info">FA:00:09:02:01:00</span><br/>
+          <button ion-button class="but-ty">使用中</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-m">
+      这里是底线
+    </div>
     <!--
     <uni-alertchart [registed]="registed" #realchart></uni-alertchart>
-    -->
-    <uni-rankchart [registed]="registed" [datas]="rankData"></uni-rankchart>
+    
+    <uni-rankchart [registed]="registed" [datas]="rankData"></uni-rankchart>-->
 
 </ion-content>
