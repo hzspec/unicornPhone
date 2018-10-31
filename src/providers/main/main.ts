@@ -86,7 +86,8 @@ export class MainProvider {
         "name": updateUser.username,
         "phoneNumber": updateUser.phoneNumber,
         "userId": updateUser.userId,
-        "wx": updateUser.wxcode
+        "wx": updateUser.wxcode,
+        "password": updateUser.password
       };
       this.http.post(purl, param, {headers: {Authorization: us.token}}).toPromise();
     }).catch(()=>{
