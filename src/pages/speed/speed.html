@@ -51,7 +51,7 @@
 
       <div>
         <ion-select okText="确认" placeholder="切换服务器" cancelText="取消" class="changebut" [(ngModel)]="selserver">
-          <ion-option *ngFor="let s of serverList" value="{{s}}">{{s.sponsor}}</ion-option>
+          <ion-option *ngFor="let s of serverList" value="{{s.id}}">{{s.sponsor}}</ion-option>
         </ion-select>
       </div>
 
