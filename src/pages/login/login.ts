@@ -39,6 +39,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
+    //TODO: 看文档和网关测速
     /*alert(speedTest);
     var test = speedTest({maxTime: 5000});
     

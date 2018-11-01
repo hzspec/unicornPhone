@@ -22,6 +22,8 @@ export class UniFastlinkComponent {
   qd:string = "";
   @Input()
   registed:boolean = false;
+  @Input()
+  isSign:boolean = true;
 
   constructor(private modalCtrl:ModalController, private serv:MainProvider) {
   }

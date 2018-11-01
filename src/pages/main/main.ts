@@ -52,6 +52,8 @@ export class MainPage {
   zhsh:string = "";
   qd:string = "";
 
+  isSign:boolean = true;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public serv:MainProvider,
     public loadingCtrl: LoadingController,
@@ -62,6 +64,12 @@ export class MainPage {
       this.zhsh = res.zhsh;
       this.qd = res.qd;
     });
+
+    this.serv.isDaySign((pro)=>{
+      pro.then((res:any)=>{
+        this.isSign = res;
+      });
+    })
   }
 
   getllNumber(num){

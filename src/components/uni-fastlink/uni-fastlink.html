@@ -19,6 +19,7 @@
         <span class="icons ico-fl3"></span>
       </div><br/>
       签到
+      <span class="btn-sign" *ngIf="!isSign">{{isSign ? '已签到' : '未签到'}}</span>
     </div>
     <div class="lk" (click)="goGreen()">
       <div class="lk-cir" style="background:#3FCB98;line-height:60px;">

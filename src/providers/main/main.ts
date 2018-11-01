@@ -105,6 +105,16 @@ export class MainProvider {
     });
   }
 
+  isDaySign(success){
+    this.store.get('user').then((us:UserStore)=>{
+      let purl = `${BASEURL}ext/v1/users/is_day_sign`;
+      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+      success(pro);
+    }).catch(()=>{
+      this.goLogin();
+    });
+  }
+
 
   bindAP(mac, success, fail){
     this.store.get('user').then((us:UserStore)=>{
