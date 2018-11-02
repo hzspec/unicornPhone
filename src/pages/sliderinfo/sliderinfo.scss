@@ -1,8 +1,11 @@
 page-sliderinfo {
     .tutorial-page {
 
+      .toolbar-md{
+        position:absolute;bottom:43px;}
+
         .toolbar-background {
-          background: #fff;
+          background: transparent;
           border-color: transparent;
         }
       
@@ -17,7 +20,7 @@ page-sliderinfo {
         .slide-image {
           max-height: 100%;
           max-width: 100%;
-          margin: 18px 0;
+          margin: 0px 0;
         }
       
         b {
@@ -35,5 +38,16 @@ page-sliderinfo {
           }
         }
       
+      }
+
+      .c1{background:#F9D9E4;}
+      .c2{background:#F4F4F6;}
+      .c3{background:#FFFFFF;}
+
+      .skip-button{
+        width:200px;height:40px;background:linear-gradient(0deg, #D83A3A, #FFB8B8);
+        text-align:center;line-height:40px;border-radius:40px;
+        box-shadow: 3px 3px 3px #ccc;
+        .button-inner{color:#fff;font-size:16px;}
       }
 }

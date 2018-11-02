@@ -36,6 +36,11 @@ export class LoginPage {
     private storage: Storage,
     private modalCtrl: ModalController,
   ) {
+    this.storage.get('user').then((us:UserStore)=>{
+      if(us && us.apmac){
+        this.navCtrl.setRoot('TabPage');
+      }
+    });
   }
 
   ionViewDidLoad() {
