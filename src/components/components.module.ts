@@ -6,6 +6,7 @@ import { UniAlertchartComponent } from './uni-alertchart/uni-alertchart';
 import { UniRankchartComponent } from './uni-rankchart/uni-rankchart';
 import { UniRankchartsafeComponent } from './uni-rankchartsafe/uni-rankchart';
 import { TipBindComponent } from './tip-bind/tip-bind';
+import { RouterspeedComponent } from './routerspeed/routerspeed';
 
 @NgModule({
 	declarations: [UniHeaderComponent,
@@ -13,13 +14,15 @@ import { TipBindComponent } from './tip-bind/tip-bind';
     UniAlertchartComponent,
     UniRankchartComponent,
     UniRankchartsafeComponent,
-    TipBindComponent],
+    TipBindComponent,
+    RouterspeedComponent],
 	imports: [IonicPageModule],
     exports: [UniHeaderComponent,
         UniRankchartsafeComponent,
     UniFastlinkComponent,
     UniAlertchartComponent,
     UniRankchartComponent,
-    TipBindComponent]
+    TipBindComponent,
+    RouterspeedComponent]
 })
 export class ComponentsModule {}
