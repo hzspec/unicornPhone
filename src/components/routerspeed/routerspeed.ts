@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, AlertController  } from 'ionic-angular';
+import { ModalController, AlertController, ViewController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 import * as echarts from 'echarts/dist/echarts.min';
@@ -33,7 +33,7 @@ export class RouterspeedComponent {
   countryname:any = '--';
   testing:boolean = false;
 
-  constructor(private modalCtrl:ModalController, private http:HttpClient, private alertCtrl:AlertController) {
+  constructor(private modalCtrl:ModalController, private http:HttpClient, private alertCtrl:AlertController, private viewCtrl:ViewController) {
     const modal = this.modalCtrl.create('TiplinkrouterPage');
     modal.present();
     modal.onDidDismiss((res:any)=>{
@@ -58,6 +58,13 @@ export class RouterspeedComponent {
         title: '连接网关失败',
         subTitle: '请确认手机Wifi已连接到网关再试',
         buttons: [{
+          text: "取消",
+          handler: ()=>{
+            alert.dismiss();
+            this.viewCtrl.dismiss();
+          }
+        },
+        {
           text: '确认',
           handler : ()=>{
             const modal = this.modalCtrl.create('TiplinkrouterPage');
