@@ -15,7 +15,7 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-*{font-family:"微软雅黑 黑体 幼圆";color:#333;}
+*{font-family:"微软雅黑","黑体", "幼圆", "Arial";color:#333;}
 .header-md::after{display:none;}
 
 .icons{background:url(../assets/imgs/icons.png) no-repeat 0 0;display:inline-block;}

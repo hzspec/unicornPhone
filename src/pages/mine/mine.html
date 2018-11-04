@@ -39,7 +39,7 @@
   </div>
   <div class="item">
     <span class="icons icon-mine-l3"></span>生日
-    <span *ngIf="!editMod" class="val">{{userinfo.birth}}</span>
+    <span *ngIf="!editMod" class="val">{{userinfo.birth | date: 'yyyy年MM月d日'}}</span>
     <!--<input *ngIf="editMod" type="text" [(ngModel)]="userinfo.birth" />-->
     <ion-datetime class="datetime" displayFormat="YYYY-MM-DD" *ngIf="editMod" [(ngModel)]="userinfo.birth"></ion-datetime>
   </div>
