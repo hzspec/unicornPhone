@@ -35,6 +35,9 @@ export class LoginphonePage {
     private storage: Storage,
     private app:App
   ) {
+    this.storage.get('login_phonenumber').then((uname:string)=>{
+      this.username = uname;
+    });
   }
 
   ionViewDidLoad() {
@@ -102,7 +105,7 @@ export class LoginphonePage {
       });
       alert.present();
 
-      this.username = '';
+      //this.username = '';
       this.password = '';
 
     });
@@ -125,6 +128,8 @@ export class LoginphonePage {
       us.verifynum = val.identity;
       us.wxcode = val.wx;
       us.kdcode = '';
+
+      this.storage.set('login_phonenumber', val.phoneNumber);
 
       this.serv.getAps(token, (res:any)=>{
         let caches = [];

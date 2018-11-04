@@ -41,17 +41,14 @@ export class LoginPage {
         this.navCtrl.setRoot('TabPage');
       }
     });
+    this.storage.get('login_username').then((uname:string)=>{
+
+      this.username = uname;
+    });
   }
 
   ionViewDidLoad() {
-    //TODO: 看文档和网关测速
-    /*alert(speedTest);
-    var test = speedTest({maxTime: 5000});
     
-    test.on('servers', err => {
-      alert('servers' + err);
-      console.error(err);
-    });*/
   }
 
   goLoginForPhone(){
@@ -84,7 +81,7 @@ export class LoginPage {
       });
       alert.present();
 
-      this.username = '';
+      //this.username = '';
       this.password = '';
 
     });
@@ -105,6 +102,8 @@ export class LoginPage {
       us.verifynum = val.identity;
       us.wxcode = val.wx;
       us.kdcode = '';
+
+      this.storage.set('login_username', this.username);
 
       this.serv.getAps(token, (res:any)=>{
         let caches = [];
