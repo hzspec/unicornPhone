@@ -57,6 +57,7 @@ export class UniFastlinkComponent {
     }else{
       url = this.qd;
       this.serv.signUp();
+      this.isSign = true;
       //////
       const modal = this.modalCtrl.create('BlankPage', {title: title, url: url});
       modal.present();

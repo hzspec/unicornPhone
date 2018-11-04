@@ -76,10 +76,10 @@ export class RegistPage {
         }]
       });
       alert.present();
-    }).catch(()=>{
+    }).catch((err:any)=>{
       const alert = this.alertCtrl.create({
         title: '验证失败!',
-        subTitle: '请检查手机号和验证码是否正确!',
+        subTitle: err.error.msg,
         buttons: ['确定']
       });
       alert.present();
