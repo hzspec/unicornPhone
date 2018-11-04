@@ -41,7 +41,7 @@ export class SpeedPage {
 
   ionViewDidLoad() {
     setTimeout(()=>{this.initSpeed();}, 1000);
-    //this.initTestData();
+    this.initTestData();
   }
 
   closeModal(){ 
