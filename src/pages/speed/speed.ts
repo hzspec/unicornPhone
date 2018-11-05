@@ -50,7 +50,8 @@ export class SpeedPage {
   
   initTestData(){  
     const loader = this.loadingCtrl.create({
-        content: "请稍候..."
+        content: "请稍候...",
+        duration: 5000
     });    
     loader.present();
 
