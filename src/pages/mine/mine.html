@@ -23,52 +23,52 @@
   </div>
 
   <div class="item">
-    <span class="icons icon-mine-l1"></span>账号/邮箱
+    <ion-icon class="icons-icons" style="color:#0FACFD" md="md-mail"></ion-icon>账号/邮箱
     <span *ngIf="!editMod" class="val">{{userinfo.email}}</span>
     <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.email" />
   </div>
   <div class="item">
-    <span class="icons icon-mine-l5"></span>登录密码
+    <ion-icon class="icons-icons" style="color:#0FACFD" md="md-unlock"></ion-icon>登录密码
     <span *ngIf="!editMod" class="val">******************</span>
     <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.password" />
   </div>
   <div class="item">
-    <span class="icons icon-mine-l2"></span>姓名
+    <ion-icon class="icons-icons" style="color:#FFD21C" md="md-person"></ion-icon>姓名
     <span *ngIf="!editMod" class="val">{{userinfo.username}}</span>
     <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.username" />
   </div>
   <div class="item">
-    <span class="icons icon-mine-l3"></span>生日
+    <ion-icon class="icons-icons" style="color:#0FACFD" md="md-calendar"></ion-icon>生日
     <span *ngIf="!editMod" class="val">{{userinfo.birth | date: 'yyyy年MM月d日'}}</span>
     <!--<input *ngIf="editMod" type="text" [(ngModel)]="userinfo.birth" />-->
     <ion-datetime class="datetime" displayFormat="YYYY-MM-DD" *ngIf="editMod" [(ngModel)]="userinfo.birth"></ion-datetime>
   </div>
   <div class="item">
-    <span class="icons icon-mine-l4"></span>手机号码
+    <ion-icon class="icons-icons" style="color:#FFD21C" md="md-phone-portrait"></ion-icon>手机号码
     <span *ngIf="!editMod" class="val">{{userinfo.phoneNumber}}</span>
     <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.phoneNumber" />
   </div>
   <div class="item">
-    <span class="icons icon-mine-l5"></span>身份证号码
+    <ion-icon class="icons-icons" style="color:#0FACFD" md="md-list-box"></ion-icon>身份证号码
     <span *ngIf="!editMod" class="val">******************</span>
     <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.verifynum" />
   </div>
   <div class="item">
-    <span class="icons icon-mine-l6"></span>微信号
+    <ion-icon class="icons-icons" style="color:#76DA3C" md="md-chatbubbles"></ion-icon>微信号
     <span *ngIf="!editMod" class="val">{{userinfo.wxcode}}</span>
     <input *ngIf="editMod" type="text" [(ngModel)]="userinfo.wxcode" />
   </div>
   <div class="item" style="margin-top:30px;" (click)="showlists()">
-    <span class="icons icon-mine-l7"></span>绑定网关
+    <ion-icon class="icons-icons" style="color:#000" md="logo-rss"></ion-icon>绑定网关
     <span class="val icons icon-mine-l9"></span>
   </div>
   <div class="item" (click)="goWeb('宽带缴费')">
-    <span class="icons icon-mine-l8"></span>宽带缴费
+    <ion-icon class="icons-icons" style="color:#FFD21C" md="logo-usd"></ion-icon>宽带缴费
     <span class="val icons icon-mine-l9"></span>
   </div>
 
   <div class="item" style="margin-top:30px;color:#f00;" (click)="logout()">
-    <span class="icons icon-mine-l10"></span>退出此账号
+    <ion-icon class="icons-icons" style="color:#f00" md="md-exit"></ion-icon>退出此账号
   </div>
 </div>
 </ion-content>

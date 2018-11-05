@@ -24,7 +24,7 @@
         <span class="icons ico-equip-l2"></span><br/>
         <span class="txt">IP：<b style="color:#02A75D">{{routerData.user.innerIpShow}}</b></span>
       </div>
-      <div class="hfmod">
+      <div class="hfmod" (click)="goAlert()">
         <span class="icons ico-equip-l3"></span><br/>
         <span class="txt">报警数：<b style="color:#F6576C">{{routerData.deviceAlertAmount}}</b></span>
       </div>

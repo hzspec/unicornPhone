@@ -70,3 +70,20 @@
     text-align:center;line-height:40px;height:40px;font-size:14px;color:#999;
     span{display:inline-block;width:50px;height:1px;background:#999;vertical-align:middle;}
 }
+
+// 前两个css规则主要用于完善framework7(模板项目使用UI库),不一定适用其他项目
+html, body {
+    height: 100%;
+    overflow: hidden;
+    // box-sizing取决于安全区的padding是加在哪个元素上
+    box-sizing: border-box;
+}
+html.with-statusbar-overlay .framework7-root {
+    padding-top: 0;
+}
+
+// 主要起效是这里,当然也不一定是加在body上
+body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}

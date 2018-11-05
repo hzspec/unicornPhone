@@ -110,6 +110,10 @@ export class EquipPage {
     });
   }
 
+  goAlert(){
+    this.navCtrl.parent.select(2);
+  }
+
   seeRouterLL(){
     const modal = this.modalCtrl.create('RealchartPage');
     modal.present();
