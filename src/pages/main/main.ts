@@ -54,6 +54,12 @@ export class MainPage {
 
   isSign:boolean = true;
 
+  routerInfo:any = {
+    apmac: '--',
+    name: '未绑定网关',
+    isuse: false
+  };
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public serv:MainProvider,
     public loadingCtrl: LoadingController,
@@ -155,13 +161,14 @@ dealMain(){
 
   ionViewDidLoad() {
     this.store.get('user').then((us:UserStore)=>{
-      //us.isBindRouter = false;
-      //this.store.set('user', us);
-     // this.registed = us.isBindRouter;
-      //this.dealMain();
 
       setTimeout(()=>{
         this.registed = us.isBindRouter;
+        if(this.registed){
+          this.routerInfo.apmac = us.apmac;
+          this.routerInfo.name = us.username;
+          this.routerInfo.isuse = true;
+        }
         this.dealMain();
         this.cd.detectChanges();
       }, 1000);

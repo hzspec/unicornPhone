@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, AlertController, ViewController } from 'ionic-angular';
+import { ModalController, AlertController, ViewController, LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 import * as echarts from 'echarts/dist/echarts.min';
@@ -33,7 +33,9 @@ export class RouterspeedComponent {
   countryname:any = '--';
   testing:boolean = false;
 
-  constructor(private modalCtrl:ModalController, private http:HttpClient, private alertCtrl:AlertController, private viewCtrl:ViewController) {
+  constructor(private modalCtrl:ModalController, private http:HttpClient, private alertCtrl:AlertController, private viewCtrl:ViewController,
+    private loadingCtrl:LoadingController
+    ) {
     const modal = this.modalCtrl.create('TiplinkrouterPage');
     modal.present();
     modal.onDidDismiss((res:any)=>{
@@ -43,7 +45,15 @@ export class RouterspeedComponent {
   }
 
   getServers(){
+    
+    const loader = this.loadingCtrl.create({
+        content: "正在连接网关...",
+    });    
+    loader.present();
+
     this.http.get(this.localip + 'getSpeedServer').toPromise().then((res:any)=>{
+      loader.dismiss();
+      
       this.servers = res.data;
       
       let best = this.servers[0];
@@ -54,6 +64,8 @@ export class RouterspeedComponent {
 
       this.initSpeed();
     }).catch((err)=>{
+      loader.dismiss();
+      
       const alert = this.alertCtrl.create({
         title: '连接网关失败',
         subTitle: '请确认手机Wifi已连接到网关再试',

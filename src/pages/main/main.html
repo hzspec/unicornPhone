@@ -129,9 +129,9 @@
           <span class="icons img-lyq"></span>
         </div>
         <div class="i-left rg">
-          <span class="tl">未命名网关</span><br/>
-          <span class="info">FA:00:09:02:01:00</span><br/>
-          <button ion-button class="but-ty">使用中</button>
+          <span class="tl">{{routerInfo.name}}</span><br/>
+          <span class="info">{{routerInfo.apmac}}</span><br/>
+          <button ion-button class="but-ty">{{routerInfo.isuse ? '使用中' : '未绑定'}}</button>
         </div>
       </div>
     </div>

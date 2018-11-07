@@ -37,7 +37,8 @@ export class LoginPage {
     private modalCtrl: ModalController,
   ) {
     this.storage.get('user').then((us:UserStore)=>{
-      if(us && us.apmac){
+      if(us){
+        
         this.navCtrl.setRoot('TabPage');
       }
     });

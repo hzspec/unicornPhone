@@ -69,4 +69,9 @@ export class MinePage {
     this.navCtrl.push('RoutersPage');
   }
 
+  showlistsNW(){
+    const modal = this.modalCtrl.create('BindrouterPage');
+    modal.present();
+  }
+
 }
