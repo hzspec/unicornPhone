@@ -33,7 +33,7 @@ export class BindrouterPage {
   }
 
   manInput(){
-    this.step = 3;
+    this.step = 4;
   }
 
   confirmForm(){

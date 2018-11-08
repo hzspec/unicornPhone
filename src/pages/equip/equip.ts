@@ -94,12 +94,13 @@ export class EquipPage {
       let tipstr = '';
       if(auth == '40'){
         tipstr = '设备已设置为限时1小时使用';
-      }else if(auth == '9-17'){
-        tipstr = '设备已设置为早9点到晚5点使用';
       }else if(auth == '30'){
         tipstr = '设备已设置黑名单';
       }else if(auth == '20'){
         tipstr = '设备已设置白名单';
+      }else{
+        let str = this.structure.lower + '点到' + this.structure.upper + '点';
+        tipstr = '设备已设置为' + str + '使用';
       }
 
       const toast = this.toastCtrl.create({
@@ -117,6 +118,32 @@ export class EquipPage {
   seeRouterLL(){
     const modal = this.modalCtrl.create('RealchartPage');
     modal.present();
+  }
+
+  structure: any = {lower: 9, upper: 17};
+  showTimedia:boolean = false;
+  curDevice:any = null;
+  showDialog(d){
+    let str = d.status;
+    if(str.indexOf('-') >= 0){
+      let arr = str.split('-');
+      if(arr.length > 1){
+        this.structure.lower = parseInt(arr[0]);
+        this.structure.upper = parseInt(arr[1]);
+      }
+    }
+    this.showTimedia = true;
+    this.curDevice = d;
+  }
+  closeDialog(){
+    this.showTimedia = false;
+  }
+  confirmDialog(){
+    if(this.curDevice){
+      let str = this.structure.lower + '-' + this.structure.upper;
+      this.changeAuth(this.curDevice, str);
+      this.showTimedia = false;
+    }
   }
 
 }

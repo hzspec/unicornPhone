@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, ModalController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { MainProvider } from '../../providers/main/main';
 import { Storage } from '@ionic/storage';
@@ -64,6 +64,7 @@ export class MainPage {
     public serv:MainProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
+    private modalCtrl:ModalController,
     public store: Storage, public cd: ChangeDetectorRef
   ) {
     this.serv.getLinkJson().then((res:any)=>{
@@ -177,6 +178,11 @@ dealMain(){
 
   showlist(){
     this.navCtrl.push('RoutersPage');
+  }
+
+  goScan(){
+    const modal = this.modalCtrl.create('ScanPage');
+    modal.present();
   }
 
 }

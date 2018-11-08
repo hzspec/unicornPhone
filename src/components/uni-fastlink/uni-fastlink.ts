@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { ModalController, ToastController } from 'ionic-angular';
 import { MainProvider } from '../../providers/main/main';
 
 declare var cordova:any;
@@ -25,7 +25,8 @@ export class UniFastlinkComponent {
   @Input()
   isSign:boolean = true;
 
-  constructor(private modalCtrl:ModalController, private serv:MainProvider) {
+  constructor(private modalCtrl:ModalController, private serv:MainProvider,
+    public toastCtrl: ToastController) {
   }
 
   goBind(){
@@ -58,6 +59,13 @@ export class UniFastlinkComponent {
       url = this.qd;
       this.serv.signUp();
       this.isSign = true;
+
+      const toast = this.toastCtrl.create({
+        message: "已签到",
+        duration: 3000
+      });
+      toast.present();
+
       //////
       const modal = this.modalCtrl.create('BlankPage', {title: title, url: url});
       modal.present();

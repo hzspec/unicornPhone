@@ -42,4 +42,27 @@ export class SafeProvider {
     });
   }
 
+  startScan(success){
+    this.checkStorage((us:UserStore)=>{
+      let purl = `${BASEURL}ext/v1/ap/batch_scan?apMac=${us.apmac}`;
+      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+      pro.then((res:any)=>{
+        success(res);
+      }).catch((err)=>{
+        this.goLogin();
+      });
+    });
+  }
+  checkScan(success){
+    this.checkStorage((us:UserStore)=>{
+      let purl = `${BASEURL}ext/v1/ap/query_ap_scan?apMac=${us.apmac}`;
+      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+      pro.then((res:any)=>{
+        success(res);
+      }).catch(()=>{
+        this.goLogin();
+      });
+    });
+  }
+
 }
