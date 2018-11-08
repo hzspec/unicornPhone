@@ -67,8 +67,8 @@ export class UniFastlinkComponent {
       toast.present();
 
       //////
-      const modal = this.modalCtrl.create('BlankPage', {title: title, url: url});
-      modal.present();
+      //const modal = this.modalCtrl.create('BlankPage', {title: title, url: url});
+      //modal.present();
     }
   }
 
