@@ -15,7 +15,7 @@
   <div class="step1 center-con" *ngIf="step==1">
     <img src="assets/bind/step1.png" alt="" /><br/>
     <button ion-button class="connet-button" (click)="connectWIFI()">连接联通网关WIFI</button><br/>
-    <span class="tip-connect">正在搜索网关...</span>
+    <span *ngIf="searchrouter" class="tip-connect"><ion-icon name="md-sync" class="loading"></ion-icon>&nbsp;正在搜索网关...</span>
   </div>
 
   <div class="step2 center-con" *ngIf="step==2">

@@ -43,7 +43,7 @@ export class BindMacPage {
   }
 
   closeModal(){
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(null);
   }
 
   bindAP(){
@@ -51,10 +51,20 @@ export class BindMacPage {
     for(let i=0;i<this.macstring.length;i+=2){
       let a = this.macstring[i];
       let b = this.macstring[i + 1];
-      apmac += a + b + ':';
+      if(a != '' && b != ''){
+        apmac += a + b + ':';
+      }
     }
     apmac = apmac.substr(0, apmac.length - 1);
-    this.serv.bindAP(apmac, ()=>{
+    
+    if(apmac.length == 17){
+      this.viewCtrl.dismiss({data: apmac, success: true});
+    }else{
+      this.viewCtrl.dismiss({error: 'mac地址输入不完整', success: false});
+    }
+    
+    
+    /*this.serv.bindAP(apmac, ()=>{
       
       this.storage.get('user').then((us:UserStore)=>{
         us.arrEquips.push({apmac: apmac, ip: '--', alias: apmac});
@@ -96,7 +106,7 @@ export class BindMacPage {
         buttons: ['确定']
       });
       alert.present();
-    });
+    });*/
   }
 
   clk(txt){

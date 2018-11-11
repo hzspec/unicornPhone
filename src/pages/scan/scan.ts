@@ -61,11 +61,17 @@ export class ScanPage {
           this.stopScan();
         }
       });
+      if(this.second >= 31){
+        this.stopScan();
+      }
     }, 1000);
   }
 
   stopScan(){
     this.isOver = true;
+    if(this.inter){
+      clearInterval(this.inter);
+    }
   }
 
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Component, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController, ViewController, ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the BindrouterPage page.
@@ -15,13 +15,19 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class BindrouterPage {
 
+  searchrouter:boolean = false;
   step:number = 1;
+  inputMacString:string = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, private viewCtrl:ViewController,
+    private modalCtrl:ModalController,
+    public alertCtrl: AlertController,
+  ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BindrouterPage');
+    //console.log('ionViewDidLoad BindrouterPage');
   }
 
   closeModal(){
@@ -29,11 +35,37 @@ export class BindrouterPage {
   }
 
   connectWIFI(){
-    this.step = 2;
+    this.searchrouter = true;
+    setTimeout(()=>{
+      this.step = 2;
+    }, 3000);
   }
 
   manInput(){
-    this.step = 4;
+    const modal = this.modalCtrl.create('BindMacPage');
+    modal.present();
+    modal.onDidDismiss((mac:any)=>{
+      if(mac == null){
+
+      }else if(mac.success){
+        this.inputMacString = mac;
+        this.step = 4;
+      }else{
+        const alert = this.alertCtrl.create({
+          title: '失败',
+          subTitle: mac.error + '<br/>请重新输入或扫码绑定',
+          buttons: [{
+            text: '确定',
+            handler: ()=>{
+              //alert.dismiss();
+            }
+          }]
+        });
+        alert.present();
+
+      }
+    });
+    //this.step = 4;
   }
 
   confirmForm(){
