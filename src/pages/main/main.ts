@@ -185,7 +185,7 @@ dealMain(){
   scaning:boolean = false;
   inter:any = null;
   second:number = 1;
-  isOver:boolean = true;
+  isOver:boolean = false;
 
   goScan(){
     this.scaning = true;
@@ -210,6 +210,7 @@ dealMain(){
   stopScan(){
     this.scaning = false;
     this.isOver = true;
+    this.second = 1;
     if(this.inter){
       clearInterval(this.inter);
     }
