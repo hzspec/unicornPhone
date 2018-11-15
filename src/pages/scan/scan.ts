@@ -22,7 +22,7 @@ export class ScanPage {
   second:number = 1;
   inter:any = null;
 
-  isOver:boolean = false;
+  isOver:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController,
@@ -31,7 +31,7 @@ export class ScanPage {
   }
 
   ionViewWillEnter(){
-    this.ing = false;
+    /*this.ing = false;
     this.second = 0;
     
     if(this.inter){
@@ -40,7 +40,7 @@ export class ScanPage {
     this.inter = null;
 
     this.isOver = false;
-    console.log('enter');
+    console.log('enter');*/
   }
 
   ionViewDidLoad() {

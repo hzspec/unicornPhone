@@ -111,10 +111,40 @@
         <div class="i-left">
           <span class="title"><span>安全扫描</span>&nbsp;设备防护</span><br/>
           <span class="info">快人一步保护设备安全</span><br/>
-          <button (click)="goScan()" ion-button class="but-ty">立即体验</button>
+          <button (click)="goScan()" [disabled]="scaning" ion-button class="but-ty">{{scaning ? '正在扫描...' : '立即体验'}}</button><br/>
+          <button *ngIf="isOver" (click)="showResult()" ion-button clear class="see-result">查看结果</button>
         </div>
-        <div class="i-left">
-          <span class="icons img-ldsm"></span>
+        <div class="i-left" style="position:relative;height:120px;">
+          <!--<span class="icons img-ldsm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="300px" height="100px">
+                <defs>
+                  <linearGradient y2="1" x2="1" y1="0" x1="0" id="svg_1">
+                    <stop stop-color="#fff" offset="0"/>
+                    <stop stop-color="#f00" offset="1"/>
+                  </linearGradient>
+                  <linearGradient y2="1" x2="1" y1="0" x1="0" id="svg_2">
+                    <stop stop-color="#fff" offset="0"/>
+                    <stop stop-color="#0ff" offset="1"/>
+                  </linearGradient>
+                  <linearGradient y2="1" x2="1" y1="0" x1="0" id="svg_3">
+                    <stop stop-color="#fff" offset="0"/>
+                    <stop stop-color="#f60" offset="1"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="0" cy="0" r="2" fill="url(#svg_1)" stroke-width="1">
+                    <animateMotion begin="2s" path="M 58 62 C 61 57 70 56 80 60 C 89 63 95 70 92 75 C 89 80 80 81 71 77 C 62 74 56 67 58 62 Z" dur="2.3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="0" cy="0" r="2.5" fill="url(#svg_2)" stroke-width="1">
+                    <animateMotion begin="1s" path="M 54 59 C 57 53 70 52 82 57 C 95 63 101 72 98 78 C 94 84 81 85 69 80 C 57 75 50 65 54 59 Z" dur="2.8s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="0" cy="0" r="3" fill="url(#svg_3)" stroke-width="1">
+                    <animateMotion path="M 41 54 C 47 46 67 45 85 53 C 104 62 113 75 107 82 C 101 90 82 90 64 83 C 46 75 36 62 41 54 Z" dur="2s" repeatCount="indefinite" />
+                </circle>
+              </svg>
+          </span>-->
+          <div class="sx-bg" [class.move]="scaning">
+          </div>
+          <img class="img-sx" [class.move]="scaning" src="assets/imgs/sx.png" alt="" />
         </div>
       </div>
     </div>

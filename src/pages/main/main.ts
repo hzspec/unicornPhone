@@ -7,6 +7,7 @@ import { MainProvider } from '../../providers/main/main';
 import { Storage } from '@ionic/storage';
 import { UserStore } from '../../pages/user.storage';
 import { ChangeDetectorRef } from '@angular/core';
+import { SafeProvider } from '../../providers/safe/safe';
 
 /**
  * Generated class for the MainPage page.
@@ -19,7 +20,7 @@ import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'page-main',
   templateUrl: 'main.html',
-  providers: [MainProvider]
+  providers: [MainProvider, SafeProvider]
 })
 export class MainPage {
 
@@ -65,7 +66,8 @@ export class MainPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private modalCtrl:ModalController,
-    public store: Storage, public cd: ChangeDetectorRef
+    public store: Storage, public cd: ChangeDetectorRef,
+    private sserv: SafeProvider
   ) {
     this.serv.getLinkJson().then((res:any)=>{
       this.zhsh = res.zhsh;
@@ -180,7 +182,40 @@ dealMain(){
     this.navCtrl.push('RoutersPage');
   }
 
+  scaning:boolean = false;
+  inter:any = null;
+  second:number = 1;
+  isOver:boolean = true;
+
   goScan(){
+    this.scaning = true;
+    this.sserv.startScan(()=>{});
+
+    this.inter = setInterval(()=>{
+      this.second++;
+      this.sserv.checkScan((res:any)=>{
+        if(res.success){
+          this.stopScan();
+        }
+      });
+      if(this.second >= 31){
+        this.stopScan();
+      }
+    }, 1000);
+    
+    //const modal = this.modalCtrl.create('ScanPage');
+    //modal.present();
+  }
+
+  stopScan(){
+    this.scaning = false;
+    this.isOver = true;
+    if(this.inter){
+      clearInterval(this.inter);
+    }
+  }
+
+  showResult(){
     const modal = this.modalCtrl.create('ScanPage');
     modal.present();
   }

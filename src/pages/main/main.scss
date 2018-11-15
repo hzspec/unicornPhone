@@ -81,4 +81,49 @@ page-main {
         background:#ddd;text-align:center;color:#999;padding:10px 0 20px 0;
         font-size:12px;clear:both;
     }
+
+    .img-ldsm{
+        position:relative;
+        .circle{
+            position:absolute;
+            width:15px;height:15px;background:#E00123;
+            motion-path: path("M 34 53 C 38 43 61 43 85 52 C 109 62 125 77 121 87 C 117 96 95 97 71 88 C 47 79 30 63 34 53 Z");
+            animation: move 3s linear infinite;
+        }
+    }
+    @keyframes move { 
+        0%   {transform: rotate(0)}
+        100% {transform: rotate(360deg);}
+    }
+    @keyframes move2 { 
+        0%   {transform: rotate(0) scale(1.0);opacity:0.5;}
+        100% {transform: rotate(0) scale(0.5);opacity:0;}
+    }
+    @keyframes move3 { 
+        0%   {transform: scale(1.0);opacity:1.0}
+        50% {transform: scale(0.8);opacity:0.2;}
+        100% {transform: scale(1.0);opacity:1.0;}
+    }
+
+    .sx-bg{
+        background:url(../../assets/imgs/sx_bg.png) no-repeat 0 0;
+        width:124px;height:108px;position:relative;margin:-8px 0 14px 14px;
+        position:absolute;left: -3px;top: 6px;
+        opacity:1;
+        &.move{
+            animation: move 5s linear infinite;
+        }
+    }
+    .img-sx{
+        position:absolute;
+        left:56px;top:34px;
+        &.move{
+            animation: move3 3s linear infinite 0s;
+        }
+    }
+
+    .see-result{font-size:12px;display:inline-block;margin:-7px 0 0 7px;text-decoration:underline;position:relative;top:-5px;
+        .button-inner{font-size:12px;color:#0074FF;}
+    }
+    
 }
