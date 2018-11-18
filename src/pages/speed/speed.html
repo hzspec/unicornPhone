@@ -48,6 +48,10 @@
       <div id="speedchart" style="width:100%;height:300px;">
 
       </div>
+      
+      <div class="bottoms">
+        <button class="startbut" [disabled]="testing || !isIniting" ion-button (click)="startTest()">{{isIniting ? '开始' : '请稍候'}}</button>
+      </div>
 
       <div>
         <ion-select okText="确认" placeholder="切换服务器" cancelText="取消" class="changebut" [(ngModel)]="selserver">
@@ -63,13 +67,10 @@
         <ion-icon class="ico" name="ios-wifi-outline"></ion-icon>
         <span class="txt">{{countryname}}</span>
       </div>
-      <div class="bottoms">
-        <button class="startbut" [disabled]="testing || !isIniting" ion-button (click)="startTest()">{{isIniting ? '开始' : '请稍候'}}</button>
-      </div>
     </div>
     
     <div *ngSwitchCase="'router'">
-      <routerspeed></routerspeed>
+      <routerspeed (cancleTest)="cancleRouterTest($event)"></routerspeed>
     </div>  
   </div>
 

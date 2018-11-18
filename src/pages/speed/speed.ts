@@ -260,4 +260,10 @@ export class SpeedPage {
     this.mchart.setOption(this.option, true);
   }
 
+  cancleRouterTest(){
+      this.speedType = 'equip';
+      setTimeout(()=>{this.initSpeed();}, 1000);
+    //this.initTestData();
+  }
+
 }

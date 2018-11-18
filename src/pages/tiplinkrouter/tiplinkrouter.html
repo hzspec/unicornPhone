@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <uni-header [title]="'连接网关路由'"></uni-header>
+  <uni-header  (clkBack)="closeModal()" [showmodal]="true" [title]="'连接网关路由'"></uni-header>
 
 </ion-header>
 
@@ -16,6 +16,7 @@
     <h5>进行网关测速，请确保手机已经连接到网关WIFI</h5>
     <img src="assets/imgs/net.png" class="tip-img" alt="" />
 
+    <button ion-button clear (click)="connectWIFI()">连接网关WIFI</button>
     <button ion-button class="link-button" (click)="linkedClk()">我已连接</button>
   </div>
 </ion-content>

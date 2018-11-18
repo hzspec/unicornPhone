@@ -2,7 +2,7 @@ routerspeed {
     .titles{
         margin:10px 0 10px 0;overflow:hidden;
         .tl{
-            width:50%;float:left;text-align:center;
+            width:50% !important;float:left !important;text-align:center;
             b{font-size:20px;font-weight:normal;color:#333;}
             span{font-size:16px;color:#666;}
             .fs{font-size:12px;}

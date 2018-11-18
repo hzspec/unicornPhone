@@ -60,10 +60,43 @@ page-safe {
                 }
                 .rg-number{float:right;margin:14px 0 0 0;}
 
-                &.nosel{
-                    background:#eee;
-                    .icon-con{background:#ccc;}
+                
+
+                .lists{
+                    border-top:dotted 1px #eee;
+                    margin-top:10px;display:none;
+                    transition: all 0.5s;
+                    a{
+                        display:block;
+                        font-size:14px;color:#000;
+                        small{
+                            font-size:12px;float:right;
+                            color:#ccc;
+                        }
+                        line-height:40px;padding:0 5px;
+                        border-left:solid 2px #00ACFE;
+                        margin-top:2px;
+                        &:nth-child(odd){
+                            background:#eee;
+                        }
+                    }
+                    &.ll2{
+                        a{border-left:solid 2px #F7DB77;}
+                    }
+                    &.ll3{
+                        a{border-left:solid 2px #FF436F;}
+                    }
                 }
+
+                &.nosel{
+                    //background:#eee;
+                    //.icon-con{background:#ccc;}
+
+                    .lists{
+                        display:block;
+                    }
+                }
+
             }
 
         }

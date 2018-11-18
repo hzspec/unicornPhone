@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ModalController, AlertController, ViewController, LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
@@ -33,14 +33,21 @@ export class RouterspeedComponent {
   countryname:any = '--';
   testing:boolean = false;
 
+  @Output()
+  cancleTest:EventEmitter<any> = new EventEmitter<any>();
+
   constructor(private modalCtrl:ModalController, private http:HttpClient, private alertCtrl:AlertController, private viewCtrl:ViewController,
     private loadingCtrl:LoadingController
     ) {
     const modal = this.modalCtrl.create('TiplinkrouterPage');
     modal.present();
     modal.onDidDismiss((res:any)=>{
-      this.getServers();
-      
+      if(!res.cancle){
+        this.getServers();
+      }else{
+        this.cancleTest.emit('');
+      }
+        
     });
   }
 
@@ -168,10 +175,10 @@ export class RouterspeedComponent {
                 width: 0,
                 shadowBlur: 0,
                 color: [
-                    [0.2, '#D764FE'],
-                    [0.5, '#C45DFE'],
-                    [0.7, '#7EDFFF'],
-                    [1, '#66FFFF']
+                    [0.2, '#7851EA'],
+                    [0.5, '#7851EA'],
+                    [0.7, '#3FCB98'],
+                    [1, '#3FCB98']
                 ]
               }
             },

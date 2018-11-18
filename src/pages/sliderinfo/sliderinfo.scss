@@ -50,4 +50,8 @@ page-sliderinfo {
         box-shadow: 3px 3px 3px #ccc;
         .button-inner{color:#fff;font-size:16px;}
       }
+
+      .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+        bottom:1px;
+      }
 }

@@ -38,6 +38,10 @@ export class SafePage {
   l2count:number = 0;
   l3count:number = 0;
 
+  l1s = [];
+  l2s = [];
+  l3s = [];
+
   showback:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -77,11 +81,14 @@ export class SafePage {
           if(r.priority == 1){
             datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l1'});
             this.l1count++;
+            this.l1s.push({"name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
           }else if(r.priority == 2){
             datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l2'});
+            this.l2s.push({"name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
             this.l2count++;
           }else{
             datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l3'});
+            this.l3s.push({"name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
             this.l3count++;
           }
         }

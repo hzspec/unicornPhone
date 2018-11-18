@@ -29,31 +29,53 @@
 
       <uni-rankchartsafe #safeChart style="margin:-20px 14px 0 14px;" [datas]="mapDatas" [registed]="true"></uni-rankchartsafe>
 
-      <h4 class="titles">最近一周内报警统计<ion-icon style="display:none;" name="ios-funnel-outline"></ion-icon></h4>
+      <!--<h4 class="titles">最近一周内报警统计<ion-icon style="display:none;" name="ios-funnel-outline"></ion-icon></h4>-->
 
       <div class="alert-counts">
         <div class="counts-title" [class.nosel]="nol1" (click)="safeChart.toggleLengend('l1');nol1=!nol1">
           <span class="icon-con l3">
             <span class="icons icon-safe-alert"></span>
           </span>
-          普通报警
+          普通
           <ion-badge class="rg-number" item-end>{{l1count}}</ion-badge>
+
+          <div class="lists">
+            <a *ngFor="let l of l1s">
+              {{l.name}}
+              <small>{{l.time}}</small>
+            </a>
+          </div>
         </div>
 
         <div class="counts-title" [class.nosel]="nol2" (click)="safeChart.toggleLengend('l2');nol2=!nol2">
           <span class="icon-con l2">
             <span class="icons icon-safe-alert"></span>
           </span>
-          中级报警
+          中级
           <ion-badge class="rg-number" item-end>{{l2count}}</ion-badge>
+
+          <div class="lists ll2">
+            <a *ngFor="let l of l2s">
+              {{l.name}}
+              <small>{{l.time}}</small>
+            </a>
+          </div>
         </div>
 
         <div class="counts-title" [class.nosel]="nol3" (click)="safeChart.toggleLengend('l3');nol3=!nol3">
           <span class="icon-con">
             <span class="icons icon-safe-alert"></span>
           </span>
-          高级报警
+          高级
           <ion-badge class="rg-number" item-end>{{l3count}}</ion-badge>
+
+          <div class="lists ll3">
+            <a *ngFor="let l of l3s">
+              {{l.name}}
+              <small>{{l.time}}</small>
+            </a>
+          </div>
+
         </div>
       </div>
 

@@ -8,6 +8,8 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
  * Ionic pages and navigation.
  */
 
+ declare var cordova:any;
+
 @IonicPage()
 @Component({
   selector: 'page-tiplinkrouter',
@@ -23,7 +25,15 @@ export class TiplinkrouterPage {
   }
 
   linkedClk(){ 
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({cancle: false});
+  }
+
+  closeModal(){
+    this.viewCtrl.dismiss({cancle: true});
+  }
+
+  connectWIFI(){
+    cordova.plugins.settings.open(["wifi", true], function() {}, function() {}); 
   }
 
 }
