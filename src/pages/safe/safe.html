@@ -32,7 +32,7 @@
       <!--<h4 class="titles">最近一周内报警统计<ion-icon style="display:none;" name="ios-funnel-outline"></ion-icon></h4>-->
 
       <div class="alert-counts">
-        <div class="counts-title" [class.nosel]="nol1" (click)="safeChart.toggleLengend('l1');nol1=!nol1">
+        <div class="counts-title" [class.nosel]="nol1" (click)="nol1=!nol1">
           <span class="icon-con l3">
             <span class="icons icon-safe-alert"></span>
           </span>
@@ -47,7 +47,7 @@
           </div>
         </div>
 
-        <div class="counts-title" [class.nosel]="nol2" (click)="safeChart.toggleLengend('l2');nol2=!nol2">
+        <div class="counts-title" [class.nosel]="nol2" (click)="nol2=!nol2">
           <span class="icon-con l2">
             <span class="icons icon-safe-alert"></span>
           </span>
@@ -62,7 +62,7 @@
           </div>
         </div>
 
-        <div class="counts-title" [class.nosel]="nol3" (click)="safeChart.toggleLengend('l3');nol3=!nol3">
+        <div class="counts-title" [class.nosel]="nol3" (click)="nol3=!nol3">
           <span class="icon-con">
             <span class="icons icon-safe-alert"></span>
           </span>
