@@ -36,12 +36,23 @@ export class SpeedPage {
 
   isIniting:boolean = true;
 
+  rgtitle:string = '网关测速';
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController, public loadingCtrl: LoadingController) {
   }
 
+  changeRightTitle(){
+      if(this.speedType == 'router'){
+        this.speedType = 'equip';
+      }else{
+        this.speedType = 'router';
+      }
+      this.rgtitle = this.speedType == 'router' ? '网关测速' : '宽带测速';
+  }
+
   ionViewDidLoad() {
-    setTimeout(()=>{this.initSpeed();}, 1000);
-    this.initTestData();
+    //setTimeout(()=>{this.initSpeed();}, 1000);
+    //this.initTestData();
   }
 
   closeModal(){ 
@@ -262,7 +273,7 @@ export class SpeedPage {
 
   cancleRouterTest(){
       this.speedType = 'equip';
-      setTimeout(()=>{this.initSpeed();}, 1000);
+      //setTimeout(()=>{this.initSpeed();}, 1000);
     //this.initTestData();
   }
 
