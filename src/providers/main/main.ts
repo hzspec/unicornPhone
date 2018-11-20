@@ -130,4 +130,18 @@ export class MainProvider {
     });
   }
 
+  getOverview(success, fail){
+    this.store.get('user').then((us:UserStore)=>{
+      let purl = `${BASEURL}squirrel/v1/devices/ap/overview?apMacAddr=${us.apmac}`;
+      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+      pro.then((res)=>{
+        success(res);
+      }).catch(()=>{
+        fail();
+      });
+    }).catch(()=>{
+      this.goLogin();
+    });
+  }
+
 }

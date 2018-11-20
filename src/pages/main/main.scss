@@ -71,6 +71,10 @@ page-main {
                         border-radius:30px;width:88px;height:26px;background:#3FCB98;
                         font-size:12px;box-shadow:none;padding:0;margin-top:13px;
                         .button-inner{font-size:12px;color:#fff;}
+                        &.gray{
+                            background:#ccc;
+                            .button-inner{font-size:12px;color:#666;}
+                        }
                     }
 
                 }

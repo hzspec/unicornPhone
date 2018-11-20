@@ -151,17 +151,17 @@
 
     <div class="panel-wgxx">
       <div class="title">
-        <span>网关状态</span>
+        <h5 style="display:inline-block;margin-top:0;">网关状态</h5>
         <button ion-button class="but-add" (click)="showlist()" clear>网关列表</button>
       </div>
       <div class="inner">
-        <div class="i-left">
+        <div class="i-left" style="position: relative;top: -11px;">
           <span class="icons img-lyq"></span>
         </div>
         <div class="i-left rg">
           <span class="tl">{{routerInfo.name}}</span><br/>
           <span class="info">{{routerInfo.apmac}}</span><br/>
-          <button ion-button class="but-ty">{{routerInfo.isuse ? '使用中' : '未绑定'}}</button>
+          <button ion-button class="but-ty" [class.gray]="!routerInfo.online">{{routerInfo.online ? '在线' : '离线'}}</button>
         </div>
       </div>
     </div>
