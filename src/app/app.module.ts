@@ -9,6 +9,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+import { Network } from '@ionic-native/network';
+
+
 @NgModule({
   declarations: [
     MyApp
@@ -26,6 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })

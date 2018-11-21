@@ -14,6 +14,19 @@
 <ion-content>
     <!--<tip-bind *ngIf="!registed"></tip-bind>-->
     <ion-slides [autoplay]="5000" *ngIf="registed" class="sliders-container" pager>
+    
+      <ion-slide>
+        <div class="equip-con">
+          <img class="lfimg" style="position:relative;left:20px;" src="assets/imgs/main/s2.png" alt="" />
+          <div class="infor">
+            <p class="tl">报警统计：<span>{{staticData.alert.pre + staticData.alert.cur}}</span></p>
+            <div class="stl-container">
+              <span class="stl" style="width:100px">本周 {{staticData.alert.cur}}</span><br/>
+              <span class="stl" style="width:100px">上周 {{staticData.alert.pre}}</span>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
 
       <ion-slide>
         <div class="equip-con l2">
@@ -25,19 +38,6 @@
               <span class="stl">电脑 {{staticData.equip.dn}}</span>
               <span class="stl">摄像头 {{staticData.equip.sxt}}</span>
               <span class="stl">其他 {{staticData.equip.qt}}</span>
-            </div>
-          </div>
-        </div>
-      </ion-slide>
-    
-      <ion-slide>
-        <div class="equip-con">
-          <img class="lfimg" style="position:relative;left:20px;" src="assets/imgs/main/s2.png" alt="" />
-          <div class="infor">
-            <p class="tl">报警统计：<span>{{staticData.alert.pre + staticData.alert.cur}}</span></p>
-            <div class="stl-container">
-              <span class="stl" style="width:100px">本周 {{staticData.alert.cur}}</span><br/>
-              <span class="stl" style="width:100px">上周 {{staticData.alert.pre}}</span>
             </div>
           </div>
         </div>
