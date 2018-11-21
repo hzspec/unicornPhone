@@ -53,10 +53,19 @@ export class SpeedPage {
   ionViewDidLoad() {
     //setTimeout(()=>{this.initSpeed();}, 1000);
     //this.initTestData();
+    this.showLoading();
   }
 
   closeModal(){ 
     this.viewCtrl.dismiss();
+  }
+
+  showLoading(){
+    const loader = this.loadingCtrl.create({
+        content: "请稍候...",
+        duration: 5000
+    });    
+    loader.present();
   }
   
   initTestData(){  
@@ -273,6 +282,7 @@ export class SpeedPage {
 
   cancleRouterTest(){
       this.speedType = 'equip';
+      this.showLoading();
       //setTimeout(()=>{this.initSpeed();}, 1000);
     //this.initTestData();
   }

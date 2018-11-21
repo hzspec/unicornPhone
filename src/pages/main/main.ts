@@ -58,7 +58,8 @@ export class MainPage {
   routerInfo:any = {
     apmac: '--',
     name: '未绑定网关',
-    isuse: false
+    isuse: false,
+    online: false
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -78,7 +79,7 @@ export class MainPage {
       pro.then((res:any)=>{
         this.isSign = res;
       });
-    })
+    });
   }
 
   getllNumber(num){
@@ -171,6 +172,12 @@ dealMain(){
           this.routerInfo.apmac = us.apmac;
           this.routerInfo.name = us.username;
           this.routerInfo.isuse = true;
+
+          this.serv.getOverview((res:any)=>{
+            this.routerInfo.online = res.user.status;
+
+          }, ()=>{})
+
         }
         this.dealMain();
         this.cd.detectChanges();
