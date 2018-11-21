@@ -46,6 +46,57 @@ export class BindMacPage {
     this.viewCtrl.dismiss(null);
   }
 
+  bindForWB(apmac, success){
+
+    this.serv.bindAP(apmac, ()=>{
+      
+      this.storage.get('user').then((us:UserStore)=>{
+        us.arrEquips.push({apmac: apmac, ip: '--', alias: apmac});
+        us.isBindRouter = true;
+
+        us.apmac = us.apmac;//apmac;
+        us.ip = '--';
+
+        let inx = _.findIndex(us.arrEquips, d=>{return d.apmac == apmac});
+        
+
+        this.storage.set('user', us);
+
+        /*const alert = this.alertCtrl.create({
+          title: '绑定成功!',
+          subTitle: '',
+          buttons: [{
+            text: '确定',
+            handler: ()=>{
+              this.viewCtrl.dismiss();
+
+              if(this.isfresh){
+
+                this.app.getRootNav().setRoot('TabPage');
+                //window.location.reload();
+              }
+              
+            }
+          }]
+        });
+        alert.present();
+        */
+
+        success();
+
+      });
+
+    }, ()=>{
+      const alert = this.alertCtrl.create({
+        title: '绑定失败!',
+        subTitle: '请检查输入的MAC地址是否正确!',
+        buttons: ['确定']
+      });
+      alert.present();
+    });
+
+  }
+
   bindAP(){
     let apmac:string = '';
     for(let i=0;i<this.macstring.length;i+=2){
@@ -58,55 +109,16 @@ export class BindMacPage {
     apmac = apmac.substr(0, apmac.length - 1);
     
     if(apmac.length == 17){
-      this.viewCtrl.dismiss({data: apmac, success: true});
+      this.bindForWB(apmac, ()=>{
+        this.viewCtrl.dismiss({data: apmac, success: true});
+      });
     }else{
       this.viewCtrl.dismiss({error: 'mac地址输入不完整', success: false});
     }
     
     
-    /*this.serv.bindAP(apmac, ()=>{
-      
-      this.storage.get('user').then((us:UserStore)=>{
-        us.arrEquips.push({apmac: apmac, ip: '--', alias: apmac});
-        us.isBindRouter = true;
-
-        us.apmac = apmac;
-        us.ip = '--';
-
-        let inx = _.findIndex(us.arrEquips, d=>{return d.apmac == apmac});
-        
-
-        this.storage.set('user', us);
-
-        const alert = this.alertCtrl.create({
-          title: '绑定成功!',
-          subTitle: '',
-          buttons: [{
-            text: '确定',
-            handler: ()=>{
-              this.viewCtrl.dismiss();
-              //this.app.getRootNav().setRoot('TabPage');
-              if(this.isfresh){
-                window.location.reload();
-              }
-              
-            }
-          }]
-        });
-        alert.present();
-
-        
-
-      });
-
-    }, ()=>{
-      const alert = this.alertCtrl.create({
-        title: '绑定失败!',
-        subTitle: '请检查输入的MAC地址是否正确!',
-        buttons: ['确定']
-      });
-      alert.present();
-    });*/
+    
+    /**/
   }
 
   clk(txt){

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ViewController, LoadingController, App } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { UserStore } from '../user.storage';
 
@@ -23,7 +23,7 @@ export class RoutersPage {
   changeNewIp:string = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl:ModalController,
-    private storage: Storage, private viewCtrl:ViewController, public loadingCtrl: LoadingController,) {
+    private storage: Storage, private viewCtrl:ViewController, public loadingCtrl: LoadingController,private app: App) {
       this.initRouter();
   }
 
@@ -48,9 +48,12 @@ export class RoutersPage {
 
     let item = null;
 
+    console.log(mac);
+
     this.storage.get('user').then((us:UserStore)=>{
       if(mac == us.apmac){
         this.isChangeMac = false;
+        console.log(this.isChangeMac, 'nnnnnnnnnnnnnnnnn');
       }else{
         for(let it of us.arrEquips){
           if(it.apmac == mac){
@@ -66,6 +69,9 @@ export class RoutersPage {
         this.isChangeMac = true;
         this.changeNewMac = item.apmac;
         this.changeNewIp = item.ip;
+
+        console.log(this.isChangeMac, 'yyyyyyyyyyyyyyyyyy');
+
       }
 
     });
@@ -74,9 +80,28 @@ export class RoutersPage {
   addRouter(){
     const modal = this.modalCtrl.create('BindrouterPage');
     modal.present();
-    modal.onDidDismiss(()=>{
+    modal.onDidDismiss((data:any)=>{
+      if(data && data.apmac){
+        let mac = data.apmac;
+        this.routes.push({
+          alias: mac,
+          apmac: mac,
+          checked: false,
+          ip: '--'
+        });
+        //this.selected(mac);
+      }
+      
       //this.initRouter();
       //TODO
+      //if(res && res.close){
+        /*this.viewCtrl.dismiss();
+        setTimeout(()=>{
+          window.location.reload();
+        }, 50);
+        */
+      //}
+      
     })
   }
 

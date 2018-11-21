@@ -72,6 +72,17 @@ export class MinePage {
   showlistsNW(){
     const modal = this.modalCtrl.create('BindrouterPage');
     modal.present();
+    modal.onDidDismiss((data:any)=>{
+      let apmac = data.apmac;
+      this.storage.get('user').then((us:UserStore)=>{
+        us.apmac = apmac;//apmac;
+        us.ip = '--';
+        this.storage.set('user', us);
+
+        window.location.reload();
+
+      });
+    });
   }
 
 }

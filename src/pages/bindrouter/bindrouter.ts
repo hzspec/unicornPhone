@@ -48,7 +48,7 @@ export class BindrouterPage {
       if(mac == null){
 
       }else if(mac.success){
-        this.inputMacString = mac;
+        this.inputMacString = mac.data;
         this.step = 4;
       }else{
         const alert = this.alertCtrl.create({
@@ -74,7 +74,8 @@ export class BindrouterPage {
 
   fininsh(){
     this.step = 1;
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({apmac: this.inputMacString});
+
   }
 
 }
