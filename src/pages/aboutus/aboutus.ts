@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+
+import { VERSION } from '../../providers/common';
 
 /**
  * Generated class for the AboutusPage page.
@@ -15,11 +17,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AboutusPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  version:any = '';
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AboutusPage');
+    this.version = VERSION;
+  }
+
+  closeModal(){
+    this.viewCtrl.dismiss(null);
   }
 
 }

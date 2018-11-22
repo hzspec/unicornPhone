@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BASEURL } from '../common';
 
 import { Storage } from '@ionic/storage';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { UserStore } from '../../pages/user.storage';
 
 /*
@@ -15,7 +15,7 @@ import { UserStore } from '../../pages/user.storage';
 @Injectable()
 export class EquipProvider {
 
-  constructor(public http: HttpClient, private store:Storage, private ctrl:NavController) {
+  constructor(public http: HttpClient, private store:Storage, private ctrl:NavController, private modalCtrl:ModalController) {
   }
 
   checkStorage(callback){
@@ -27,7 +27,9 @@ export class EquipProvider {
   }
 
   goLogin(){
-    this.ctrl.setRoot('LoginPage');
+    const modal = this.modalCtrl.create('Err500Page');
+    modal.present();
+    //this.ctrl.setRoot('Err500Page');//Err500Page
   }
 
   routerInfor(success){

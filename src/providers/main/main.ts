@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BASEURL } from '../common';
 
 import { Storage } from '@ionic/storage';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { UserStore } from '../../pages/user.storage';
 
 /*
@@ -15,7 +15,7 @@ import { UserStore } from '../../pages/user.storage';
 @Injectable()
 export class MainProvider {
 
-  constructor(public http: HttpClient, private store:Storage, private ctrl:NavController) {
+  constructor(public http: HttpClient, private store:Storage, private ctrl:NavController, private modalCtrl:ModalController) {
     
   }
 
@@ -28,7 +28,9 @@ export class MainProvider {
   }
 
   goLogin(){
-    this.ctrl.setRoot('LoginPage');
+    //this.ctrl.setRoot('Err500Page');
+    const modal = this.modalCtrl.create('Err500Page');
+    modal.present();
   }
 
   getStatic(success){
@@ -45,7 +47,8 @@ export class MainProvider {
       
       Promise.all([pro, pro2, pro3]).then((datas:any)=>{
         success(datas);
-      }).catch(()=>{
+      }).catch((err:any)=>{
+        
         this.goLogin();
       });
 

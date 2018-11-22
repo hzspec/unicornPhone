@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { Network } from '@ionic-native/network';
@@ -41,7 +41,7 @@ export class SliderinfoPage {
   isConnect:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    private storage: Storage, private network: Network) {
+    private storage: Storage, private network: Network, private modalCtrl:ModalController) {
 
       if(this.isConnect){
         this.storage.get('isShow').then((val:any)=>{
@@ -53,23 +53,11 @@ export class SliderinfoPage {
       }
       
 
-      let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+      this.network.onDisconnect().subscribe(() => {
         alert('network was disconnected :-(');
+        const modal = this.modalCtrl.create('NonetworkPage');
+        modal.present();
       });
-
-      let connectSubscription = this.network.onConnect().subscribe(() => {
-        alert('network connected!');
-        // We just got a connection but we need to wait briefly
-         // before we determine the connection type. Might need to wait.
-        // prior to doing any api requests as well.
-        setTimeout(() => {
-          alert(this.network);
-          if (this.network.type === 'wifi') {
-            alert('we got a wifi connection, woohoo!');
-          }
-        }, 3000);
-      });
-      
 
   }
 

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BASEURL } from '../common';
 
 import { Storage } from '@ionic/storage';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { UserStore } from '../../pages/user.storage';
 
 /*
@@ -16,14 +16,14 @@ import { UserStore } from '../../pages/user.storage';
 export class UserProvider{
 
 
-  constructor(public http: HttpClient, private store:Storage, private ctrl:NavController) {
+  constructor(public http: HttpClient, private store:Storage, private ctrl:NavController, private modalCtrl:ModalController) {
   }
 
   checkStorage(callback, errorback){
     this.store.get('user').then((val:UserStore)=>{
         callback(val);
     }).catch((err)=>{
-        this.ctrl.setRoot('LoginPage');
+        this.goLogin();
     });
   }
 
@@ -34,7 +34,9 @@ export class UserProvider{
   }
 
   goLogin(){
-    this.ctrl.setRoot('LoginPage');
+    //this.ctrl.setRoot('Err500Page');
+    const modal = this.modalCtrl.create('Err500Page');
+    modal.present();
   }
 
   getAps(token, success){

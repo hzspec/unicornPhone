@@ -61,7 +61,9 @@ export class MinePage {
   }
 
   goWeb(title){
-    const modal = this.modalCtrl.create('BlankPage', {title: title, url: this.kdjf});
+    const modal = this.modalCtrl.create('AboutusPage', {title: title, url: this.kdjf});
+    
+    //const modal = this.modalCtrl.create('NonetworkPage', {title: title, url: this.kdjf});
     modal.present();
   }
 

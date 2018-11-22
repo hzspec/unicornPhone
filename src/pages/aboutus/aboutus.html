@@ -6,13 +6,19 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>aboutus</ion-title>
-  </ion-navbar>
-
+  <uni-header (clkBack)="closeModal()" [showmodal]="true" [title]="'关于'"></uni-header>
+  
 </ion-header>
 
 
 <ion-content padding>
-
+  <div class="aboutus">
+    <img src="assets/imgs/logo.png" alt="" /><br/>
+    <span class="name">智家宝</span><br/>
+    <span class="version">版本号：{{version}}</span>
+  </div>
+  <div class="bottom">
+    杭州白客 版权所有<br/>
+    Copyright@2018 All Rights Reserved
+  </div>
 </ion-content>
