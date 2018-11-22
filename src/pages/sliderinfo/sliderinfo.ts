@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+import { Network } from '@ionic-native/network';
 /**
  * Generated class for the SliderinfoPage page.
  *
@@ -37,14 +38,38 @@ export class SliderinfoPage {
     }
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    private storage: Storage,) {
+  isConnect:boolean = true;
 
-      this.storage.get('isShow').then((val:any)=>{
-        if(val === true){
-          this.navCtrl.setRoot('LoginPage');
-        }
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    private storage: Storage, private network: Network) {
+
+      if(this.isConnect){
+        this.storage.get('isShow').then((val:any)=>{
+          if(val === true){
+            this.navCtrl.setRoot('LoginPage');
+          }
+        });
+
+      }
+      
+
+      let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+        alert('network was disconnected :-(');
       });
+
+      let connectSubscription = this.network.onConnect().subscribe(() => {
+        alert('network connected!');
+        // We just got a connection but we need to wait briefly
+         // before we determine the connection type. Might need to wait.
+        // prior to doing any api requests as well.
+        setTimeout(() => {
+          alert(this.network);
+          if (this.network.type === 'wifi') {
+            alert('we got a wifi connection, woohoo!');
+          }
+        }, 3000);
+      });
+      
 
   }
 

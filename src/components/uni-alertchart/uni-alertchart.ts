@@ -76,7 +76,7 @@ export class UniAlertchartComponent  {
                 this.initSocket(us.apmac);
             });
             
-            this.drawCharts(this.socketInArr, this.socketOutArr);
+            //this.drawCharts(this.socketInArr, this.socketOutArr);
         }
     }, 1000);
   }

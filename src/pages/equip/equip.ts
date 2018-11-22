@@ -38,6 +38,8 @@ export class EquipPage {
     black: []
   };
 
+  loading:boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public serv:EquipProvider,
     public loadingCtrl: LoadingController,
@@ -52,17 +54,14 @@ export class EquipPage {
   }
 
   ionViewDidLoad() {
-    let loader = this.loadingCtrl.create({
-      content: "正在获取数据...",
-    });
-    loader.present();
+    this.loading = true;
 
     this.serv.routerInfor((val:any)=>{
       this.routerData = val;
     });
 
     this.serv.getEquips(this.pagenum, this.pagesize, (val:any)=>{
-      loader.dismiss();
+      this.loading = false;
 
       this.totalpage = val.totalPageCount;
       for(let d of val.result){
@@ -73,7 +72,8 @@ export class EquipPage {
       this.equiplist.no = _.filter(val.result, d=>{return d.status == '10';});
       this.equiplist.black = _.filter(val.result, d=>{return d.status == '30';});
     }, ()=>{
-      loader.dismiss();
+      this.loading = false;
+      
     });
   }
 

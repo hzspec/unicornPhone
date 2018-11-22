@@ -18,6 +18,25 @@ page-equip {
         }
     }
 
+    .loadcon{
+        text-align:center;
+        background:#eee;
+        padding:5px;
+        margin:10px;
+        border-radius:6px;
+        border:solid 1px #ccc;
+    }
+
+    .loading{
+        font-size:16px;color:#000;
+        animation: circle 1s linear infinite;
+    }
+    @keyframes circle
+    {
+        from {transform:rotate(0deg);}
+        to {transform: rotate(360deg);}
+    }
+
     .segment-md .segment-button,
     .segment-ios .segment-button{border:none;color:#333;font-size:14px;border-radius:0;}
     .segment-md .segment-button.segment-activated,

@@ -49,6 +49,9 @@
   </div>
 
   <div [ngSwitch]="equipTp">
+    <div *ngIf="loading" class="loadcon">
+      <ion-icon name="md-sync" class="loading"></ion-icon>&nbsp;&nbsp;正在获取数据...
+    </div>
     <div class="lists" *ngSwitchCase="'all'">
       <div class="nodata" *ngIf="equiplist.all.length == 0">
         <span></span>&nbsp;&nbsp;没有数据&nbsp;&nbsp;<span></span>
