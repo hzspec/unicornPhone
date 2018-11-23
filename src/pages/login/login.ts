@@ -7,6 +7,8 @@ import { UserStore } from '../user.storage';
 import { Storage } from '@ionic/storage';
 import { ModalController } from 'ionic-angular';
 
+import { Network } from '@ionic-native/network';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -35,6 +37,7 @@ export class LoginPage {
     public alertCtrl: AlertController,
     private storage: Storage,
     private modalCtrl: ModalController,
+    private network: Network
   ) {
     this.storage.get('user').then((us:UserStore)=>{
       if(us){
@@ -46,6 +49,12 @@ export class LoginPage {
 
       this.username = uname;
     });
+
+    /*this.network.onDisconnect().subscribe(() => {
+      const modal = this.modalCtrl.create('NonetworkPage');
+      modal.present();
+    });*/
+
   }
 
   ionViewDidLoad() {

@@ -56,6 +56,27 @@ export class EquipPage {
   ionViewDidLoad() {
     this.loading = true;
 
+    this.serv.getEquipPageData(this.pagenum, this.pagesize, (datas)=>{
+      let val1 = datas[0];
+      let val = datas[1];
+
+      this.routerData = val1;
+
+      this.loading = false;
+      this.totalpage = val.totalPageCount;
+      for(let d of val.result){
+        d.createTime = moment(d.createTime).format('YYYY-MM-DD HH:mm:ss');
+      }
+      this.equiplist.all = val.result;
+      this.equiplist.ok = _.filter(val.result, d=>{return d.status != '10';});
+      this.equiplist.no = _.filter(val.result, d=>{return d.status == '10';});
+      this.equiplist.black = _.filter(val.result, d=>{return d.status == '30';});
+
+    }, ()=>{
+      this.loading = false;
+    })
+
+    /*
     this.serv.routerInfor((val:any)=>{
       this.routerData = val;
     });
@@ -74,7 +95,8 @@ export class EquipPage {
     }, ()=>{
       this.loading = false;
       
-    });
+    });*/
+    
   }
 
   segmentChanged(ev){

@@ -21,7 +21,7 @@ export class NonetworkPage {
   }
 
   ionViewDidLoad() {
-    this.network.onConnect().subscribe(() => {
+    /*this.network.onConnect().subscribe(() => {
 
       alert('network connected!');
       
@@ -31,7 +31,7 @@ export class NonetworkPage {
           alert('we got a wifi connection, woohoo!');
         }
       }, 3000);
-    });
+    });*/
   }
 
   closeModal(){

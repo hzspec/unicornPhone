@@ -33,6 +33,21 @@ export class MainProvider {
     modal.present();
   }
 
+  isDaySign(success){
+    this.store.get('user').then((us:UserStore)=>{
+      let purl = `${BASEURL}ext/v1/users/is_day_sign`;
+      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+      success(pro);
+    }).catch(()=>{
+      this.goLogin();
+    });
+  }
+  getLinkJson(){
+    let purl = `${BASEURL}hz/link.json`;
+    let pro = this.http.get(purl).toPromise();
+    return pro;
+  }
+
   getStatic(success){
     this.store.get('user').then((us:UserStore)=>{
 
@@ -44,8 +59,14 @@ export class MainProvider {
 
       let purl3 = `${BASEURL}dolphin/v1/packet_summarys/total1?macAddr=${us.apmac}`;
       let pro3 = this.http.get(purl3, {headers: {Authorization: us.token}}).toPromise();
+
+      let purl4 = `${BASEURL}ext/v1/users/is_day_sign`;
+      let pro4 = this.http.get(purl4, {headers: {Authorization: us.token}}).toPromise();
+
+      let purl5 = `${BASEURL}hz/link.json`;
+      let pro5 = this.http.get(purl5).toPromise();
       
-      Promise.all([pro, pro2, pro3]).then((datas:any)=>{
+      Promise.all([pro, pro2, pro3, pro4, pro5]).then((datas:any)=>{
         success(datas);
       }).catch((err:any)=>{
         
@@ -69,12 +90,6 @@ export class MainProvider {
     }).catch(()=>{
       fail();
     });
-  }
-
-  getLinkJson(){
-    let purl = `${BASEURL}hz/link.json`;
-    let pro = this.http.get(purl).toPromise();
-    return pro;
   }
 
   updateUser(updateUser:UserStore){
@@ -103,16 +118,6 @@ export class MainProvider {
       let purl = `${BASEURL}ext/v1/users/sign`;
       let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
       pro.catch(()=>{});
-    }).catch(()=>{
-      this.goLogin();
-    });
-  }
-
-  isDaySign(success){
-    this.store.get('user').then((us:UserStore)=>{
-      let purl = `${BASEURL}ext/v1/users/is_day_sign`;
-      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
-      success(pro);
     }).catch(()=>{
       this.goLogin();
     });

@@ -32,6 +32,24 @@ export class EquipProvider {
     //this.ctrl.setRoot('Err500Page');//Err500Page
   }
 
+  getEquipPageData(pagenum, pagesize, success, fail){
+    this.checkStorage((us:UserStore)=>{
+      let purl = `${BASEURL}squirrel/v1/devices/ap/overview?apMacAddr=${us.apmac}`;
+      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+
+      let purl2 = `${BASEURL}ext/v1/devices?apMacAddress=${us.apmac}&pageNum=${pagenum}&pageSize=${pagesize}`;
+      let pro2 = this.http.get(purl2, {headers: {Authorization: us.token}}).toPromise();
+
+      Promise.all([pro, pro2]).then((datas:any)=>{
+        success(datas);
+      }).catch((err:any)=>{
+        fail();
+        this.goLogin();
+      });
+
+    });
+  }
+
   routerInfor(success){
     this.checkStorage((us:UserStore)=>{
       let purl = `${BASEURL}squirrel/v1/devices/ap/overview?apMacAddr=${us.apmac}`;

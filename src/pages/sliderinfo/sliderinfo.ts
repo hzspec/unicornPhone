@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { Network } from '@ionic-native/network';
 /**
  * Generated class for the SliderinfoPage page.
  *
@@ -41,7 +40,7 @@ export class SliderinfoPage {
   isConnect:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    private storage: Storage, private network: Network, private modalCtrl:ModalController) {
+    private storage: Storage, private modalCtrl:ModalController) {
 
       if(this.isConnect){
         this.storage.get('isShow').then((val:any)=>{
@@ -51,14 +50,6 @@ export class SliderinfoPage {
         });
 
       }
-      
-
-      this.network.onDisconnect().subscribe(() => {
-        alert('network was disconnected :-(');
-        const modal = this.modalCtrl.create('NonetworkPage');
-        modal.present();
-      });
-
   }
 
   ionViewDidLoad() {

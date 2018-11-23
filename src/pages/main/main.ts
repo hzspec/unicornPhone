@@ -70,7 +70,7 @@ export class MainPage {
     public store: Storage, public cd: ChangeDetectorRef,
     private sserv: SafeProvider
   ) {
-    this.serv.getLinkJson().then((res:any)=>{
+    /*this.serv.getLinkJson().then((res:any)=>{
       this.zhsh = res.zhsh;
       this.qd = res.qd;
     });
@@ -79,7 +79,7 @@ export class MainPage {
       pro.then((res:any)=>{
         this.isSign = res;
       });
-    });
+    });*/
   }
 
   getllNumber(num){
@@ -116,6 +116,8 @@ dealMain(){
       let alert = datas[0];
       let equip = datas[1];
       let llsj = datas[2];
+      let signs = datas[3];
+      let links = datas[4];
 
       this.staticData.alert.pre = alert[0].v;
       this.staticData.alert.cur = alert[1].v;
@@ -140,6 +142,11 @@ dealMain(){
       this.staticData.llsj.pre = this.getllNumber(d7);
       this.staticData.llsj.total = this.getllNumber(d15);
       this.staticData.llsj.total[0] = parseInt(this.staticData.llsj.total[0]);
+
+      this.zhsh = links.zhsh;
+      this.qd = links.qd;
+      
+      this.isSign = signs;
     });
 
     /*
