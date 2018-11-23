@@ -212,10 +212,10 @@ dealMain(){
           this.stopScan();
         }
       });
-      if(this.second >= 31){
+      /*if(this.second >= 31){
         this.stopScan();
-      }
-    }, 1000);
+      }*/
+    }, 3000);
     
     //const modal = this.modalCtrl.create('ScanPage');
     //modal.present();
