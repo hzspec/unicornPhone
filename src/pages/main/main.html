@@ -113,6 +113,7 @@
           <span class="info">快人一步保护设备安全</span><br/>
           <button (click)="goScan()" [disabled]="scaning" ion-button class="but-ty">{{scaning ? '正在扫描...' : '立即体验'}}</button><br/>
           <button *ngIf="isOver" (click)="showResult()" ion-button clear class="see-result">查看结果</button>
+          <button *ngIf="!registed" ion-button clear class="see-result tip">请先绑定网关</button>
         </div>
         <div class="i-left" style="position:relative;height:120px;">
           <!--<span class="icons img-ldsm">

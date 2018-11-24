@@ -212,23 +212,33 @@ dealMain(){
   isOver:boolean = false;
 
   goScan(){
-    this.scaning = true;
-    this.sserv.startScan(()=>{});
+    if(this.registed){
+      this.scaning = true;
+      this.sserv.startScan(()=>{});
 
-    //getEquips
-    this.getEquipLists();
+      //getEquips
+      this.getEquipLists();
 
-    this.inter = setInterval(()=>{
-      this.second++;
-      this.sserv.checkScan((res:any)=>{
-        if(res.success){
+      this.inter = setInterval(()=>{
+        this.second++;
+        this.sserv.checkScan((res:any)=>{
+          if(res.success){
+            this.stopScan();
+          }
+        });
+        if(this.second >= 3){
           this.stopScan();
         }
+      }, 3000);
+    }else{
+      const alert = this.alertCtrl.create({
+        title: '启动失败!',
+        subTitle: '请先绑定网关，然后再进行漏洞扫描!',
+        buttons: ['确定']
       });
-      if(this.second >= 3){
-        this.stopScan();
-      }
-    }, 3000);
+      alert.present();
+    }
+    
     
     //const modal = this.modalCtrl.create('ScanPage');
     //modal.present();

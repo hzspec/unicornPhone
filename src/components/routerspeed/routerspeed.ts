@@ -79,7 +79,6 @@ export class RouterspeedComponent {
         buttons: [{
           text: "取消",
           handler: ()=>{
-            alert.dismiss();
             this.viewCtrl.dismiss();
           }
         },
