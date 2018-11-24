@@ -8,7 +8,9 @@ import { Storage } from '@ionic/storage';
 import { UserStore } from '../../pages/user.storage';
 import { ChangeDetectorRef } from '@angular/core';
 import { SafeProvider } from '../../providers/safe/safe';
+import { EquipProvider } from '../../providers/equip/equip';
 
+import * as _ from 'lodash';
 /**
  * Generated class for the MainPage page.
  *
@@ -20,7 +22,7 @@ import { SafeProvider } from '../../providers/safe/safe';
 @Component({
   selector: 'page-main',
   templateUrl: 'main.html',
-  providers: [MainProvider, SafeProvider]
+  providers: [MainProvider, SafeProvider, EquipProvider]
 })
 export class MainPage {
 
@@ -68,7 +70,8 @@ export class MainPage {
     public alertCtrl: AlertController,
     private modalCtrl:ModalController,
     public store: Storage, public cd: ChangeDetectorRef,
-    private sserv: SafeProvider
+    private sserv: SafeProvider,
+    private eserv: EquipProvider
   ) {
     /*this.serv.getLinkJson().then((res:any)=>{
       this.zhsh = res.zhsh;
@@ -118,6 +121,7 @@ dealMain(){
       let llsj = datas[2];
       let signs = datas[3];
       let links = datas[4];
+      let rinfo = datas[5];
 
       this.staticData.alert.pre = alert[0].v;
       this.staticData.alert.cur = alert[1].v;
@@ -147,6 +151,12 @@ dealMain(){
       this.qd = links.qd;
       
       this.isSign = signs;
+
+      this.routerInfo.online = false;
+      if(rinfo.apStatusLogs.length > 0){
+        this.routerInfo.online = rinfo.apStatusLogs[0].status == 1 ? true : false;
+      }
+
     });
 
     /*
@@ -180,10 +190,10 @@ dealMain(){
           this.routerInfo.name = us.username;
           this.routerInfo.isuse = true;
 
-          this.serv.getOverview((res:any)=>{
+          /*this.serv.getOverview((res:any)=>{
             this.routerInfo.online = res.user.status;
 
-          }, ()=>{})
+          }, ()=>{})*/
 
         }
         this.dealMain();
@@ -205,6 +215,9 @@ dealMain(){
     this.scaning = true;
     this.sserv.startScan(()=>{});
 
+    //getEquips
+    this.getEquipLists();
+
     this.inter = setInterval(()=>{
       this.second++;
       this.sserv.checkScan((res:any)=>{
@@ -212,13 +225,25 @@ dealMain(){
           this.stopScan();
         }
       });
-      /*if(this.second >= 31){
+      if(this.second >= 3){
         this.stopScan();
-      }*/
+      }
     }, 3000);
     
     //const modal = this.modalCtrl.create('ScanPage');
     //modal.present();
+  }
+
+
+  scanEquips:any = [];
+  getEquipLists(){
+    this.eserv.getEquipPageData(1, 50, (datas)=>{
+      let val1 = datas[0];
+      let val = datas[1];
+
+      this.scanEquips = _.filter(val.result, d=>{return d.status != '10';});//val.result;
+
+    }, {});
   }
 
   stopScan(){
@@ -231,7 +256,7 @@ dealMain(){
   }
 
   showResult(){
-    const modal = this.modalCtrl.create('ScanPage');
+    const modal = this.modalCtrl.create('ScanPage', {data: this.scanEquips});
     modal.present();
   }
 

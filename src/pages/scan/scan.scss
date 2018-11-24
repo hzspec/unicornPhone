@@ -131,10 +131,39 @@ page-scan {
         }
         .lists{
             padding:0 15px;
+            height: calc(100% - 195px);
+            overflow: auto;
             .li{
-                height:78px;line-height:78px;border-bottom:solid 1px #ccc;
-                .name{font-size:14px;color:#333;font-weight:bold;margin-left:15px;}
-                .icons-s6{float:right;margin:25px 10px 0 0;}
+                min-height:78px;
+                //line-height:78px;
+                border-bottom:solid 1px #ccc;
+                padding-top: 15px;overflow: hidden;
+                .la{
+                    width:50px;float:left;
+                }
+                .name{font-size:14px;color:#333;font-weight:bold;}
+                .txts{
+                    margin-left:60px;
+                    line-height:20px;
+                    font-size:12px;
+                    p{
+                        margin:7px 20px 0 0;
+                    }
+                }
+                .icons-s6{float:right;margin:5px 0px 0 0;}
+
+                .details{
+                    margin-left:60px;clear:both;line-height:30px;
+                    border-top:solid 1px #eee;background:#fbfbfb;
+                    padding:0 5px;
+                    span{font-size:12px;}
+                    .deal-btn{
+                        float:right;
+                        width:50px;height:23px;line-height:23px;background:#fff;cursor:pointer;color:#fff;font-size:12px;
+                        border:solid 1px #ccc;box-shadow:none;
+                        .button-inner{color:#333;}
+                    }
+                }
             }
         }
         &.fullheight{

@@ -49,12 +49,34 @@
       </div>
     </div>
     <div class="tips">未发现任何漏洞</div>
+    <!--
+      <span *ngIf="d.deviceType==1" class="icons icon-equip-computer licon"></span>
+        <span *ngIf="d.deviceType==2" class="icons icon-equip-phone licon"></span>
+        <span *ngIf="d.deviceType==3" class="icons icon-equip-other licon"></span>
+        <span *ngIf="d.deviceType==4" class="icons icon-equip-video licon"></span>
+    -->
     <div class="lists">
-      <div class="li">
-        <span class="icons icons-s2"></span>
-        <span class="name">智能手机</span>
-        <span class="icons icons-s6"></span>
+      <div class="li" *ngFor="let d of scandatas">
+        <span *ngIf="d.deviceType==1" class="la icons icons-s4"></span>
+        <span *ngIf="d.deviceType==2" class="la icons icons-s2"></span>
+        <span *ngIf="d.deviceType==3" class="la icons icons-s3"></span>
+        <span *ngIf="d.deviceType==4" class="la icons icons-s5"></span>
+        
+        <div class="txts">
+          <span class="icons icons-s6"></span>
+          <p>
+            <span class="name">{{d.vendor ? d.vendor : '未知'}}</span><br/>
+            <span><b>MAC:</b>{{d.deviceMacAddr}}</span>
+            <span>&nbsp;<b>IP:</b>{{d.ip}}</span>
+          </p>
+        </div>
+        <div class="details" *ngIf="d.hasError">
+          <button ion-button class="deal-btn">处理</button>
+          <span>漏洞信息</span>
+
+        </div>
       </div>
+      <!--
       <div class="li">
         <span class="icons icons-s3"></span>
         <span class="name">智能设备</span>
@@ -69,7 +91,7 @@
         <span class="icons icons-s5"></span>
         <span class="name">摄像头</span>
         <span class="icons icons-s6"></span>
-      </div>
+      </div>-->
     </div>
   </div>
 

@@ -65,8 +65,11 @@ export class MainProvider {
 
       let purl5 = `${BASEURL}hz/link.json`;
       let pro5 = this.http.get(purl5).toPromise();
+
+      let purl6 = `${BASEURL}squirrel/v1/devices/ap/overview?apMacAddr=${us.apmac}`;
+      let pro6 = this.http.get(purl6, {headers: {Authorization: us.token}}).toPromise();
       
-      Promise.all([pro, pro2, pro3, pro4, pro5]).then((datas:any)=>{
+      Promise.all([pro, pro2, pro3, pro4, pro5, pro6]).then((datas:any)=>{
         success(datas);
       }).catch((err:any)=>{
         

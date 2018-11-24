@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 
 import { SafeProvider } from '../../providers/safe/safe';
 /**
@@ -24,10 +24,15 @@ export class ScanPage {
 
   isOver:boolean = true;
 
+  scandatas:any = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController,
-    private serv: SafeProvider
+    private serv: SafeProvider,
+    public modalCtrl: ModalController
   ) {
+    this.scandatas = this.navParams.get('data');
+    console.log(this.scandatas);
   }
 
   ionViewWillEnter(){
@@ -72,6 +77,11 @@ export class ScanPage {
     if(this.inter){
       clearInterval(this.inter);
     }
+  }
+
+  goDetail(equip){
+    const modal = this.modalCtrl.create('ScandetailPage', {equip: equip, data: {}});
+    modal.present();
   }
 
 }
