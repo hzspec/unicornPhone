@@ -19,6 +19,7 @@
 
 </div>
 
+<!--
 <div>
   <ion-select okText="确认" placeholder="切换服务器" cancelText="取消" class="changebut" [(ngModel)]="selServer">
     <ion-option *ngFor="let s of servers" value="{{s.id}}">{{s.name}}</ion-option>
@@ -32,7 +33,7 @@
 <div class="networks" style="border-top:none;">
   <ion-icon class="ico" name="ios-wifi-outline"></ion-icon>
   <span class="txt">{{countryname}}</span>
-</div>
+</div>-->
 <div class="bottoms">
   <button class="startbut" [disabled]="testing" ion-button (click)="startTest()">{{!testing ? '开始' : '请稍候'}}</button>
 </div>

@@ -53,24 +53,24 @@ export class RouterspeedComponent {
 
   getServers(){
     
-    const loader = this.loadingCtrl.create({
-        content: "正在连接网关...",
-    });    
-    loader.present();
+    //const loader = this.loadingCtrl.create({
+    //    content: "正在连接网关...",
+    //});    
+    //loader.present();
 
-    this.http.get(this.localip + 'getSpeedServer').toPromise().then((res:any)=>{
-      loader.dismiss();
+    //this.http.get(this.localip + 'getSpeedServer').toPromise().then((res:any)=>{
+      //loader.dismiss();
       
-      this.servers = res.data;
+      //this.servers = res.data;
       
-      let best = this.servers[0];
-      this.pingData =  '--';
-      this.servername = best.name;
-      this.countryname = best.sponsor;
-      this.selServer = best.id;
+      //let best = this.servers[0];
+      //this.pingData =  '--';
+      //this.servername = best.name;
+      //this.countryname = best.sponsor;
+      //this.selServer = best.id;
 
       this.initSpeed();
-    }).catch((err)=>{
+   /* }).catch((err)=>{
       loader.dismiss();
       
       const alert = this.alertCtrl.create({
@@ -95,7 +95,7 @@ export class RouterspeedComponent {
         }]
       });
       alert.present();
-    });
+    });*/
   }
 
   dealStartTest(val){
@@ -134,7 +134,7 @@ export class RouterspeedComponent {
   }
 
   startTest(){
-    this.http.get(this.localip + 'startTest?serviceId=' + this.selServer).toPromise().then((res:any)=>{
+    this.http.get(this.localip + 'startTest').toPromise().then((res:any)=>{
       this.dealVal(res.data);
 
     });
