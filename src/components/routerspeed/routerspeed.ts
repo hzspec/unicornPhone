@@ -39,6 +39,10 @@ export class RouterspeedComponent {
   constructor(private modalCtrl:ModalController, private http:HttpClient, private alertCtrl:AlertController, private viewCtrl:ViewController,
     private loadingCtrl:LoadingController
     ) {
+    this.showConnectWifi();
+  }
+
+  showConnectWifi(){
     const modal = this.modalCtrl.create('TiplinkrouterPage');
     modal.present();
     modal.onDidDismiss((res:any)=>{
@@ -47,7 +51,6 @@ export class RouterspeedComponent {
       }else{
         this.cancleTest.emit('');
       }
-        
     });
   }
 
@@ -136,6 +139,21 @@ export class RouterspeedComponent {
   startTest(){
     this.http.get(this.localip + 'startTest').toPromise().then((res:any)=>{
       this.dealVal(res.data);
+
+    }).catch((err)=>{
+      const alert = this.alertCtrl.create({
+        title: '启动失败!',
+        subTitle: '请确保手机已连接到网关Wifi!',
+        buttons: [{
+          text: '确定'
+        }]
+      });
+      alert.present();
+
+      this.testing = false;
+      this.option.series[0].data[0].name = '等待测试';
+      this.option.series[0].data[0].value = 0;
+      this.mchart.setOption(this.option, true);
 
     });
     

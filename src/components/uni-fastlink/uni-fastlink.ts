@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController, ToastController } from 'ionic-angular';
+import { ModalController, ToastController, AlertController } from 'ionic-angular';
 import { MainProvider } from '../../providers/main/main';
 
 declare var cordova:any;
@@ -26,7 +26,9 @@ export class UniFastlinkComponent {
   isSign:boolean = true;
 
   constructor(private modalCtrl:ModalController, private serv:MainProvider,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    private alertCtrl: AlertController
+  ) {
   }
 
   goBind(){
@@ -44,7 +46,15 @@ export class UniFastlinkComponent {
       const modal = this.modalCtrl.create('SafePage', {type: 'green'});
       modal.present();
     }else{
-      this.goBind();
+      const alert = this.alertCtrl.create({
+        title: '请求失败!',
+        subTitle: '请先绑定网关，然后再查看!',
+        buttons: [{
+          text: '确定'
+        }]
+      });
+      alert.present();
+      //this.goBind();
     }
   }
 
