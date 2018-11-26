@@ -6,6 +6,12 @@ page-err500 {
         .gray-button{width:120px;height:30px;background: #D83A3A;line-height:50px;
             cursor: pointer;
             .button-inner{color:#fff;}
+
+            &.hs{
+                background: #ccc;
+                .button-inner{color:#666;}
+
+            }
         }
 
     }

@@ -31,7 +31,8 @@ export class MainPage {
   staticData:any = {
     alert: {
       pre: 0,
-      cur: 0
+      cur: 0,
+      sum: 0
     },
     equip: {
       dn: 0,
@@ -123,8 +124,11 @@ dealMain(){
       let links = datas[4];
       let rinfo = datas[5];
 
-      this.staticData.alert.pre = alert[0].v;
-      this.staticData.alert.cur = alert[1].v;
+      if(alert.length > 2){
+        this.staticData.alert.pre = alert[0].v;
+        this.staticData.alert.cur = alert[1].v;
+        this.staticData.alert.sum = alert[2].v;
+      }
 
       for(let m of equip){
         if(m.type == 1){
