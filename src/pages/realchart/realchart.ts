@@ -18,6 +18,8 @@ export class RealchartPage {
   @ViewChild('realchart')
   greetDiv: any;
 
+  showTip:boolean = true;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
