@@ -12,4 +12,19 @@ uni-rankchartsafe {
         background:rgba(0,0,0,0.3);text-align:center;line-height:320px;
         font-size:22px;color:#fff;
     }
+    .load-txt{
+        position: absolute;
+        left:50%;top:80px;margin-left:-60px;
+        color:#CA2728;
+        .loading{
+            font-size:18px;color:#CA2728;
+            animation: circle 1s linear infinite;
+        }
+    }
+    
+    @keyframes circle
+    {
+        from {transform:rotate(0deg);}
+        to {transform: rotate(360deg);}
+    }
 }

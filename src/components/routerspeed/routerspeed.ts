@@ -47,7 +47,7 @@ export class RouterspeedComponent {
     modal.present();
     modal.onDidDismiss((res:any)=>{
       if(!res.cancle){
-        this.getServers();
+        //this.getServers();
       }else{
         this.cancleTest.emit('');
       }
@@ -66,13 +66,13 @@ export class RouterspeedComponent {
       
       //this.servers = res.data;
       
-      //let best = this.servers[0];
+      //let best = this.servers[0]; 
       //this.pingData =  '--';
       //this.servername = best.name;
       //this.countryname = best.sponsor;
       //this.selServer = best.id;
 
-      this.initSpeed();
+      //this.initSpeed();
    /* }).catch((err)=>{
       loader.dismiss();
       
@@ -124,19 +124,25 @@ export class RouterspeedComponent {
 
   dealVal(id){
     this.getValue(id, (val:any)=>{
-      let result = this.dealStartTest(val);
-      
-      if(result){
-        this.dealVal(id);
+      //let result = this.dealStartTest(val);
+      let code = val.code;
+
+      if(code == 1){
+        setTimeout(()=>{this.dealVal(id);}, 5000);
+      }else if(code == 0){
+        this.completeTest(val.data);
       }else{
-        this.completeTest();
+
       }
-      val = null;
+      //val = null;
 
     });
   }
 
   startTest(){
+    if(this.testing){
+      return;
+    }
     this.http.get(this.localip + 'startTest').toPromise().then((res:any)=>{
       this.dealVal(res.data);
 
@@ -151,9 +157,9 @@ export class RouterspeedComponent {
       alert.present();
 
       this.testing = false;
-      this.option.series[0].data[0].name = '等待测试';
-      this.option.series[0].data[0].value = 0;
-      this.mchart.setOption(this.option, true);
+      //this.option.series[0].data[0].name = '等待测试';
+      //this.option.series[0].data[0].value = 0;
+      //this.mchart.setOption(this.option, true);
 
     });
     
@@ -161,9 +167,9 @@ export class RouterspeedComponent {
     this.pingData = '--';
     this.downloadData = '--';
     this.uploadData = '--';
-    this.option.series[0].data[0].name = '正在连接...';
-    this.option.series[0].data[0].value = 0;
-    this.mchart.setOption(this.option, true);
+    //this.option.series[0].data[0].name = '正在连接...';
+    //this.option.series[0].data[0].value = 0;
+    //this.mchart.setOption(this.option, true);
 
   }
 
@@ -261,11 +267,13 @@ export class RouterspeedComponent {
     this.mchart.setOption(this.option, true);
   }
 
-  completeTest(){
+  completeTest(data){
     this.testing = false;
-    this.option.series[0].data[0].value = 0;
-    this.option.series[0].data[0].name = '测试完毕';
-    this.mchart.setOption(this.option, true);
+    this.downloadData = (data.download / 1000).toFixed(1);
+    this.uploadData = (data.uploadData / 1000).toFixed(1);
+    //this.option.series[0].data[0].value = 0;
+    //this.option.series[0].data[0].name = '测试完毕';
+    //this.mchart.setOption(this.option, true);
   }
 
 }

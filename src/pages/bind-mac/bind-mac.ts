@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, App } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
 
 import { MainProvider } from '../../providers/main/main';
 import { AlertController } from 'ionic-angular';
@@ -26,12 +27,14 @@ export class BindMacPage {
   macstring:any = ['', '', '', '', '', '', '', '', '', '', '', ''];
   curindex:number = -1;
   isfresh:boolean = true;
+  localip:string = 'http://192.168.1.1:8080/b?apMacAddress=';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController,
     private serv:MainProvider,
     public alertCtrl: AlertController,
     private storage: Storage,
-    private app: App
+    private app: App,
+    private http: HttpClient
   ) {
     let fre = this.navParams.get('fresh');
     if(fre && fre == 'no'){
@@ -46,11 +49,35 @@ export class BindMacPage {
     this.viewCtrl.dismiss(null);
   }
 
+  bindInterServerAP(us:UserStore, mac, success){
+    this.http.get(this.localip + mac, {headers: {Authorization: us.token}}).toPromise().then((res:any)=>{
+      if(res.data){
+        success(res.data);
+      }else{
+        const alert = this.alertCtrl.create({
+          title: '绑定失败!',
+          subTitle: '请检查输入的MAC地址是否正确,或输入其他MAC地址重试!',
+          buttons: ['确定']
+        });
+        alert.present();
+      }
+    }).catch((err:any)=>{
+      const alert = this.alertCtrl.create({
+        title: '绑定失败!',
+        subTitle: '请检查网络是否已经连接到网关Wifi!',
+        buttons: ['确定']
+      });
+      alert.present();
+    })
+  }
+
   bindForWB(apmac, success){
 
-    this.serv.bindAP(apmac, ()=>{
-      
-      this.storage.get('user').then((us:UserStore)=>{
+    this.storage.get('user').then((us:UserStore)=>{
+
+      this.bindInterServerAP(us, apmac, (newAP:any)=>{
+        console.log(newAP);
+
         us.arrEquips.push({apmac: apmac, ip: '--', alias: apmac});
         us.isBindRouter = true;
 
@@ -61,38 +88,33 @@ export class BindMacPage {
         
 
         this.storage.set('user', us);
-
-        /*const alert = this.alertCtrl.create({
-          title: '绑定成功!',
-          subTitle: '',
-          buttons: [{
-            text: '确定',
-            handler: ()=>{
-              this.viewCtrl.dismiss();
-
-              if(this.isfresh){
-
-                this.app.getRootNav().setRoot('TabPage');
-                //window.location.reload();
-              }
-              
-            }
-          }]
-        });
-        alert.present();
-        */
-
         success();
 
       });
 
-    }, ()=>{
-      const alert = this.alertCtrl.create({
-        title: '绑定失败!',
-        subTitle: '请检查输入的MAC地址是否正确!',
-        buttons: ['确定']
+      
+
+      /*const alert = this.alertCtrl.create({
+        title: '绑定成功!',
+        subTitle: '',
+        buttons: [{
+          text: '确定',
+          handler: ()=>{
+            this.viewCtrl.dismiss();
+
+            if(this.isfresh){
+
+              this.app.getRootNav().setRoot('TabPage');
+              //window.location.reload();
+            }
+            
+          }
+        }]
       });
       alert.present();
+      */
+
+
     });
 
   }

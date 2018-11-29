@@ -231,7 +231,7 @@ dealMain(){
           }
         });
         if(this.second >= 3){
-          this.stopScan();
+          //this.stopScan();
         }
       }, 3000);
     }else{
