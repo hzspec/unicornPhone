@@ -174,7 +174,7 @@ export class UniAlertchartComponent  {
     });
   }
 
-  drawCharts(d1, d2){
+  drawCharts(d2, d1){
     this.chartMod = echarts.init(document.getElementById('piealert'));
     let option = null;
     option = {
@@ -212,7 +212,7 @@ export class UniAlertchartComponent  {
         ],
         series : [
             {
-                name: '上载',
+                name: '下载',
                 type: 'line',
                 data: d2,
                 areaStyle: {normal: {opacity: 0.3}},
@@ -220,7 +220,7 @@ export class UniAlertchartComponent  {
                 smooth: true
             },
             {
-                name: '下载',
+                name: '上载',
                 type: 'line',
                 data: d1,
                 areaStyle: {normal: {opacity: 0.3}},
