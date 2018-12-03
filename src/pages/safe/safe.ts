@@ -71,13 +71,44 @@ export class SafePage {
     this.stime = yes.format('YYYY-MM-DDTHH:mm:ss') + '.0Z';
     this.etime = now.format('YYYY-MM-DDTHH:mm:ss') + '.0Z';
 
+    var jwds = [[121.4648, 31.2891],
+    [-4.388361, 11.186148],
+    [-118.24311, 34.052713],
+    [114.195466, 22.282751],
+    [-87.801833, 41.870975],
+    [-4.62829, 7.72415],
+    [-1.657222, 51.886863],
+    [10.01959, 54.38474],
+    [45.326912, 41.101891],
+    [89.116876, 67.757906],
+    [-48.678945, -10.493623],
+    [31.815593, 31.418032],
+    [2.175129, 41.385064],
+    [104.88659, 11.545469],
+    [9.189948, 45.46623],
+    [-56.162231, -34.901113],
+    [32.608571, -25.893473],
+    [3.054275, 36.753027],
+    [55.269441, 25.204514],
+    [17.108519, 48.179162],
+    [150.993137, -33.675509],
+    [-121.910642, 41.38028],
+    [144.999416, -37.781726],
+    [-99.094092, 19.365711],
+    [-123.023921, 49.311753]]
+
     this.serv.getList(this.pagenum, this.pagesize, this.stime, this.etime, (val:any)=>{
       this.alertLists = val.result;
       this.totalpage = val.totalPageCount;
 
       let datas = [];
+      let inx = 0;
       for(let r of val.result){
-        if(r.srcLongitude && r.srcLatitude){
+        //if(r.srcLongitude && r.srcLatitude){
+          let curpos = jwds[inx % jwds.length];
+          inx++;
+          r.srcLongitude = curpos[0];
+          r.srcLatitude = curpos[1];
           if(r.priority == 1){
             datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l1'});
             this.l1count++;
@@ -91,7 +122,7 @@ export class SafePage {
             this.l3s.push({"name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
             this.l3count++;
           }
-        }
+        //}
       }
       this.mapDatas = datas;
     });

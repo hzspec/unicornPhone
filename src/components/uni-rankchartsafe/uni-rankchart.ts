@@ -37,7 +37,9 @@ export class UniRankchartsafeComponent {
                         itemStyle: {
                             color: '#488aff'
                         },
-                        data: []
+                        symbolSize: 5,
+                        data: [],
+                        z: 4
                     },
                     {
                         type: 'effectScatter',
@@ -46,6 +48,7 @@ export class UniRankchartsafeComponent {
                         itemStyle: {
                             color: '#F7DB77'
                         },
+                        symbolSize: 5,
                         data: []
                     },
                     {
@@ -55,6 +58,7 @@ export class UniRankchartsafeComponent {
                         itemStyle: {
                             color: '#FF436F'
                         },
+                        symbolSize: 5,
                         data: []
                     }
                 ];
@@ -124,8 +128,8 @@ export class UniRankchartsafeComponent {
                 name: 'IP 地图',
                 type: 'map',
                 map: 'world',
-                center: [116.97, 39.71],
-                zoom: 5,
+                //center: [116.97, 39.71],
+                zoom: 1.5,
                 roam: true,
                 label: {
                     emphasis: {
