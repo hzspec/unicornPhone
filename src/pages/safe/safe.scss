@@ -1,4 +1,10 @@
 page-safe {
+    .btn{
+        margin-bottom:8px;height:30px;line-height:50px;background:#D83A3A;margin-top:0px;cursor:pointer;color:#fff;font-size:12px;
+        .button-inner{color:#fff;}
+        box-shadow: none;
+    }
+
     .morebut{box-shadow:none;margin:15px 0 0 0;font-size:12px;}
 
     .navs{padding:10px 10px 0 10px;
@@ -65,7 +71,8 @@ page-safe {
                 .lists{
                     border-top:dotted 1px #eee;
                     margin-top:10px;display:none;
-                    transition: all 0.5s;
+                    transition: all 0.5s;max-height: 150px;
+                    overflow: auto;
                     a{
                         display:block;
                         font-size:14px;color:#000;
@@ -79,12 +86,24 @@ page-safe {
                         &:nth-child(odd){
                             background:#eee;
                         }
+
+                        &.sel{
+                            background:#00ACFE;
+                        }
                     }
                     &.ll2{
                         a{border-left:solid 2px #F7DB77;}
+
+                        a.sel{
+                            background:#F7DB77;
+                        }
                     }
                     &.ll3{
                         a{border-left:solid 2px #FF436F;}
+
+                        a.sel{
+                            background:#FF436F;
+                        }
                     }
                 }
 

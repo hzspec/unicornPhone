@@ -43,6 +43,8 @@ export class SafePage {
   l3s = [];
 
   showback:boolean = false;
+  olddatas:any = [];
+  showSingle:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private viewCtrl:ViewController,
@@ -110,24 +112,54 @@ export class SafePage {
           r.srcLongitude = curpos[0];
           r.srcLatitude = curpos[1];
           if(r.priority == 1){
-            datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l1'});
+            datas.push({"id": inx, "name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,r.ipSrc], type: 'l1'});
             this.l1count++;
-            this.l1s.push({"name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
+            this.l1s.push({"id": inx, "name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
           }else if(r.priority == 2){
-            datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l2'});
-            this.l2s.push({"name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
+            datas.push({"id": inx, "name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,r.ipSrc], type: 'l2'});
+            this.l2s.push({"id": inx, "name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
             this.l2count++;
           }else{
-            datas.push({"name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,null], type: 'l3'});
-            this.l3s.push({"name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
+            datas.push({"id": inx, "name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,r.ipSrc], type: 'l3'});
+            this.l3s.push({"id": inx, "name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});
             this.l3count++;
           }
         //}
       }
+      this.olddatas = datas;
       this.mapDatas = datas;
     });
 
     this.initMap();
+  }
+
+  showCurrent(l){
+    this.mapDatas = _.filter(this.olddatas, (d)=>{return d.id == l.id});
+    for(let l of this.l1s){
+      l.selected = false;
+    }
+    for(let l of this.l2s){
+      l.selected = false;
+    }
+    for(let l of this.l3s){
+      l.selected = false;
+    }
+    l.selected = true;
+    this.showSingle = true;
+  }
+
+  showAll(){
+    for(let l of this.l1s){
+      l.selected = false;
+    }
+    for(let l of this.l2s){
+      l.selected = false;
+    }
+    for(let l of this.l3s){
+      l.selected = false;
+    }
+    this.mapDatas = this.olddatas;
+    this.showSingle = false;
   }
 
   initMap(){

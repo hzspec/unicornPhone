@@ -29,48 +29,50 @@
 
       <uni-rankchartsafe #safeChart style="margin:-20px 14px 0 14px;" [datas]="mapDatas" [registed]="true"></uni-rankchartsafe>
 
-      <!--<h4 class="titles">最近一周内报警统计<ion-icon style="display:none;" name="ios-funnel-outline"></ion-icon></h4>-->
+      <!--<h4 class="titles">最近一周内报警统计<ion-icon style="display:none;" name="ios-funnel-outline"></ion-icon></h4>
+      <h4 (click)="showAll()" class="titles" *ngIf="showSingle">查看所有<ion-icon style="display:none;" name="ios-funnel-outline"></ion-icon></h4>-->
+      <button (click)="showAll()" ion-button class="btn" *ngIf="showSingle">点击查看所有</button>
 
       <div class="alert-counts">
-        <div class="counts-title" [class.nosel]="nol1" (click)="nol1=!nol1">
-          <span class="icon-con l3">
+        <div class="counts-title" [class.nosel]="nol1">
+          <span class="icon-con l3" (click)="nol1=!nol1">
             <span class="icons icon-safe-alert"></span>
           </span>
           普通
           <ion-badge class="rg-number" item-end>{{l1count}}</ion-badge>
 
           <div class="lists">
-            <a *ngFor="let l of l1s">
+            <a *ngFor="let l of l1s" [class.sel]="l.selected" (click)="showCurrent(l)">
               {{l.name}}
               <small>{{l.time}}</small>
             </a>
           </div>
         </div>
 
-        <div class="counts-title" [class.nosel]="nol2" (click)="nol2=!nol2">
-          <span class="icon-con l2">
+        <div class="counts-title" [class.nosel]="nol2">
+          <span class="icon-con l2" (click)="nol2=!nol2">
             <span class="icons icon-safe-alert"></span>
           </span>
           中级
           <ion-badge class="rg-number" item-end>{{l2count}}</ion-badge>
 
           <div class="lists ll2">
-            <a *ngFor="let l of l2s">
+            <a *ngFor="let l of l2s" [class.sel]="l.selected" (click)="showCurrent(l)">
               {{l.name}}
               <small>{{l.time}}</small>
             </a>
           </div>
         </div>
 
-        <div class="counts-title" [class.nosel]="nol3" (click)="nol3=!nol3">
-          <span class="icon-con">
+        <div class="counts-title" [class.nosel]="nol3">
+          <span class="icon-con" (click)="nol3=!nol3">
             <span class="icons icon-safe-alert"></span>
           </span>
           高级
           <ion-badge class="rg-number" item-end>{{l3count}}</ion-badge>
 
           <div class="lists ll3">
-            <a *ngFor="let l of l3s">
+            <a *ngFor="let l of l3s" [class.sel]="l.selected" (click)="showCurrent(l)">
               {{l.name}}
               <small>{{l.time}}</small>
             </a>

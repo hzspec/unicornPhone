@@ -27,56 +27,128 @@ export class UniRankchartsafeComponent {
     this._d = v;
 
     if(v.length > 0){
-        setTimeout(()=>{
+        let size = 5;
+        let showLabel = false;
+        if(v.length == 1){
+            size = 15;
+            showLabel = true;
+        }
 
-            if(this.registed){
-                //this.mapDatas = v;
-                let series = [
-                    {
-                        type: 'effectScatter',
-                        name: 'l1',
-                        coordinateSystem: 'geo',
-                        itemStyle: {
-                            color: '#488aff'
-                        },
-                        symbolSize: 5,
-                        data: [],
-                        z: 4
+        if(this.mapMod){
+            let series = [
+                {
+                    type: 'effectScatter',
+                    name: 'l1',
+                    coordinateSystem: 'geo',
+                    itemStyle: {
+                        color: '#488aff'
                     },
-                    {
-                        type: 'effectScatter',
-                        name: 'l2',
-                        coordinateSystem: 'geo',
-                        itemStyle: {
-                            color: '#F7DB77'
-                        },
-                        symbolSize: 5,
-                        data: []
+                    label: {
+                        show: showLabel,
+                        align: 'left',
+                        formatter: '{@[2]}'
                     },
-                    {
-                        type: 'effectScatter',
-                        name: 'l3',
-                        coordinateSystem: 'geo',
-                        itemStyle: {
-                            color: '#FF436F'
-                        },
-                        symbolSize: 5,
-                        data: []
-                    }
-                ];
-                for(let vi of v){
-                    if(vi.type == 'l1'){
-                        series[0].data.push(vi);
-                    }else if(vi.type == 'l2'){
-                        series[1].data.push(vi);
-                    }else if(vi.type == 'l3'){
-                        series[2].data.push(vi);
-                    }
+                    symbolSize: size,
+                    data: [],
+                    z: 4
+                },
+                {
+                    type: 'effectScatter',
+                    name: 'l2',
+                    coordinateSystem: 'geo',
+                    itemStyle: {
+                        color: '#F7DB77'
+                    },
+                    label: {
+                        show: showLabel,
+                        align: 'left',
+                        formatter: '{@[2]}'
+                    },
+                    symbolSize: size,
+                    data: []
+                },
+                {
+                    type: 'effectScatter',
+                    name: 'l3',
+                    coordinateSystem: 'geo',
+                    itemStyle: {
+                        color: '#FF436F'
+                    },
+                    label: {
+                        show: showLabel,
+                        align: 'left',
+                        formatter: '{@[2]}'
+                    },
+                    symbolSize: size,
+                    data: []
                 }
-                this.mapDatas = series;
-                this.initMap();
+            ];
+            for(let vi of v){
+                if(vi.type == 'l1'){
+                    series[0].data.push(vi);
+                }else if(vi.type == 'l2'){
+                    series[1].data.push(vi);
+                }else if(vi.type == 'l3'){
+                    series[2].data.push(vi);
+                }
             }
-        }, 300);
+            console.log(series);
+
+            this.mapDatas = series;
+            this.mapMod.setOption({series: series});
+            console.log('update');
+        }else{
+            setTimeout(()=>{
+
+                if(this.registed){
+                    //this.mapDatas = v;
+                    let series = [
+                        {
+                            type: 'effectScatter',
+                            name: 'l1',
+                            coordinateSystem: 'geo',
+                            itemStyle: {
+                                color: '#488aff'
+                            },
+                            symbolSize: size,
+                            data: [],
+                            z: 4
+                        },
+                        {
+                            type: 'effectScatter',
+                            name: 'l2',
+                            coordinateSystem: 'geo',
+                            itemStyle: {
+                                color: '#F7DB77'
+                            },
+                            symbolSize: size,
+                            data: []
+                        },
+                        {
+                            type: 'effectScatter',
+                            name: 'l3',
+                            coordinateSystem: 'geo',
+                            itemStyle: {
+                                color: '#FF436F'
+                            },
+                            symbolSize: size,
+                            data: []
+                        }
+                    ];
+                    for(let vi of v){
+                        if(vi.type == 'l1'){
+                            series[0].data.push(vi);
+                        }else if(vi.type == 'l2'){
+                            series[1].data.push(vi);
+                        }else if(vi.type == 'l3'){
+                            series[2].data.push(vi);
+                        }
+                    }
+                    this.mapDatas = series;
+                    this.initMap();
+                }
+            }, 300);
+        }
     }
   }
   get datas(){
