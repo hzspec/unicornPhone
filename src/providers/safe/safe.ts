@@ -5,6 +5,7 @@ import { BASEURL } from '../common';
 import { Storage } from '@ionic/storage';
 import { NavController, ModalController } from 'ionic-angular';
 import { UserStore } from '../../pages/user.storage';
+import { DataStore } from '../../pages/data.storage';
 
 /*
   Generated class for the SafeProvider provider.
@@ -20,7 +21,17 @@ export class SafeProvider {
 
   checkStorage(callback){
     this.store.get('user').then((val:UserStore)=>{
-        callback(val);
+      this.getDataStore((dt)=>{
+        callback(val, dt);
+      })
+    }).catch((err)=>{
+        this.goLogin();
+    });
+  }
+
+  getDataStore(callback){
+    this.store.get('datas').then((d: DataStore)=>{
+      callback(d);
     }).catch((err)=>{
         this.goLogin();
     });
@@ -33,14 +44,45 @@ export class SafeProvider {
   }
 
   getList(pagenum, pagesize, stime, etime, success){
-    this.checkStorage((us:UserStore)=>{
-      let purl = `${BASEURL}alert/v1/alerts?apMacAddr=${us.apmac}`;
-      let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
-      pro.then((res:any)=>{
-        success(res);
-      }).catch(()=>{
-        this.goLogin();
-      });
+    this.checkStorage((us:UserStore, dt:DataStore)=>{
+      
+      console.log(dt);
+
+      if(dt && dt.safeData && dt.safeData.result.length > 0){
+        success(dt.safeData);
+
+        let purl = `${BASEURL}alert/v1/alerts?apMacAddr=${us.apmac}`;
+        let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+        pro.then((res:any)=>{
+          
+          if(dt == null){
+            dt = new DataStore();
+          }
+          dt.safeData = res;
+          this.store.set('datas', dt);
+
+          //success(res);
+        }).catch(()=>{
+          this.goLogin();
+        });
+
+      }else{
+        let purl = `${BASEURL}alert/v1/alerts?apMacAddr=${us.apmac}`;
+        let pro = this.http.get(purl, {headers: {Authorization: us.token}}).toPromise();
+        pro.then((res:any)=>{
+          
+          if(dt == null){
+            dt = new DataStore();
+          }
+          dt.safeData = res;
+          this.store.set('datas', dt);
+
+          success(res);
+        }).catch(()=>{
+          this.goLogin();
+        });
+      }
+      
     });
   }
 

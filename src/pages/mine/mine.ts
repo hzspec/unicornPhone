@@ -44,6 +44,7 @@ export class MinePage {
 
   logout(){
     this.storage.remove('user');
+    this.storage.remove('datas');
     this.navCtrl.popToRoot();
     //window.location.href = '/#login';
     //this.navCtrl.setRoot('LoginPage');

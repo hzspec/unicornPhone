@@ -25,8 +25,10 @@ export class UniRankchartsafeComponent {
   @Input()
   set datas(v){
     this._d = v;
+
     if(v.length > 0){
         setTimeout(()=>{
+
             if(this.registed){
                 //this.mapDatas = v;
                 let series = [
@@ -74,7 +76,7 @@ export class UniRankchartsafeComponent {
                 this.mapDatas = series;
                 this.initMap();
             }
-        }, 1000);
+        }, 300);
     }
   }
   get datas(){
