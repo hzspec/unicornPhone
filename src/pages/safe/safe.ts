@@ -111,7 +111,7 @@ export class SafePage {
           inx++;
           r.srcLongitude = curpos[0];
           r.srcLatitude = curpos[1];
-          if(r.priority == 1){
+          if(r.priority == 3){
             datas.push({"id": inx, "name":r.sigName,"value":[r.srcLongitude,r.srcLatitude,r.ipSrc], type: 'l1'});
             this.l1count++;
             this.l1s.push({"id": inx, "name":r.sigName, "time": moment(r.timestamp).format('YYYY-MM-DD HH:mm:ss')});

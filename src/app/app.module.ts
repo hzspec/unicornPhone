@@ -10,6 +10,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { Network } from '@ionic-native/network';
+import { JpushsProvider } from '../providers/jpushs/jpushs';
+import { JPush } from "@jiguang-ionic/jpush";
+import { Device } from "@ionic-native/device";
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import { Network } from '@ionic-native/network';
     StatusBar,
     SplashScreen,
     Network,
+    Device,
+    JPush,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    JpushsProvider,
   ]
 })
 export class AppModule {}
