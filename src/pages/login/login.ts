@@ -9,6 +9,8 @@ import { ModalController } from 'ionic-angular';
 
 import { Network } from '@ionic-native/network';
 
+import { JpushsProvider } from '../../providers/jpushs/jpushs';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -37,11 +39,12 @@ export class LoginPage {
     public alertCtrl: AlertController,
     private storage: Storage,
     private modalCtrl: ModalController,
-    private network: Network
+    private network: Network, 
+    private jpush: JpushsProvider
   ) {
     this.storage.get('user').then((us:UserStore)=>{
       if(us){
-        
+        this.jpush.initJPUSH(us);
         this.navCtrl.setRoot('TabPage');
       }
     });
@@ -137,6 +140,9 @@ export class LoginPage {
         this.storage.set('user', us);
         
         this.navCtrl.setRoot('TabPage');
+
+        this.jpush.initJPUSH(us);
+
       });
     //});
   }

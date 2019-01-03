@@ -6,6 +6,8 @@ import { UserProvider } from '../../providers/user/user';
 import { AlertController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { UserStore } from '../user.storage';
+
+import { JpushsProvider } from '../../providers/jpushs/jpushs';
 /**
  * Generated class for the RegistPage page.
  *
@@ -41,7 +43,8 @@ export class RegistPage {
     private serv:UserProvider,
     private alertCtrl:AlertController,
     private app:App,
-    private storage: Storage
+    private storage: Storage, 
+    private jpush: JpushsProvider
   ) {
     this.form = fb.group({
         name: ['', Validators.compose([Validators.required])],
@@ -132,6 +135,9 @@ export class RegistPage {
           this.viewCtrl.dismiss();
           
           this.app.getRootNav().setRoot('TabPage');
+
+          this.jpush.initJPUSH(us);
+          
         }, 500);
         
 

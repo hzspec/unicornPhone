@@ -10,6 +10,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { SafeProvider } from '../../providers/safe/safe';
 import { EquipProvider } from '../../providers/equip/equip';
 
+import { JpushsProvider } from '../../providers/jpushs/jpushs';
+
 import * as _ from 'lodash';
 /**
  * Generated class for the MainPage page.
@@ -72,8 +74,10 @@ export class MainPage {
     private modalCtrl:ModalController,
     public store: Storage, public cd: ChangeDetectorRef,
     private sserv: SafeProvider,
-    private eserv: EquipProvider
+    private eserv: EquipProvider, 
+    private jpush: JpushsProvider
   ) {
+    this.jpush.resetBadage();
     /*this.serv.getLinkJson().then((res:any)=>{
       this.zhsh = res.zhsh;
       this.qd = res.qd;
