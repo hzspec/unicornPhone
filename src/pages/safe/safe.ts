@@ -46,6 +46,8 @@ export class SafePage {
   olddatas:any = [];
   showSingle:boolean = false;
 
+  showHeader:boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private viewCtrl:ViewController,
     public serv:SafeProvider,
@@ -55,6 +57,7 @@ export class SafePage {
       if(ptp && ptp == 'green'){
         this.safeType = 'green';
         this.showback = true;
+        this.showHeader = true;
       }else{
         this.safeType = 'alert';
       }
