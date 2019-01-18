@@ -28,9 +28,9 @@ import * as _ from 'lodash';
 })
 export class MainPage {
 
-  registed:boolean = true;
+  registed: boolean = true;
 
-  staticData:any = {
+  staticData: any = {
     alert: {
       pre: 0,
       cur: 0,
@@ -50,17 +50,17 @@ export class MainPage {
     }
   };
 
-  rankData:any = [];
+  rankData: any = [];
 
   @ViewChild('realchart')
   greetDiv: any;
 
-  zhsh:string = "";
-  qd:string = "";
+  zhsh: string = "";
+  qd: string = "";
 
-  isSign:boolean = true;
+  isSign: boolean = true;
 
-  routerInfo:any = {
+  routerInfo: any = {
     apmac: '--',
     name: '未绑定网关',
     isuse: false,
@@ -68,15 +68,20 @@ export class MainPage {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public serv:MainProvider,
+    public serv: MainProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private modalCtrl:ModalController,
+    private modalCtrl: ModalController,
     public store: Storage, public cd: ChangeDetectorRef,
     private sserv: SafeProvider,
-    private eserv: EquipProvider, 
+    private eserv: EquipProvider,
     private jpush: JpushsProvider
   ) {
+    /* this.store.get('user').then((val: UserStore) => {
+      console.log(val)
+    }).catch((err) => {
+
+    }); */
     this.jpush.resetBadage();
     /*this.serv.getLinkJson().then((res:any)=>{
       this.zhsh = res.zhsh;
@@ -90,110 +95,110 @@ export class MainPage {
     });*/
   }
 
-  getllNumber(num){
+  getllNumber(num) {
     let dw = 'B';
-    if(num / 1024 > 1){
-        dw = 'KB';
+    if (num / 1024 > 1) {
+      dw = 'KB';
+      num = num / 1024;
+      if (num / 1024 > 1) {
+        dw = 'MB';
         num = num / 1024;
-        if(num / 1024 > 1){
-            dw = 'MB';
-            num = num / 1024;
-            if(num / 1024 > 1){
-                dw = 'GB';
-                num = num / 1024;
-            }
+        if (num / 1024 > 1) {
+          dw = 'GB';
+          num = num / 1024;
         }
+      }
     }
     num = num.toFixed(2);
     return [num, dw];
-}
+  }
 
-ionViewDidLeave(){
-  
-}
-ionViewDidEnter(){
-  /*this.store.get('user').then((us:UserStore)=>{
-    this.registed = us.isBindRouter;
-    this.dealMain();
-  });*/
-}
+  ionViewDidLeave() {
 
-dealMain(){
-  if(this.registed){
-    this.serv.getStatic((datas:any)=>{
-      let alert = datas[0];
-      let equip = datas[1];
-      let llsj = datas[2];
-      let signs = datas[3];
-      let links = datas[4];
-      let rinfo = datas[5];
-
-      if(alert.length > 2){
-        this.staticData.alert.pre = alert[0].v;
-        this.staticData.alert.cur = alert[1].v;
-        this.staticData.alert.sum = alert[2].v;
-      }
-
-      for(let m of equip){
-        if(m.type == 1){
-            this.staticData.equip.dn = m.amount;
-        }else if(m.type == 2){
-            this.staticData.equip.sj = m.amount;
-        }else if(m.type == 3){
-            this.staticData.equip.qt = m.amount;
-        }else if(m.type == 4){
-            this.staticData.equip.sxt = m.amount;
-        }
-        this.staticData.equip.total += m.amount;
-      }
-
-      let d1 = llsj[0].value;
-      let d7 = llsj[1].value;
-      let d15 = llsj[1].value + llsj[0].value;
-      this.staticData.llsj.cur = this.getllNumber(d1);
-      this.staticData.llsj.pre = this.getllNumber(d7);
-      this.staticData.llsj.total = this.getllNumber(d15);
-      this.staticData.llsj.total[0] = parseInt(this.staticData.llsj.total[0]);
-
-      this.zhsh = links.zhsh;
-      this.qd = links.qd;
-      
-      this.isSign = signs;
-
-      this.routerInfo.online = false;
-      if(rinfo.apStatusLogs.length > 0){
-        this.routerInfo.online = rinfo.apStatusLogs[0].status == 1 ? true : false;
-      }
-
-    });
-
-    /*
-    let loader = this.loadingCtrl.create({
-      content: "正在获取数据...",
-    });
-    loader.present();
-    this.serv.getTop20((datas:any)=>{
-      let d1 = [];
-      for(let d of datas){
-        if(d.longitude && d.latitude){
-          d1.push({name: d.key, value: [d.longitude, d.latitude, d.value]});
-        }
-      }
-      
-      this.rankData = d1;
-      loader.dismiss();
-    }, ()=>{
-      loader.dismiss();
+  }
+  ionViewDidEnter() {
+    /*this.store.get('user').then((us:UserStore)=>{
+      this.registed = us.isBindRouter;
+      this.dealMain();
     });*/
   }
-}
+
+  dealMain() {
+    if (this.registed) {
+      this.serv.getStatic((datas: any) => {
+        let alert = datas[0];
+        let equip = datas[1];
+        let llsj = datas[2];
+        let signs = datas[3];
+        let links = datas[4];
+        let rinfo = datas[5];
+
+        if (alert.length > 2) {
+          this.staticData.alert.pre = alert[0].v;
+          this.staticData.alert.cur = alert[1].v;
+          this.staticData.alert.sum = alert[2].v;
+        }
+
+        for (let m of equip) {
+          if (m.type == 1) {
+            this.staticData.equip.dn = m.amount;
+          } else if (m.type == 2) {
+            this.staticData.equip.sj = m.amount;
+          } else if (m.type == 3) {
+            this.staticData.equip.qt = m.amount;
+          } else if (m.type == 4) {
+            this.staticData.equip.sxt = m.amount;
+          }
+          this.staticData.equip.total += m.amount;
+        }
+
+        let d1 = llsj[0].value;
+        let d7 = llsj[1].value;
+        let d15 = llsj[1].value + llsj[0].value;
+        this.staticData.llsj.cur = this.getllNumber(d1);
+        this.staticData.llsj.pre = this.getllNumber(d7);
+        this.staticData.llsj.total = this.getllNumber(d15);
+        this.staticData.llsj.total[0] = parseInt(this.staticData.llsj.total[0]);
+
+        this.zhsh = links.zhsh;
+        this.qd = links.qd;
+
+        this.isSign = signs;
+
+        this.routerInfo.online = false;
+        if (rinfo.apStatusLogs.length > 0) {
+          this.routerInfo.online = rinfo.apStatusLogs[0].status == 1 ? true : false;
+        }
+
+      });
+
+      /*
+      let loader = this.loadingCtrl.create({
+        content: "正在获取数据...",
+      });
+      loader.present();
+      this.serv.getTop20((datas:any)=>{
+        let d1 = [];
+        for(let d of datas){
+          if(d.longitude && d.latitude){
+            d1.push({name: d.key, value: [d.longitude, d.latitude, d.value]});
+          }
+        }
+        
+        this.rankData = d1;
+        loader.dismiss();
+      }, ()=>{
+        loader.dismiss();
+      });*/
+    }
+  }
 
   ionViewDidLoad() {
-    this.store.get('user').then((us:UserStore)=>{
+    this.store.get('user').then((us: UserStore) => {
 
-      setTimeout(()=>{
+      setTimeout(() => {
         this.registed = us.isBindRouter;
-        if(this.registed){
+        if (this.registed) {
           this.routerInfo.apmac = us.apmac;
           this.routerInfo.name = us.username;
           this.routerInfo.isuse = true;
@@ -210,35 +215,35 @@ dealMain(){
     });
   }
 
-  showlist(){
+  showlist() {
     this.navCtrl.push('RoutersPage');
   }
 
-  scaning:boolean = false;
-  inter:any = null;
-  second:number = 1;
-  isOver:boolean = false;
+  scaning: boolean = false;
+  inter: any = null;
+  second: number = 1;
+  isOver: boolean = false;
 
-  goScan(){
-    if(this.registed){
+  goScan() {
+    if (this.registed) {
       this.scaning = true;
-      this.sserv.startScan(()=>{});
+      this.sserv.startScan(() => { });
 
       //getEquips
       this.getEquipLists();
 
-      this.inter = setInterval(()=>{
+      this.inter = setInterval(() => {
         this.second++;
-        this.sserv.checkScan((res:any)=>{
-          if(res.success){
+        this.sserv.checkScan((res: any) => {
+          if (res.success) {
             this.stopScan();
           }
         });
-        if(this.second >= 3){
+        if (this.second >= 3) {
           //this.stopScan();
         }
       }, 3000);
-    }else{
+    } else {
       const alert = this.alertCtrl.create({
         title: '启动失败!',
         subTitle: '请先绑定网关，然后再进行漏洞扫描!',
@@ -246,35 +251,35 @@ dealMain(){
       });
       alert.present();
     }
-    
-    
+
+
     //const modal = this.modalCtrl.create('ScanPage');
     //modal.present();
   }
 
 
-  scanEquips:any = [];
-  getEquipLists(){
-    this.eserv.getEquipPageData(1, 50, (datas)=>{
+  scanEquips: any = [];
+  getEquipLists() {
+    this.eserv.getEquipPageData(1, 50, (datas) => {
       let val1 = datas[0];
       let val = datas[1];
 
-      this.scanEquips = _.filter(val.result, d=>{return d.status != '10';});//val.result;
+      this.scanEquips = _.filter(val.result, d => { return d.status != '10'; });//val.result;
 
     }, {});
   }
 
-  stopScan(){
+  stopScan() {
     this.scaning = false;
     this.isOver = true;
     this.second = 1;
-    if(this.inter){
+    if (this.inter) {
       clearInterval(this.inter);
     }
   }
 
-  showResult(){
-    const modal = this.modalCtrl.create('ScanPage', {data: this.scanEquips});
+  showResult() {
+    const modal = this.modalCtrl.create('ScanPage', { data: this.scanEquips });
     modal.present();
   }
 
